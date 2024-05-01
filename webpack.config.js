@@ -1,6 +1,6 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-import pkg from './package.json' with { type: 'json' };
+import proj from './build_utils/config/proj.js';
 import commonPaths from './build_utils/config/commonPaths.js';
 
 const isDebug = !process.argv.includes('release');
@@ -10,11 +10,11 @@ const port = process.env.PORT || 3000;
 export default {
   entry: commonPaths.entryPath,
   output: {
-    uniqueName: pkg.name,
+    uniqueName: proj.name,
     publicPath: '/',
     path: commonPaths.outputPath,
-    filename: `${pkg.version}/js/[name].[chunkhash:8].js`,
-    chunkFilename: `${pkg.version}/js/[name].[chunkhash:8].js`,
+    filename: `${proj.version}/js/[name].[chunkhash:8].js`,
+    chunkFilename: `${proj.version}/js/[name].[chunkhash:8].js`,
     assetModuleFilename: isDebug
       ? `images/[path][name].[contenthash:8][ext]`
       : `images/[path][contenthash:8][ext]`,
