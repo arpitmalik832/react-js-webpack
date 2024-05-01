@@ -1,5 +1,5 @@
 // Prettier configuration https://prettier.io/docs/en/options
-export default {
+module.exports = {
   arrowParens: 'avoid',
   bracketSameLine: false,
   bracketSpacing: true,
@@ -9,4 +9,5 @@ export default {
   useTabs: false,
   semi: true,
   printWidth: 80,
+  endOfLine: 'crlf',
 };

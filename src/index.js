@@ -1,3 +1,8 @@
-const helloDiv = document.createElement('div');
-helloDiv.innerHTML = 'Hello from Javascript!';
-document.body.append(helloDiv);
+import { createRoot } from 'react-dom/client';
+
+import App from './App';
+
+const container = document.getElementById('root');
+const root = createRoot(container);
+// eslint-disable-next-line react/jsx-filename-extension
+root.render(<App />);
