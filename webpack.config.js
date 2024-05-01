@@ -1,21 +1,20 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-const package = require('./package.json');
-const commonPaths = require('./build_utils/config/commonPaths');
+import pkg from './package.json';
+import commonPaths from './build_utils/config/commonPaths';
 
 const isDebug = !process.argv.includes('release');
 
 const port = process.env.PORT || 3000;
 
-module.exports = {
+export default {
   entry: commonPaths.entryPath,
   output: {
-    uniqueName: package.name,
+    uniqueName: pkg.name,
     publicPath: '/',
     path: commonPaths.outputPath,
-    filename: `${package.version}/js/[name].[chunkhash:8].js`,
-    chunkFilename: `${package.version}/js/[name].[chunkhash:8].js`,
+    filename: `${pkg.version}/js/[name].[chunkhash:8].js`,
+    chunkFilename: `${pkg.version}/js/[name].[chunkhash:8].js`,
     assetModuleFilename: isDebug
       ? `images/[path][name].[contenthash:8][ext]`
       : `images/[path][contenthash:8][ext]`,
