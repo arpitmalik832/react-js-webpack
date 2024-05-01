@@ -1,6 +1,6 @@
 import path from 'path';
 
-const PROJECT_ROOT = path.resolve(__dirname, '../../');
+const PROJECT_ROOT = path.resolve();
 
 export default {
   projectRootPath: PROJECT_ROOT,

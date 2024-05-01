@@ -1,7 +1,7 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-import pkg from './package.json';
-import commonPaths from './build_utils/config/commonPaths';
+import pkg from './package.json' with { type: 'json' };
+import commonPaths from './build_utils/config/commonPaths.js';
 
 const isDebug = !process.argv.includes('release');
 
