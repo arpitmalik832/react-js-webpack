@@ -1,6 +1,6 @@
 module.exports = {
-  dev: "development",
-  stg: "staging",
-  beta: "beta",
-  prod: "production",
+  dev: 'development',
+  stg: 'staging',
+  beta: 'beta',
+  prod: 'production',
 };

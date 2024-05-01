@@ -1,7 +1,17 @@
-import { createRoot } from "react-dom/client";
+import Button from '@atoms/Button';
+import { useEffect } from 'react';
 
-import App from "./Hello";
+const App = () => {
+  useEffect(() => {
+    console.log('temp');
+  }, []);
 
-const container = document.getElementById("root");
-const root = createRoot(container);
-root.render(<App />);
+  return (
+    <h1>
+      Hello from React!
+      <Button />
+    </h1>
+  );
+};
+
+export default App;
