@@ -39,10 +39,11 @@ module.exports = {
     'prettier/prettier': 1,
     // Ensure <a> tags are valid
     // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md
-    'jsx-a11y/anchor-is-valid': [2],
+    'jsx-a11y/anchor-is-valid': 2,
     // rules regarding no-console
     'no-console': 2,
     'no-debugger': 2,
+    'no-unused-vars': 2,
     'prefer-destructuring': 2,
   },
   settings: {
