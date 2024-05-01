@@ -1,6 +1,6 @@
 import { button } from './index.scss';
 
-const Button = ({ x }) => (
+const Button = () => (
   <button type="button" className={button}>
     Button
   </button>
