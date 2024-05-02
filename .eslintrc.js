@@ -45,6 +45,7 @@ module.exports = {
     'no-debugger': 2,
     'no-unused-vars': 2,
     'prefer-destructuring': 2,
+    'func-names': 2,
   },
   settings: {
     // Allow absolute paths in imports, e.g. import Button from 'components/Button'
@@ -71,4 +72,18 @@ module.exports = {
       },
     },
   },
+  overrides: [
+    {
+      files: [
+        '{test,spec}.{js,jsx}', // repos with a single test file
+        '{test,spec}-*.{js,jsx}', // repos with multiple top-level test files
+        '**/*{.,_}{test,spec}.{js,jsx}', // tests where the extension or filename suffix denotes that it is a test
+      ],
+      rules: {
+        // Forbid the use of extraneous packages
+        // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-extraneous-dependencies.md
+        'import/no-extraneous-dependencies': 0,
+      },
+    },
+  ],
 };

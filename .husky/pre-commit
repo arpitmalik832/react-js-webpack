@@ -15,9 +15,14 @@ printf "${Green}End - Linting of the code.${NC}"
 
 printf "\n${Blue}=================================${NC}\n"
 
-# printf "${Green}Start - Unit testing.${NC}"
-# npm run test:coverage:pre-commit
-# printf "${Green}End - Unit testing.${NC}"
+# test code before commit.
+printf "\n${Blue}=================================${NC}\n"
+
+printf "${Green}Start - Unit testing.${NC}"
+npm run test:coverage:pre-commit
+printf "${Green}End - Unit testing.${NC}"
+
+printf "\n${Blue}=================================${NC}\n"
 
 # Note: Enable it once e2e test wise - user id config is added.
 # printf "\n${Blue}=================================${NC}\n"
@@ -28,6 +33,9 @@ printf "\n${Blue}=================================${NC}\n"
 # printf "${Green}End - E2E testing.${NC}"
 
 # printf "\n${Blue}=================================${NC}\n"
+
+# build code before commit 
+printf "\n${Blue}=================================${NC}\n"
 
 printf "${Green}Start - Check build (staging).${NC}"
 npm run build

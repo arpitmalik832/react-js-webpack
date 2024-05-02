@@ -75,20 +75,7 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx'],
     alias: {
-      '@assets': commonPaths.assetsPath,
-      '@components': commonPaths.componentsPath,
-      '@atoms': commonPaths.atomsPath,
-      '@molecules': commonPaths.moleculesPath,
-      '@organisms': commonPaths.organismsPath,
-      '@configs': commonPaths.configsPath,
-      '@contexts': commonPaths.contextsPath,
-      '@enums': commonPaths.enumsPath,
-      '@hooks': commonPaths.hooksPath,
-      '@pages': commonPaths.pagesPath,
-      '@queries': commonPaths.queriesPath,
-      '@routes': commonPaths.routesPath,
-      '@services': commonPaths.servicesPath,
-      '@utils': commonPaths.utilsPath,
+      ...commonPaths.alias,
     },
   },
 };
