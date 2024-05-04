@@ -1,5 +1,7 @@
 {
+  "include": ["**/*.json"],
   "compilerOptions": {
+    "resolveJsonModule": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "checkJs": true,
