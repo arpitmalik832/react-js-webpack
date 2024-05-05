@@ -33,7 +33,7 @@ module.exports = {
     // Forbid the use of extraneous packages
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-extraneous-dependencies.md
     'import/no-extraneous-dependencies': [2, { packageDir: '.' }],
-    'import/prefer-default-export': 2,
+    'import/prefer-default-export': 0,
     // ESLint plugin for prettier formatting
     // https://github.com/prettier/eslint-plugin-prettier
     'prettier/prettier': 1,

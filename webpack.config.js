@@ -1,82 +1,24 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { merge } = require('webpack-merge');
 
-const pkg = require('./package.json');
-const commonPaths = require('./build_utils/config/commonPaths');
+const commonConfig = require('./build_utils/webpack_config/webpack.common');
+const buildValidations = require('./build_utils/config/buildValidations');
 
-const isDebug = !process.argv.includes('release');
+const addons = (/* string | string[] */ arg) => {
+  const addonsList = [...[arg]] // Normalize array of addons (flatten)
+    .filter(Boolean); // If addons is undefined, filter it out
 
-const port = process.env.PORT || 3000;
+  return addonsList.map(addonName =>
+    require(`./build_utils/webpack_config/webpack.${addonName}`),
+  );
+};
 
-module.exports = {
-  entry: commonPaths.entryPath,
-  output: {
-    uniqueName: pkg.name,
-    publicPath: '/',
-    path: commonPaths.outputPath,
-    filename: `${pkg.version}/js/[name].[chunkhash:8].js`,
-    chunkFilename: `${pkg.version}/js/[name].[chunkhash:8].js`,
-    assetModuleFilename: isDebug
-      ? `images/[path][name].[contenthash:8][ext]`
-      : `images/[path][contenthash:8][ext]`,
-    crossOriginLoading: 'anonymous',
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/, // exclude node_modules
-        use: ['babel-loader'],
-      },
-      {
-        test: /\.(scss|sass)$/,
-        exclude: /node_modules/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              esModule: false,
-              modules: {
-                mode: 'local',
-                localIdentName: isDebug
-                  ? '[name]-[local]-[hash:base64:5]'
-                  : '[hash:base64:5]',
-              },
-              sourceMap: isDebug,
-              importLoaders: 1,
-            },
-          },
-          'sass-loader',
-        ],
-      },
-    ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'public/index.html',
-      filename: 'index.html',
-    }),
-    new MiniCssExtractPlugin({
-      filename: `${pkg.version}/css/[name].[chunkhash:8].css`,
-      chunkFilename: `${pkg.version}/css/[id].[chunkhash:8].css`,
-      ignoreOrder: true,
-    }),
-  ],
-  devServer: {
-    port,
-    static: {
-      directory: commonPaths.outputPath,
-    },
-    historyApiFallback: {
-      index: 'index.html',
-    },
-    webSocketServer: false,
-  },
-  resolve: {
-    extensions: ['*', '.js', '.jsx'],
-    alias: {
-      ...commonPaths.alias,
-    },
-  },
+module.exports = env => {
+  if (!env) {
+    throw new Error(buildValidations.ERR_NO_ENV_FLAG);
+  }
+  const envConfig = require(`./build_utils/webpack_config/webpack.${env.env}`);
+  const config = [];
+  config.push(merge(commonConfig, envConfig, ...addons(env.addons)));
+
+  return config;
 };
