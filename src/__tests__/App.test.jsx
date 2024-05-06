@@ -5,7 +5,7 @@ import Component from '../App';
 
 jest.mock('@atoms/Button', () => ({
   __esModule: true,
-  default: jest.fn(() => <div data-testid="mock-button" />),
+  default: jest.fn(() => <div data-testid="mock-button">button</div>),
 }));
 
 describe('App unit tests', () => {
@@ -18,11 +18,9 @@ describe('App unit tests', () => {
   });
 
   it('Button renders correctly', () => {
-    const { getByTestId, container } = render(<Component />);
+    const { getByTestId } = render(<Component />);
 
-    expect(container.getElementsByTagName('h1')[0]).toHaveTextContent(
-      'Hello from React!',
-    );
-    expect(getByTestId('mock-button')).toBeInTheDocument();
+    expect(getByTestId('header')).toHaveTextContent('Hello from React!');
+    expect(getByTestId('mock-button')).toHaveTextContent('button');
   });
 });

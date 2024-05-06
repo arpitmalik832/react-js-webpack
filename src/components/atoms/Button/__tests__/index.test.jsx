@@ -13,8 +13,8 @@ describe('Button unit tests', () => {
   });
 
   it('Button renders correctly', () => {
-    const { container } = render(<Component />);
+    const { getByTestId } = render(<Component />);
 
-    expect(container.querySelector('.button')).toHaveTextContent('Button');
+    expect(getByTestId('button')).toHaveTextContent('Button');
   });
 });

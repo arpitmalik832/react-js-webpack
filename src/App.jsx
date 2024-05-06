@@ -1,10 +1,12 @@
 import Button from '@atoms/Button';
 
 const App = () => (
-  <h1>
-    Hello from React!
+  <>
+    <h1 data-testid="header" data-cy="header">
+      Hello from React!
+    </h1>
     <Button />
-  </h1>
+  </>
 );
 
 export default App;

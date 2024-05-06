@@ -10,6 +10,7 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'prettier',
     'react-app',
+    'plugin:cypress/recommended',
   ],
   plugins: [
     'css-modules',
@@ -19,6 +20,7 @@ module.exports = {
     'prettier',
     'react',
     'react-hooks',
+    'cypress',
   ],
   rules: {
     // rules regarding react plugin
@@ -72,18 +74,4 @@ module.exports = {
       },
     },
   },
-  overrides: [
-    {
-      files: [
-        '{test,spec}.{js,jsx}', // repos with a single test file
-        '{test,spec}-*.{js,jsx}', // repos with multiple top-level test files
-        '**/*{.,_}{test,spec}.{js,jsx}', // tests where the extension or filename suffix denotes that it is a test
-      ],
-      rules: {
-        // Forbid the use of extraneous packages
-        // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-extraneous-dependencies.md
-        'import/no-extraneous-dependencies': 0,
-      },
-    },
-  ],
 };
