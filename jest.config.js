@@ -25,8 +25,11 @@ module.exports = {
   // https://facebook.github.io/jest/docs/en/configuration.html#collectcoveragefrom-array
   collectCoverageFrom: [
     'src/**/*.{js,jsx}',
+    '!src/**/*.{test,spec}.{js,jsx}',
     '!**/node_modules/**',
     '!**/vendor/**',
+    '!**/build/**',
+    '!**/coverage/**',
     '!src/index.js',
   ],
   // https://facebook.github.io/jest/docs/en/configuration.html#coveragedirectory-string
@@ -70,7 +73,7 @@ module.exports = {
   // testEnvironment:'node',
   // testMatch: // [array<string>]
   // testPathIgnorePatterns: // [array<string>]
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.jsx?$',
+  testRegex: '/__tests__/[a-zA-Z0-9_]*.(test|spec).jsx?$',
   // testResultsProcessor: // [string]
   // testRunner: // [string]
   // timers: // [string]
