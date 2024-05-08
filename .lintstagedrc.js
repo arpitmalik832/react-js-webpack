@@ -1,9 +1,9 @@
 module.exports = {
-  '{src,public,build_utils,.}/**/*.{js,ts,jsx}': [
+  '{src,public,build_utils,cypress,.}/**/*.{js,ts,jsx}': [
     'npm run fix-js',
     'npm run fix-prettier',
   ],
-  '{src,public,build_utils,.}/**/*.{css,scss}': [
+  '{src,public,build_utils,cypress,.}/**/*.{css,scss}': [
     'npm run fix-css',
     'npm run fix-prettier',
   ],
