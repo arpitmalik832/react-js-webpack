@@ -2,7 +2,7 @@
 
 /// JSON fixture file can be loaded directly using
 // the built-in JavaScript bundler
-const requiredExample = require('../../fixtures/example');
+const requiredExample = require('../../fixtures/example.json');
 
 context('Files', () => {
   beforeEach(() => {
@@ -35,7 +35,7 @@ context('Files', () => {
       .and('include', 'Using fixtures to represent data');
   });
 
-  it('cy.fixture() or require - load a fixture', function () {
+  it('cy.fixture() or require - load a fixture', () => {
     // we are inside the "function () { ... }"
     // callback and can use test context object "this"
     // "this.example" was loaded in "beforeEach" function callback
@@ -69,6 +69,7 @@ context('Files', () => {
     });
 
     cy.fixture('users').should(users => {
+      // eslint-disable-next-line no-unused-expressions
       expect(users[0].name).to.exist;
     });
 
