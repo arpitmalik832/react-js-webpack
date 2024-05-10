@@ -60,7 +60,14 @@ module.exports = {
               sourceMap: true,
             },
           },
-          { loader: 'sass-loader', options: { sourceMap: true } },
+          {
+            loader: 'sass-loader',
+            options: {
+              // prefer node-sass
+              implementation: require.resolve('node-sass'),
+              sourceMap: true,
+            },
+          },
         ],
       },
     ],

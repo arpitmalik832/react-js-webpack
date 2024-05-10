@@ -6,7 +6,6 @@ module.exports = {
   extends: [
     'airbnb',
     'plugin:css-modules/recommended',
-    'plugin:flowtype/recommended',
     'plugin:jsx-a11y/recommended',
     'prettier',
     'react-app',
@@ -14,7 +13,6 @@ module.exports = {
   ],
   plugins: [
     'css-modules',
-    'flowtype',
     'import',
     'jsx-a11y',
     'prettier',
