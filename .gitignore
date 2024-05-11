@@ -121,3 +121,7 @@ package-lock.json
 
 # ignore build files
 build
+
+# cypress results
+cypress/videos
+cypress/screenshots

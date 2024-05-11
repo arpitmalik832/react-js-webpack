@@ -1,5 +1,3 @@
-const commonPaths = require('./build_utils/config/commonPaths');
-
 module.exports = {
   presets: [
     [
@@ -10,16 +8,5 @@ module.exports = {
     ],
     '@babel/preset-env',
   ],
-  plugins: [
-    '@babel/transform-runtime',
-    [
-      'module-resolver',
-      {
-        root: ['.'],
-        alias: {
-          ...commonPaths.alias,
-        },
-      },
-    ],
-  ],
+  plugins: ['@babel/transform-runtime'],
 };

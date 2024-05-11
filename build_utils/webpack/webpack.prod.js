@@ -1,5 +1,4 @@
 const fs = require('fs');
-const webpack = require('webpack');
 const CompressionPlugin = require('compression-webpack-plugin');
 const AssetsManifest = require('webpack-assets-manifest');
 
@@ -16,9 +15,6 @@ module.exports = {
       filename: '[path][base].gz[query]',
       algorithm: 'gzip',
       test: /\.(js|css)$/,
-    }),
-    new webpack.DefinePlugin({
-      __MAIN_VERSION__: true,
     }),
     new AssetsManifest({
       output: `${commonPaths.outputPath}/asset-manifest.json`,

@@ -7,6 +7,8 @@ exports[`Button unit tests Button snapshot test 1`] = `
     <div>
       <button
         class="button"
+        data-cy="button"
+        data-testid="button"
         type="button"
       >
         Button
@@ -16,6 +18,8 @@ exports[`Button unit tests Button snapshot test 1`] = `
   "container": <div>
     <button
       class="button"
+      data-cy="button"
+      data-testid="button"
       type="button"
     >
       Button

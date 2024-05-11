@@ -1,24 +1,40 @@
 const { merge } = require('webpack-merge');
 
-const commonConfig = require('./build_utils/webpack_config/webpack.common');
-const buildValidations = require('./build_utils/config/buildValidations');
+const commonConfig = require('./build_utils/webpack/webpack.common');
+const devConfig = require('./build_utils/webpack/webpack.dev');
+const prodConfig = require('./build_utils/webpack/webpack.prod');
+const federationConfig = require('./build_utils/webpack/webpack.federation');
+const bundleAnalyzerConfig = require('./build_utils/webpack/webpack.bundleanalyzer');
 
-const addons = (/* string | string[] */ arg) => {
-  const addonsList = [...[arg]] // Normalize array of addons (flatten)
-    .filter(Boolean); // If addons is undefined, filter it out
+const logs = require('./build_utils/config/logs');
 
-  return addonsList.map(addonName =>
-    require(`./build_utils/webpack_config/webpack.${addonName}`),
-  );
+const addons = () => {
+  const federation = process.argv.includes('federation');
+  const bundleAnalyzer = process.argv.includes('bundleAnalyzer');
+
+  const configs = [];
+  if (federation) configs.push(federationConfig);
+  if (bundleAnalyzer) configs.push(bundleAnalyzerConfig);
+  return configs;
 };
 
 module.exports = env => {
   if (!env) {
-    throw new Error(buildValidations.ERR_NO_ENV_FLAG);
+    throw new Error(logs.ERR_NO_ENV_FLAG);
   }
-  const envConfig = require(`./build_utils/webpack_config/webpack.${env.env}`);
-  const config = [];
-  config.push(merge(commonConfig, envConfig, ...addons(env.addons)));
 
-  return config;
+  let envConfig;
+
+  switch (env.env) {
+    case 'prod':
+      envConfig = prodConfig;
+      break;
+    case 'dev':
+      envConfig = devConfig;
+      break;
+    default:
+      envConfig = devConfig;
+  }
+
+  return merge(commonConfig, envConfig, ...addons());
 };

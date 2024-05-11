@@ -1,8 +1,3 @@
-// const { pathsToModuleNameMapper } = require('ts-jest');
-// const { compilerOptions } = require('./jsconfig.json');
-
-// const commonPaths = require('./build_utils/config/commonPaths');
-
 // Jest configuration
 // https://facebook.github.io/jest/docs/en/configuration.html
 module.exports = {
@@ -25,8 +20,11 @@ module.exports = {
   // https://facebook.github.io/jest/docs/en/configuration.html#collectcoveragefrom-array
   collectCoverageFrom: [
     'src/**/*.{js,jsx}',
+    '!src/**/*.{test,spec}.{js,jsx}',
     '!**/node_modules/**',
     '!**/vendor/**',
+    '!**/build/**',
+    '!**/coverage/**',
     '!src/index.js',
   ],
   // https://facebook.github.io/jest/docs/en/configuration.html#coveragedirectory-string
@@ -35,7 +33,7 @@ module.exports = {
   // coverageReporters: [], // [array<string>]
   coverageThreshold: {
     global: {
-      branches: 85,
+      branches: 95,
       functions: 95,
       lines: 95,
       statements: 95,
@@ -70,7 +68,7 @@ module.exports = {
   // testEnvironment:'node',
   // testMatch: // [array<string>]
   // testPathIgnorePatterns: // [array<string>]
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.jsx?$',
+  testRegex: '/__tests__/[a-zA-Z0-9_]*.(test|spec).jsx?$',
   // testResultsProcessor: // [string]
   // testRunner: // [string]
   // timers: // [string]

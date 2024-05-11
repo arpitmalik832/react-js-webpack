@@ -5,21 +5,31 @@ exports[`App unit tests App snapshot test 1`] = `
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <h1>
+      <h1
+        data-cy="header"
+        data-testid="header"
+      >
         Hello from React!
-        <div
-          data-testid="mock-button"
-        />
       </h1>
+      <div
+        data-testid="mock-button"
+      >
+        button
+      </div>
     </div>
   </body>,
   "container": <div>
-    <h1>
+    <h1
+      data-cy="header"
+      data-testid="header"
+    >
       Hello from React!
-      <div
-        data-testid="mock-button"
-      />
     </h1>
+    <div
+      data-testid="mock-button"
+    >
+      button
+    </div>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
