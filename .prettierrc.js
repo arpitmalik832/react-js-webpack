@@ -9,5 +9,5 @@ module.exports = {
   useTabs: false,
   semi: true,
   printWidth: 80,
-  endOfLine: 'crlf',
+  endOfLine: 'lf',
 };

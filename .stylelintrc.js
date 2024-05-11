@@ -40,4 +40,10 @@ module.exports = {
       },
     ],
   },
+  ignoreFiles: [
+    '**/*.{js,jsx,ts}',
+    'build/**/*.{css,scss}',
+    'node_modules/**/*.{css,scss}',
+    'coverage/**/*.{css,scss}',
+  ],
 };

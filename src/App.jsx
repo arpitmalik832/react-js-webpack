@@ -1,17 +1,12 @@
-import Button from '@atoms/Button';
-import { useEffect } from 'react';
+import Button from './components/atoms/Button';
 
-const App = () => {
-  useEffect(() => {
-    console.log('temp');
-  }, []);
-
-  return (
-    <h1>
+const App = () => (
+  <>
+    <h1 data-testid="header" data-cy="header">
       Hello from React!
-      <Button />
     </h1>
-  );
-};
+    <Button />
+  </>
+);
 
 export default App;
