@@ -8,4 +8,5 @@ module.exports = {
   outputPath: path.join(PROJECT_ROOT, 'build'),
   outputHTMLPath: path.join(PROJECT_ROOT, 'build', 'index.html'),
   appEntryPath: path.join(PROJECT_ROOT, 'src'),
+  scssPath: path.join(PROJECT_ROOT, 'src', 'scss', 'index.scss'),
 };

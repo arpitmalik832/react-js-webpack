@@ -68,6 +68,12 @@ module.exports = {
               sourceMap: true,
             },
           },
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: commonPaths.scssPath,
+            },
+          },
         ],
       },
     ],
