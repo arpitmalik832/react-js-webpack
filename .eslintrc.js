@@ -10,6 +10,7 @@ module.exports = {
     'prettier',
     'react-app',
     'plugin:cypress/recommended',
+    'plugin:jsdoc/recommended-error',
   ],
   plugins: [
     'css-modules',
@@ -19,7 +20,12 @@ module.exports = {
     'react',
     'react-hooks',
     'cypress',
+    'jsdoc',
   ],
+  globals: {
+    __ENV__: 'readonly',
+    __isRelease__: 'readonly',
+  },
   rules: {
     // rules regarding react plugin
     'react/react-in-jsx-scope': 0,
@@ -36,7 +42,12 @@ module.exports = {
     'import/prefer-default-export': 0,
     // ESLint plugin for prettier formatting
     // https://github.com/prettier/eslint-plugin-prettier
-    'prettier/prettier': 1,
+    'prettier/prettier': [
+      1,
+      {
+        endOfLine: 'lf',
+      },
+    ],
     // Ensure <a> tags are valid
     // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md
     'jsx-a11y/anchor-is-valid': 2,
@@ -46,30 +57,7 @@ module.exports = {
     'no-unused-vars': 2,
     'prefer-destructuring': 2,
     'func-names': 2,
-  },
-  settings: {
-    // Allow absolute paths in imports, e.g. import Button from 'components/Button'
-    // https://github.com/benmosher/eslint-plugin-import/tree/master/resolvers
-    'import/resolver': {
-      alias: {
-        map: [
-          ['@assets', './src/assets'],
-          ['@components', './src/components'],
-          ['@atoms', './src/components/atoms'],
-          ['@molecules', './src/components/molecules'],
-          ['@organisms', './src/components/organisms'],
-          ['@configs', './src/configs'],
-          ['@contexts', './src/contexts'],
-          ['@enums', './src/enums'],
-          ['@hooks', './src/hooks'],
-          ['@pages', './src/pages'],
-          ['@queries', './src/queries'],
-          ['@routes', './src/routes'],
-          ['@services', './src/services'],
-          ['@utils', './src/utils'],
-        ],
-        extensions: ['.js', '.jsx'],
-      },
-    },
+    // rules regarding jsdoc
+    'jsdoc/require-description': 2,
   },
 };

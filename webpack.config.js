@@ -1,10 +1,10 @@
 const { merge } = require('webpack-merge');
 
-const commonConfig = require('./build_utils/webpack_config/webpack.common');
-const devConfig = require('./build_utils/webpack_config/webpack.dev');
-const prodConfig = require('./build_utils/webpack_config/webpack.prod');
-const federationConfig = require('./build_utils/webpack_config/webpack.federation');
-const bundleAnalyzerConfig = require('./build_utils/webpack_config/webpack.bundleanalyzer');
+const commonConfig = require('./build_utils/webpack/webpack.common');
+const devConfig = require('./build_utils/webpack/webpack.dev');
+const prodConfig = require('./build_utils/webpack/webpack.prod');
+const federationConfig = require('./build_utils/webpack/webpack.federation');
+const bundleAnalyzerConfig = require('./build_utils/webpack/webpack.bundleanalyzer');
 
 const logs = require('./build_utils/config/logs');
 

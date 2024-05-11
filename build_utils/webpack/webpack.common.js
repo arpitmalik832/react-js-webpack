@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -6,6 +7,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 const pkg = require('../../package.json');
+const globals = require('../config/globals');
 const commonPaths = require('../config/commonPaths');
 
 const isRelease = process.argv.includes('release');
@@ -63,8 +65,6 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              // prefer node-sass
-              implementation: require.resolve('node-sass'),
               sourceMap: true,
             },
           },
@@ -129,8 +129,8 @@ module.exports = {
       path: `./.env.${process.env.NODE_ENV}`,
     }),
     new webpack.DefinePlugin({
-      __ENV__: `'${process.env.NODE_ENV}'`,
-      __isRelease__: isRelease,
+      [globals.__ENV__]: `'${process.env.NODE_ENV}'`,
+      [globals.__isRelease__]: isRelease,
     }),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
@@ -145,8 +145,5 @@ module.exports = {
   ],
   resolve: {
     extensions: ['*', '.js', '.jsx'],
-    alias: {
-      ...commonPaths.alias,
-    },
   },
 };

@@ -5,24 +5,7 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "checkJs": true,
-    "baseUrl": ".",
-    "jsx": "react-jsx",
-    "paths": {
-      "@assets/*": ["./src/assets/*"],
-      "@components/*": ["./src/components/*"],
-      "@atoms/*": ["./src/components/atoms/*"],
-      "@molecules/*": ["./src/components/molecules/*"],
-      "@organisms/*": ["./src/components/organisms/*"],
-      "@configs/*": ["./src/configs/*"],
-      "@contexts/*": ["./src/contexts/*"],
-      "@enums/*": ["./src/enums/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@queries/*": ["./src/queries/*"],
-      "@routes/*": ["./src/routes/*"],
-      "@services/*": ["./src/services/*"],
-      "@utils/*": ["./src/utils/*"]
-    }
+    "jsx": "react-jsx"
   },
   "exclude": ["node_modules"]
 }

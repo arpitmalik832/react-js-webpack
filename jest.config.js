@@ -1,8 +1,3 @@
-// const { pathsToModuleNameMapper } = require('ts-jest');
-// const { compilerOptions } = require('./jsconfig.json');
-
-// const commonPaths = require('./build_utils/config/commonPaths');
-
 // Jest configuration
 // https://facebook.github.io/jest/docs/en/configuration.html
 module.exports = {
@@ -38,7 +33,7 @@ module.exports = {
   // coverageReporters: [], // [array<string>]
   coverageThreshold: {
     global: {
-      branches: 85,
+      branches: 95,
       functions: 95,
       lines: 95,
       statements: 95,

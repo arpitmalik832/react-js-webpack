@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 
 import Component from '../App';
 
-jest.mock('@atoms/Button', () => ({
+jest.mock('../components/atoms/Button', () => ({
   __esModule: true,
   default: jest.fn(() => <div data-testid="mock-button">button</div>),
 }));

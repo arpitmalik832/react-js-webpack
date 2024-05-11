@@ -1,20 +1,4 @@
 module.exports = {
   entry: ['src/index.js'],
   project: ['{src,public}/**/*.{js,ts,jsx,css,scss,json,md}'],
-  paths: {
-    '@assets/*': ['./src/assets/*'],
-    '@components/*': ['./src/components/*'],
-    '@atoms/*': ['./src/components/atoms/*'],
-    '@molecules/*': ['./src/components/molecules/*'],
-    '@organisms/*': ['./src/components/organisms/*'],
-    '@configs/*': ['./src/configs/*'],
-    '@contexts/*': ['./src/contexts/*'],
-    '@enums/*': ['./src/enums/*'],
-    '@hooks/*': ['./src/hooks/*'],
-    '@pages/*': ['./src/pages/*'],
-    '@queries/*': ['./src/queries/*'],
-    '@routes/*': ['./src/routes/*'],
-    '@services/*': ['./src/services/*'],
-    '@utils/*': ['./src/utils/*'],
-  },
 };
