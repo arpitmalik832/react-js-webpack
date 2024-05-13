@@ -58,6 +58,27 @@ module.exports = {
     'prefer-destructuring': 2,
     'func-names': 2,
     // rules regarding jsdoc
-    'jsdoc/require-description': 2,
+    'jsdoc/require-jsdoc': [
+      2,
+      {
+        require: {
+          ArrowFunctionExpression: true,
+          ClassDeclaration: true,
+          ClassExpression: true,
+          FunctionExpression: true,
+          MethodDefinition: true,
+        },
+      },
+    ],
+    'jsdoc/require-example': [1, { exemptNoArguments: true }],
+    'jsdoc/require-description': [2, { descriptionStyle: 'tag' }],
+    'jsdoc/require-param-name': [2, { contexts: ['any'] }],
+    'jsdoc/require-param-description': [2, { contexts: ['any'] }],
+    'jsdoc/no-undefined-types': [
+      2,
+      {
+        definedTypes: ['React'],
+      },
+    ],
   },
 };

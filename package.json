@@ -11,7 +11,7 @@
     "rm-build": "rimraf build --glob",
     "rm-node_modules": "rimraf node_modules --glob",
     "rm-package-lock": "rimraf package-lock.json",
-    "clean": "npm run rm-node_modules && npm run rm-package-lock",
+    "clean": "npm run rm-package-lock && npm run rm-node_modules",
     "build-w-rm:dev": "cross-env NODE_ENV=development webpack --env env=dev federation",
     "build:dev": "npm run rm-build && npm run build-w-rm:dev",
     "build-bundleanalyzer-w-rm:dev": "cross-env NODE_ENV=development webpack --env env=dev federation bundleAnalyzer",

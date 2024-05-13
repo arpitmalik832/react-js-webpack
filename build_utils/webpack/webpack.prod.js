@@ -20,24 +20,36 @@ module.exports = {
       output: `${commonPaths.outputPath}/asset-manifest.json`,
       publicPath: true,
       writeToDisk: true,
+      /**
+       * @description Customize function to add items to the manifest.
+       * @param {object} entry The entry object.
+       * @returns {boolean|object} Returns false to prevent adding items to the manifest, or the entry object.
+       */
       customize: entry => {
         // You can prevent adding items to the manifest by returning false.
-        if (entry.key.toLowerCase().endsWith('.map')) return false;
+        if (entry.key.toLowerCase().endsWith('.map')) {
+          return false;
+        }
         return entry;
       },
+      /**
+       * @description Callback function to write chunk-manifest.json.
+       * @param {object} manifest The manifest object.
+       * @param {object} stats The stats object.
+       */
       done: (manifest, stats) => {
         // Write chunk-manifest.json
         const chunkFileName = `${commonPaths.outputPath}/chunk-manifest.json`;
         try {
-          const fileFilter = file => !file.endsWith('.map');
-          const addPath = file => manifest.getPublicPath(file);
           const chunkFiles = stats.compilation.chunkGroups.reduce((acc, c) => {
             acc[c.name] = [
               ...(acc[c.name] || []),
               ...c.chunks.reduce(
                 (files, cc) => [
                   ...files,
-                  ...[...cc.files].filter(fileFilter).map(addPath),
+                  ...[...cc.files]
+                    .filter(file => !file.endsWith('.map'))
+                    .map(file => manifest.getPublicPath(file)),
                 ],
                 [],
               ),
