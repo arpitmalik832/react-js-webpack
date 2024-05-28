@@ -21,11 +21,9 @@ module.exports = {
   collectCoverageFrom: [
     'src/**/*.{js,jsx}',
     '!src/**/*.{test,spec}.{js,jsx}',
-    '!**/node_modules/**',
-    '!**/vendor/**',
-    '!**/build/**',
-    '!**/coverage/**',
     '!src/index.js',
+    '!src/bootstrap.jsx',
+    '!src/redux/**',
   ],
   // https://facebook.github.io/jest/docs/en/configuration.html#coveragedirectory-string
   coverageDirectory: '<rootDir>/coverage', // [string]

@@ -1,7 +1,15 @@
-import { render, cleanup } from '@testing-library/react';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import Component from '../index';
+
+jest.mock('react-redux', () => ({
+  useDispatch: jest.fn(() => () => jest.fn()),
+}));
+
+jest.mock('../../../../redux/slices/appSlice', () => ({
+  updateStore: jest.fn(),
+}));
 
 describe('Button unit tests', () => {
   afterEach(cleanup);
@@ -16,5 +24,6 @@ describe('Button unit tests', () => {
     const { getByTestId } = render(<Component />);
 
     expect(getByTestId('button')).toHaveTextContent('Button');
+    fireEvent.click(getByTestId('button'));
   });
 });

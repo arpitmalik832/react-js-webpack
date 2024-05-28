@@ -1,3 +1,6 @@
+import { Provider } from 'react-redux';
+
+import store from './redux/store';
 import Button from './components/atoms/Button';
 
 /**
@@ -6,12 +9,9 @@ import Button from './components/atoms/Button';
  * @example <App />
  */
 const App = () => (
-  <>
-    <h1 data-testid="header" data-cy="header">
-      Hello from React!
-    </h1>
+  <Provider store={store}>
     <Button />
-  </>
+  </Provider>
 );
 
 export default App;

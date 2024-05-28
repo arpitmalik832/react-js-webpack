@@ -5,12 +5,6 @@ exports[`App unit tests App snapshot test 1`] = `
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <h1
-        data-cy="header"
-        data-testid="header"
-      >
-        Hello from React!
-      </h1>
       <div
         data-testid="mock-button"
       >
@@ -19,12 +13,6 @@ exports[`App unit tests App snapshot test 1`] = `
     </div>
   </body>,
   "container": <div>
-    <h1
-      data-cy="header"
-      data-testid="header"
-    >
-      Hello from React!
-    </h1>
     <div
       data-testid="mock-button"
     >

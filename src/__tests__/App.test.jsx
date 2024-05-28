@@ -20,7 +20,6 @@ describe('App unit tests', () => {
   it('Button renders correctly', () => {
     const { getByTestId } = render(<Component />);
 
-    expect(getByTestId('header')).toHaveTextContent('Hello from React!');
     expect(getByTestId('mock-button')).toHaveTextContent('button');
   });
 });

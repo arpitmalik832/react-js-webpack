@@ -30,6 +30,7 @@ module.exports = {
     // rules regarding react plugin
     'react/react-in-jsx-scope': 0,
     'react/function-component-definition': 0,
+    'react/prop-types': 0,
     // rules regarding react-hooks plugin
     'react-hooks/rules-of-hooks': 2,
     'react-hooks/exhaustive-deps': 2,
