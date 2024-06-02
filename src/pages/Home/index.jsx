@@ -1,8 +1,15 @@
+import Button from '../../components/atoms/Button';
+
 /**
  * @description Home Page
- * @returns {React.Component} returns the Home page
+ * @returns {React.JSX.Element} returns the Home page
  * @example <Home />
  */
-const Home = () => <div>Home</div>;
+const Home = () => (
+  <div>
+    Home
+    <Button />
+  </div>
+);
 
 export default Home;

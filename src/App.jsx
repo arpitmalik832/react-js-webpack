@@ -6,7 +6,7 @@ import router from './routes';
 
 /**
  * @description Renders the main App component.
- * @returns {React.Component} The App
+ * @returns {React.JSX.Element} The App
  * @example <App />
  */
 const App = () => (

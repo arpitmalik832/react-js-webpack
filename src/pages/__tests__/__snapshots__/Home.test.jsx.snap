@@ -7,12 +7,14 @@ exports[`Unit tests for Home Page snapshot test 1`] = `
     <div>
       <div>
         Home
+        <div />
       </div>
     </div>
   </body>,
   "container": <div>
     <div>
       Home
+      <div />
     </div>
   </div>,
   "debug": [Function],

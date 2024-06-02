@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 /**
  * @description PageWrapper component
- * @returns {React.Component} returns the PageWrapper component to wrap the page into it
+ * @returns {React.JSX.Element} returns the PageWrapper component to wrap the page into it
  * @example <PageWrapper />
  */
 const PageWrapper = () => (
