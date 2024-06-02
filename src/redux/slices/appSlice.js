@@ -1,8 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { THEME } from '../../config/app';
 
 export const appSlice = createSlice({
   name: 'app',
-  initialState: {},
+  initialState: {
+    theme: THEME.LIGHT,
+  },
   reducers: {
     /**
      * @description action to add a new key pair to the appStore
@@ -15,9 +18,29 @@ export const appSlice = createSlice({
       ...state,
       [action.payload.key]: action.payload.value,
     }),
+    /**
+     * @description action to set dark theme
+     * @param {object} state represents the app state
+     * @returns {object} updated state
+     * @example setDarkTheme()
+     */
+    setDarkTheme: state => ({
+      ...state,
+      theme: THEME.DARK,
+    }),
+    /**
+     * @description action to set light theme
+     * @param {object} state represents the app state
+     * @returns {object} updated state
+     * @example setLightTheme()
+     */
+    setLightTheme: state => ({
+      ...state,
+      theme: THEME.LIGHT,
+    }),
   },
 });
 
-export const { updateStore } = appSlice.actions;
+export const { updateStore, setDarkTheme, setLightTheme } = appSlice.actions;
 
 export default appSlice.reducer;

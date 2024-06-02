@@ -1,18 +1,17 @@
-import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 
-import store from './redux/store';
 import router from './routes';
+import useAppMount from './hooks/useAppMount';
 
 /**
  * @description Renders the main App component.
  * @returns {React.JSX.Element} The App
  * @example <App />
  */
-const App = () => (
-  <Provider store={store}>
-    <RouterProvider router={router} />
-  </Provider>
-);
+const App = () => {
+  useAppMount();
+
+  return <RouterProvider router={router} />;
+};
 
 export default App;

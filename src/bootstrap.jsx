@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import App from './App';
+import ReduxWrapper from './components/atoms/ReduxWrapper';
 
 /**
  * @description Function to mount the app
@@ -11,9 +12,12 @@ import App from './App';
  */
 const mount = ele => {
   const root = createRoot(ele);
+
   root.render(
     <StrictMode>
-      <App />
+      <ReduxWrapper>
+        <App />
+      </ReduxWrapper>
     </StrictMode>,
   );
 
