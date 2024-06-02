@@ -1,4 +1,6 @@
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+
 import App from './App';
 
 /**
@@ -9,7 +11,11 @@ import App from './App';
  */
 const mount = ele => {
   const root = createRoot(ele);
-  root.render(<App />);
+  root.render(
+    <StrictMode>
+      <App />
+    </StrictMode>,
+  );
 
   return () => queueMicrotask(() => root.unmount());
 };
