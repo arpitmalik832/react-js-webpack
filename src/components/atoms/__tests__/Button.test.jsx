@@ -1,13 +1,13 @@
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import Component from '../index';
+import Component from '../Button';
 
 jest.mock('react-redux', () => ({
   useDispatch: jest.fn(() => () => jest.fn()),
 }));
 
-jest.mock('../../../../redux/slices/appSlice', () => ({
+jest.mock('../../../redux/slices/appSlice', () => ({
   updateStore: jest.fn(),
 }));
 

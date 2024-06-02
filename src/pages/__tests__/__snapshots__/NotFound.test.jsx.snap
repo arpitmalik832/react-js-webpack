@@ -1,24 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App unit tests App snapshot test 1`] = `
+exports[`Unit tests for NotFound Page snapshot test 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <div>
-        Page Wrapper
-        <div>
-          Loader
-        </div>
+        404
       </div>
     </div>
   </body>,
   "container": <div>
     <div>
-      Page Wrapper
-      <div>
-        Loader
-      </div>
+      404
     </div>
   </div>,
   "debug": [Function],

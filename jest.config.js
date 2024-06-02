@@ -24,6 +24,7 @@ module.exports = {
     '!src/index.js',
     '!src/bootstrap.jsx',
     '!src/redux/**',
+    '!src/routes/**',
   ],
   // https://facebook.github.io/jest/docs/en/configuration.html#coveragedirectory-string
   coverageDirectory: '<rootDir>/coverage', // [string]

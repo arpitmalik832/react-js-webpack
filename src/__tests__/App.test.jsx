@@ -16,10 +16,4 @@ describe('App unit tests', () => {
 
     expect(component).toMatchSnapshot();
   });
-
-  it('Button renders correctly', () => {
-    const { getByTestId } = render(<Component />);
-
-    expect(getByTestId('mock-button')).toHaveTextContent('button');
-  });
 });

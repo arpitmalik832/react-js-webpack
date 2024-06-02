@@ -6,7 +6,7 @@ import s from './index.scss';
 
 /**
  * @description Button component.
- * @returns {React.JSX.Element} The Button Component.
+ * @returns {React.Component} The Button Component.
  * @example <Button />
  */
 const Button = () => {
