@@ -1,0 +1,23 @@
+html {
+  // background colors
+  --background-neutral-100: white;
+
+  // border colors
+  --border-neutral-100: white;
+
+  // text colors
+  --text-neutral-900: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    // background colors
+    --background-neutral-100: black;
+
+    // border colors
+    --border-neutral-100: black;
+
+    // text colors
+    --text-neutral-900: white;
+  }
+}

@@ -1,3 +1,7 @@
-const helloDiv = document.createElement("div");
-helloDiv.innerHTML = "Hello from Javascript!";
-document.body.append(helloDiv);
+import('./bootstrap').then(({ mount }) =>
+  mount(document.getElementById('app')),
+);
+
+if (!__isRelease__) {
+  import('./utils/reportWebVitals').then(({ default: func }) => func());
+}
