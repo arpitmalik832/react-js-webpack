@@ -3,7 +3,7 @@ import { onLCP, onFID, onCLS, onFCP, onTTFB } from 'web-vitals';
 import { log } from './commonUtils';
 
 /**
- * Reports the web vitals of the project
+ * @description Reports the web vitals of the project
  */
 const reportWebVitals = () => {
   onCLS(log);

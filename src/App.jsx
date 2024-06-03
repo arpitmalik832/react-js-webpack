@@ -1,12 +1,17 @@
-import Button from './components/atoms/Button';
+import { RouterProvider } from 'react-router-dom';
 
-const App = () => (
-  <>
-    <h1 data-testid="header" data-cy="header">
-      Hello from React!
-    </h1>
-    <Button />
-  </>
-);
+import router from './routes';
+import useAppMount from './hooks/useAppMount';
+
+/**
+ * @description Renders the main App component.
+ * @returns {React.JSX.Element} The App
+ * @example <App />
+ */
+const App = () => {
+  useAppMount();
+
+  return <RouterProvider router={router} />;
+};
 
 export default App;

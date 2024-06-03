@@ -11,9 +11,8 @@ module.exports = {
     static: {
       directory: commonPaths.outputPath,
     },
-    historyApiFallback: {
-      index: 'index.html',
-    },
+    historyApiFallback: true,
     webSocketServer: false,
+    hot: true,
   },
 };

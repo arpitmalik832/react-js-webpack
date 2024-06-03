@@ -1,3 +1,9 @@
+/**
+ * @description Returns the project URLs based on the environment.
+ * @param {string} env The environment.
+ * @returns {object} The project URLs.
+ * @example modulesEntry('production');
+ */
 module.exports = env => {
   // let exampleUrl;
   let projUrl;
