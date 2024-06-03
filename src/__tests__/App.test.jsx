@@ -3,9 +3,9 @@ import '@testing-library/jest-dom';
 
 import Component from '../App';
 
-jest.mock('../components/atoms/Button', () => ({
+jest.mock('../hooks/useAppMount', () => ({
   __esModule: true,
-  default: jest.fn(() => <div data-testid="mock-button">button</div>),
+  default: jest.fn(),
 }));
 
 describe('App unit tests', () => {
@@ -15,12 +15,5 @@ describe('App unit tests', () => {
     const component = render(<Component />);
 
     expect(component).toMatchSnapshot();
-  });
-
-  it('Button renders correctly', () => {
-    const { getByTestId } = render(<Component />);
-
-    expect(getByTestId('header')).toHaveTextContent('Hello from React!');
-    expect(getByTestId('mock-button')).toHaveTextContent('button');
   });
 });

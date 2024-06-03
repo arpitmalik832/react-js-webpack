@@ -2,10 +2,10 @@ const { ModuleFederationPlugin } = require('webpack').container;
 
 const pkg = require('../../package.json');
 const commonPaths = require('../config/commonPaths');
-const moduleEntry = require('../config/modulesEntry');
+const modulesEntry = require('../config/modulesEntry');
 
 const deps = pkg.dependencies;
-const REMOTE_HOST = moduleEntry(process.env.NODE_ENV);
+const REMOTE_HOST = modulesEntry(process.env.NODE_ENV);
 
 module.exports = {
   plugins: [
