@@ -20,12 +20,6 @@ module.exports = {
       output: `${commonPaths.outputPath}/asset-manifest.json`,
       publicPath: true,
       writeToDisk: true,
-      /**
-       * @description Customize function to add items to the manifest.
-       * @param {object} entry The entry object.
-       * @returns {boolean|object} Returns false to prevent adding items to the manifest, or the entry object.
-       * @example customize(entry)
-       */
       customize: entry => {
         // You can prevent adding items to the manifest by returning false.
         if (entry.key.toLowerCase().endsWith('.map')) {
@@ -33,12 +27,6 @@ module.exports = {
         }
         return entry;
       },
-      /**
-       * @description Callback function to write chunk-manifest.json.
-       * @param {object} manifest The manifest object.
-       * @param {object} stats The stats object.
-       * @example done(manifest, stats)
-       */
       done: (manifest, stats) => {
         // Write chunk-manifest.json
         const chunkFileName = `${commonPaths.outputPath}/chunk-manifest.json`;

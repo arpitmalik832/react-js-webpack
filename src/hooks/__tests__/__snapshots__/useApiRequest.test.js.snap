@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useApiRequest unit tests snapshot test 1`] = `
+{
+  "rerender": [Function],
+  "result": {
+    "current": {
+      "cancelAllRequests": [Function],
+      "cancelRequest": [Function],
+      "makeDeleteCall": [Function],
+      "makeGetCall": [Function],
+      "makePostCall": [Function],
+      "makePutCall": [Function],
+    },
+  },
+  "unmount": [Function],
+}
+`;

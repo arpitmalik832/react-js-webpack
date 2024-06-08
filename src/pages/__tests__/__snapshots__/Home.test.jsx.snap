@@ -7,14 +7,18 @@ exports[`Unit tests for Home Page snapshot test 1`] = `
     <div>
       <div>
         Home
-        <div />
+        <div
+          data-testid="mock-button"
+        />
       </div>
     </div>
   </body>,
   "container": <div>
     <div>
       Home
-      <div />
+      <div
+        data-testid="mock-button"
+      />
     </div>
   </div>,
   "debug": [Function],

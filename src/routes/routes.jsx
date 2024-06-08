@@ -2,7 +2,7 @@ import { lazy } from 'react';
 
 import ComponentWithSuspense from '../components/atoms/ComponentWithSuspense';
 import HtmlContent from '../components/atoms/HtmlContent';
-import { ROUTES, SEO } from '../config/routes';
+import { ROUTES, SEO } from '../configs/routes';
 
 const Home = lazy(() => import(/* webpackChunkName: 'Home' */ '../pages/Home'));
 const Abc = lazy(() => import(/* webpackChunkName: 'Abc' */ '../pages/Abc'));

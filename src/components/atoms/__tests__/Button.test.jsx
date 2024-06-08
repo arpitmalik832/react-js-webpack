@@ -12,7 +12,9 @@ jest.mock('../../../redux/slices/appSlice', () => ({
 }));
 
 describe('Button unit tests', () => {
-  afterEach(cleanup);
+  afterEach(() => {
+    cleanup();
+  });
 
   test('Button snapshot test', () => {
     const component = render(<Component />);

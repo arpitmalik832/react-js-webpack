@@ -1,6 +1,12 @@
 import '@testing-library/jest-dom';
 
-import { log, errorLog, warnLog } from '../commonUtils';
+import {
+  log,
+  errorLog,
+  warnLog,
+  logRequest,
+  logResponse,
+} from '../commonUtils';
 
 describe('test commonUtils', () => {
   const test = 'test';
@@ -14,5 +20,13 @@ describe('test commonUtils', () => {
 
   it('test the warnLog function', () => {
     warnLog(test);
+  });
+
+  it('test the logRequest', () => {
+    logRequest({ method: 'get', request: 'temp1' });
+  });
+
+  it('test the logResponse', () => {
+    logResponse({ method: 'get', request: 'temp1' });
   });
 });
