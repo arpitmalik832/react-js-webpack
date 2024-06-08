@@ -8,10 +8,6 @@ const bundleAnalyzerConfig = require('./build_utils/webpack/webpack.bundleanalyz
 
 const logs = require('./build_utils/config/logs');
 
-/**
- * @description Returns an array of webpack configurations based on the command line arguments.
- * @returns {Array} An array of webpack configurations.
- */
 const addons = () => {
   const federation = process.argv.includes('federation');
   const bundleAnalyzer = process.argv.includes('bundleAnalyzer');
@@ -22,12 +18,6 @@ const addons = () => {
   return configs;
 };
 
-/**
- * @description Exports the webpack configuration based on the environment.
- * @param {object} env - The environment object.
- * @returns {object} The webpack configuration.
- * @example x(env)
- */
 module.exports = env => {
   if (!env) {
     throw new Error(logs.ERR_NO_ENV_FLAG);

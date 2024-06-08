@@ -5,21 +5,15 @@ exports[`App unit tests App snapshot test 1`] = `
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        Page Wrapper
-        <div>
-          Loader
-        </div>
-      </div>
+      <div
+        data-testid="mock-router-provider"
+      />
     </div>
   </body>,
   "container": <div>
-    <div>
-      Page Wrapper
-      <div>
-        Loader
-      </div>
-    </div>
+    <div
+      data-testid="mock-router-provider"
+    />
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

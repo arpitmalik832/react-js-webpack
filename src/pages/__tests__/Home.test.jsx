@@ -5,7 +5,7 @@ import Component from '../Home';
 
 jest.mock('../../components/atoms/Button', () => ({
   __esModule: true,
-  default: jest.fn(() => <div />),
+  default: jest.fn(() => <div data-testid="mock-button" />),
 }));
 
 describe('Unit tests for Home Page', () => {

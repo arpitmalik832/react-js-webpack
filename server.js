@@ -22,12 +22,6 @@ app.use(
   '/',
   expressStaticGzip(commonPaths.outputPath, {
     urlContains: 'static/',
-    /**
-     * @description Set headers for cache control.
-     * @param {object} res The response object.
-     * @returns {void}
-     * @example setHeaders(res);
-     */
     setHeaders: res => res.setHeader('Cache-Control', 'private, max-age=60'),
   }),
 );
