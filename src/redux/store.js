@@ -3,16 +3,12 @@ import { thunk } from 'redux-thunk';
 import logger from 'redux-logger';
 
 import appReducer from './slices/appSlice';
+import apisReducer from './slices/apisSlice';
 
 export default configureStore({
   reducer: {
     app: appReducer,
+    apis: apisReducer,
   },
-  /**
-   * @description it contains all the middlewares for the redux
-   * @param {Function} getDefault this contains the default middlewares
-   * @returns {object} updated middlewares
-   * @example middleware(thunk);
-   */
   middleware: getDefault => getDefault().concat(thunk, logger),
 });

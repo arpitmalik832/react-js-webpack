@@ -1,10 +1,3 @@
-/**
- * @description mock for window.matchMedia
- * @param {object} query refers to the media query
- * @param {boolean} matches refers to the query matches state
- * @returns {object} mocked window.matchMedia
- * @example matchMediaMock(query, true)
- */
 const matchMediaMock = (query, matches) => ({
   matches,
   media: query,

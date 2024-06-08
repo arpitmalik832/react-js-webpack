@@ -4,11 +4,6 @@ import { updateStore } from '../../../redux/slices/appSlice';
 
 import s from './index.scss';
 
-/**
- * @description Button component.
- * @returns {React.JSX.Element} The Button Component.
- * @example <Button />
- */
 const Button = () => {
   const dispatch = useDispatch();
 
