@@ -8,6 +8,8 @@ jest.mock('../../utils/commonUtils', () => ({
   __esModule: true,
   logRequest: jest.fn(),
   logResponse: jest.fn(),
+  errorLogRequest: jest.fn(),
+  errorLogResponse: jest.fn(),
 }));
 
 describe('useApiRequest unit tests', () => {
@@ -16,10 +18,16 @@ describe('useApiRequest unit tests', () => {
   const axiosInstance = {
     interceptors: {
       request: {
-        use: callback => callback(),
+        use: (callback, errorCallback) => {
+          callback();
+          errorCallback();
+        },
       },
       response: {
-        use: callback => callback(),
+        use: (callback, errorCallback) => {
+          callback();
+          errorCallback();
+        },
       },
     },
     get: (x, y) => console.log(x, y),

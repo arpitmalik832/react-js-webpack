@@ -1,4 +1,9 @@
-import { logRequest, logResponse } from '../utils/commonUtils';
+import {
+  errorLogRequest,
+  errorLogResponse,
+  logRequest,
+  logResponse,
+} from '../utils/commonUtils';
 
 const useApiRequest = () => {
   let abortControllers = {};
@@ -12,17 +17,27 @@ const useApiRequest = () => {
   };
 
   const addRequestInterceptor = ({ method, axiosInstance }) => {
-    axiosInstance.interceptors.request.use(request => {
-      logRequest({ method, request });
-      return request;
-    });
+    axiosInstance.interceptors.request.use(
+      request => {
+        logRequest({ method, request });
+        return request;
+      },
+      error => {
+        errorLogRequest({ method, error });
+      },
+    );
   };
 
   const addResponseInterceptor = ({ method, axiosInstance }) => {
-    axiosInstance.interceptors.response.use(response => {
-      logResponse({ method, response });
-      return response;
-    });
+    axiosInstance.interceptors.response.use(
+      response => {
+        logResponse({ method, response });
+        return response;
+      },
+      error => {
+        errorLogResponse({ method, error });
+      },
+    );
   };
 
   const makeGetCall = ({ axiosInstance, url, config }) => {

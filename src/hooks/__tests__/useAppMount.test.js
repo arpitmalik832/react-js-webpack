@@ -8,6 +8,11 @@ jest.mock('../useTheme', () => ({
   default: jest.fn(),
 }));
 
+jest.mock('../useInitAxios', () => ({
+  __esModule: true,
+  default: jest.fn(),
+}));
+
 describe('useAppMount unit tests', () => {
   afterEach(cleanup);
 

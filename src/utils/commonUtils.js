@@ -1,5 +1,3 @@
-import chalk from 'chalk';
-
 // eslint-disable-next-line no-console
 const log = console.log.bind(console);
 
@@ -10,11 +8,27 @@ const errorLog = console.error.bind(console);
 const warnLog = console.warn.bind(console);
 
 const logRequest = ({ method, request }) => {
-  log(chalk.green(`Starting ${method} Request ->`), request);
+  log(`Starting ${method} request ->`, request);
+};
+
+const errorLogRequest = ({ method, request }) => {
+  errorLog(`Error while starting ${method} request ->`, request);
 };
 
 const logResponse = ({ method, response }) => {
-  log(chalk.green(`Returning ${method} Response ->`), response);
+  errorLog(`Returning ${method} response ->`, response);
 };
 
-export { log, errorLog, warnLog, logRequest, logResponse };
+const errorLogResponse = ({ method, response }) => {
+  errorLog(`Error while returning ${method} response ->`, response);
+};
+
+export {
+  log,
+  errorLog,
+  warnLog,
+  logRequest,
+  errorLogRequest,
+  logResponse,
+  errorLogResponse,
+};

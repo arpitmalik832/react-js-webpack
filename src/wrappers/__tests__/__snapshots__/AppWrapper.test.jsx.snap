@@ -9,12 +9,8 @@ exports[`AppWrapper unit tests AppWrapper snapshot test 1`] = `
         data-testid="mock-redux-wrapper"
       >
         <div
-          data-testid="mock-axios-provider-wrapper"
-        >
-          <div
-            data-testid="mock-app"
-          />
-        </div>
+          data-testid="mock-app"
+        />
       </div>
     </div>
   </body>,
@@ -23,12 +19,8 @@ exports[`AppWrapper unit tests AppWrapper snapshot test 1`] = `
       data-testid="mock-redux-wrapper"
     >
       <div
-        data-testid="mock-axios-provider-wrapper"
-      >
-        <div
-          data-testid="mock-app"
-        />
-      </div>
+        data-testid="mock-app"
+      />
     </div>
   </div>,
   "debug": [Function],
