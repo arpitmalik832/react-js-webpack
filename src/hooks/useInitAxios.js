@@ -14,7 +14,7 @@ const useInitAxios = () => {
       dispatch(
         updateApi1AxiosInstance(
           axios.create({
-            baseUrl: apis.api1Host,
+            baseURL: apis.api1Host,
             timeout: API1_TIMEOUT,
             headers: {
               common: {
@@ -25,7 +25,7 @@ const useInitAxios = () => {
         ),
       );
     }
-  }, [apis.api1Headers, apis.api1Host, dispatch]);
+  }, [apis.api1Headers, apis.api1Host]);
 };
 
 export default useInitAxios;

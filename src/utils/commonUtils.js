@@ -11,16 +11,16 @@ const logRequest = ({ method, request }) => {
   log(`Starting ${method} request ->`, request);
 };
 
-const errorLogRequest = ({ method, request }) => {
-  errorLog(`Error while starting ${method} request ->`, request);
+const errorLogRequest = ({ method, error }) => {
+  errorLog(`Error while starting ${method} request ->`, error);
 };
 
 const logResponse = ({ method, response }) => {
-  errorLog(`Returning ${method} response ->`, response);
+  log(`Returning ${method} response ->`, response);
 };
 
-const errorLogResponse = ({ method, response }) => {
-  errorLog(`Error while returning ${method} response ->`, response);
+const errorLogResponse = ({ method, error }) => {
+  errorLog(`Error while returning ${method} response ->`, error);
 };
 
 export {

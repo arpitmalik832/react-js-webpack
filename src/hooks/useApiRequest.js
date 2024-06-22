@@ -4,6 +4,7 @@ import {
   logRequest,
   logResponse,
 } from '../utils/commonUtils';
+import { handleRequest } from '../utils/apiUtils';
 
 const useApiRequest = () => {
   let abortControllers = {};
@@ -20,10 +21,13 @@ const useApiRequest = () => {
     axiosInstance.interceptors.request.use(
       request => {
         logRequest({ method, request });
-        return request;
+        const newRequest = { ...request };
+        newRequest.metadata = { startTime: new Date() };
+        return newRequest;
       },
       error => {
         errorLogRequest({ method, error });
+        throw error;
       },
     );
   };
@@ -32,10 +36,20 @@ const useApiRequest = () => {
     axiosInstance.interceptors.response.use(
       response => {
         logResponse({ method, response });
-        return response;
+        const newResponse = { ...response };
+        newResponse.config.metadata.endTime = new Date();
+        newResponse.responseTime =
+          newResponse.config.metadata.endTime -
+          newResponse.config.metadata.startTime;
+        return newResponse;
       },
       error => {
-        errorLogResponse({ method, error });
+        const newError = { ...error };
+        newError.config.metadata.endTime = new Date();
+        newError.responseTime =
+          newError.config.metadata.endTime - newError.config.metadata.startTime;
+        errorLogResponse({ method, error: newError });
+        throw newError;
       },
     );
   };
@@ -54,10 +68,12 @@ const useApiRequest = () => {
       axiosInstance,
     });
 
-    return axiosInstance.get(url, {
-      ...config,
-      signal,
-    });
+    return handleRequest(
+      axiosInstance.get(url, {
+        ...config,
+        signal,
+      }),
+    );
   };
 
   const makePostCall = ({ axiosInstance, url, config, body }) => {
@@ -74,10 +90,12 @@ const useApiRequest = () => {
       axiosInstance,
     });
 
-    return axiosInstance.post(url, body, {
-      ...config,
-      signal,
-    });
+    return handleRequest(
+      axiosInstance.post(url, body, {
+        ...config,
+        signal,
+      }),
+    );
   };
 
   const makePutCall = ({ axiosInstance, url, config, body }) => {
@@ -94,10 +112,12 @@ const useApiRequest = () => {
       axiosInstance,
     });
 
-    return axiosInstance.put(url, body, {
-      ...config,
-      signal,
-    });
+    return handleRequest(
+      axiosInstance.put(url, body, {
+        ...config,
+        signal,
+      }),
+    );
   };
 
   const makeDeleteCall = ({ axiosInstance, url, config }) => {
@@ -114,10 +134,12 @@ const useApiRequest = () => {
       axiosInstance,
     });
 
-    return axiosInstance.delete(url, {
-      ...config,
-      signal,
-    });
+    return handleRequest(
+      axiosInstance.delete(url, {
+        ...config,
+        signal,
+      }),
+    );
   };
 
   const cancelRequest = key => {
