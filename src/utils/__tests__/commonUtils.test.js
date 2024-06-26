@@ -6,6 +6,8 @@ import {
   warnLog,
   logRequest,
   logResponse,
+  errorLogRequest,
+  errorLogResponse,
 } from '../commonUtils';
 
 describe('test commonUtils', () => {
@@ -27,6 +29,14 @@ describe('test commonUtils', () => {
   });
 
   it('test the logResponse', () => {
-    logResponse({ method: 'get', request: 'temp1' });
+    logResponse({ method: 'get', response: 'temp1' });
+  });
+
+  it('test the errorLogRequest', () => {
+    errorLogRequest({ method: 'get', request: 'temp1' });
+  });
+
+  it('test the errorLogResponse', () => {
+    errorLogResponse({ method: 'get', response: 'temp1' });
   });
 });

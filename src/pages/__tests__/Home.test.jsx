@@ -8,6 +8,11 @@ jest.mock('../../components/atoms/Button', () => ({
   default: jest.fn(() => <div data-testid="mock-button" />),
 }));
 
+jest.mock('../../hooks/useBackPress', () => ({
+  __esModule: true,
+  default: jest.fn(),
+}));
+
 describe('Unit tests for Home Page', () => {
   afterEach(cleanup);
   it('snapshot test', () => {

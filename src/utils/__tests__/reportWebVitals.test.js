@@ -5,7 +5,6 @@ import reportWebVitals from '../reportWebVitals';
 import { log } from '../commonUtils';
 
 jest.mock('web-vitals', () => ({
-  __esModule: true,
   onLCP: jest.fn(),
   onFID: jest.fn(),
   onCLS: jest.fn(),
@@ -14,7 +13,6 @@ jest.mock('web-vitals', () => ({
 }));
 
 jest.mock('../commonUtils', () => ({
-  __esModule: true,
   log: jest.fn(),
 }));
 

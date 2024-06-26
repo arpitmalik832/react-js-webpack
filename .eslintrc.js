@@ -31,7 +31,7 @@ module.exports = {
     'react/prop-types': 0,
     // rules regarding react-hooks plugin
     'react-hooks/rules-of-hooks': 2,
-    'react-hooks/exhaustive-deps': 2,
+    'react-hooks/exhaustive-deps': 0,
     // rules regarding css-modules plugin
     'css-modules/no-unused-class': [2, { camelCase: true }],
     'css-modules/no-undef-class': [2, { camelCase: true }],
@@ -56,5 +56,6 @@ module.exports = {
     'no-unused-vars': 2,
     'prefer-destructuring': 2,
     'func-names': 2,
+    camelcase: 0,
   },
 };

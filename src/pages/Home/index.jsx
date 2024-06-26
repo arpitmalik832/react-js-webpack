@@ -1,10 +1,15 @@
 import Button from '../../components/atoms/Button';
+import useBackPress from '../../hooks/useBackPress';
 
-const Home = () => (
-  <div>
-    Home
-    <Button />
-  </div>
-);
+const Home = () => {
+  useBackPress();
+
+  return (
+    <div>
+      Home
+      <Button />
+    </div>
+  );
+};
 
 export default Home;

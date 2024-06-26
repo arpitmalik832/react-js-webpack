@@ -5,6 +5,7 @@ export const apisSlice = createSlice({
   initialState: {
     api1Host: 'no-url',
     api1Headers: {},
+    api1AxiosInstance: null,
   },
   reducers: {
     updateApi1Host: (state, action) => ({
@@ -22,10 +23,18 @@ export const apisSlice = createSlice({
 
       return state;
     },
+    updateApi1AxiosInstance: (state, action) => ({
+      ...state,
+      api1AxiosInstance: action.payload,
+    }),
   },
 });
 
-export const { updateApi1Host, updateApi1Headers, addToApi1Headers } =
-  apisSlice.actions;
+export const {
+  updateApi1Host,
+  updateApi1Headers,
+  addToApi1Headers,
+  updateApi1AxiosInstance,
+} = apisSlice.actions;
 
 export default apisSlice.reducer;
