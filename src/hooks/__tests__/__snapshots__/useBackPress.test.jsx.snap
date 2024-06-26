@@ -1,27 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AppWrapper unit tests AppWrapper snapshot test 1`] = `
+exports[`useBackPress unit tests snapshot test 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <div
-        data-testid="mock-redux-wrapper"
-      >
-        <div
-          data-testid="mock-app"
-        />
-      </div>
+        data-testid="temp-component"
+      />
     </div>
   </body>,
   "container": <div>
     <div
-      data-testid="mock-redux-wrapper"
-    >
-      <div
-        data-testid="mock-app"
-      />
-    </div>
+      data-testid="temp-component"
+    />
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

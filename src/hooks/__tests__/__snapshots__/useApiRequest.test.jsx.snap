@@ -1,19 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AxiosProviderWrapper unit tests AxiosProviderWrapper snapshot test 1`] = `
+exports[`useApiRequest unit tests snapshot test 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        data-testid="mock-axios-context-provider"
-      />
+      <button
+        data-testid="temp-component"
+        type="button"
+      >
+        Mocked
+      </button>
     </div>
   </body>,
   "container": <div>
-    <div
-      data-testid="mock-axios-context-provider"
-    />
+    <button
+      data-testid="temp-component"
+      type="button"
+    >
+      Mocked
+    </button>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

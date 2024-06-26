@@ -1,31 +1,29 @@
 import { useCallback, useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fromEvent } from 'rxjs';
 
 import { setDarkTheme, setLightTheme } from '../redux/slices/appSlice';
+import preferredColorScheme from '../utils/eventListeners/preferredColorScheme';
 
 const useTheme = () => {
   const dispatch = useDispatch();
 
-  const updateStore = useCallback(
-    isDark => {
-      if (isDark) {
-        dispatch(setDarkTheme());
-      } else {
-        dispatch(setLightTheme());
-      }
-    },
-    [dispatch],
-  );
+  const updateStore = useCallback(isDark => {
+    if (isDark) {
+      dispatch(setDarkTheme());
+    } else {
+      dispatch(setLightTheme());
+    }
+  }, []);
 
   useLayoutEffect(() => {
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    const mqChange = fromEvent(mq, 'change');
+    updateStore(preferredColorScheme.isDark);
 
-    updateStore(mq.matches);
+    preferredColorScheme.subscribe(e => updateStore(e.matches));
 
-    mqChange.subscribe(e => updateStore(e.matches));
-  }, [updateStore]);
+    return () => {
+      preferredColorScheme.unSubscribe();
+    };
+  }, []);
 };
 
 export default useTheme;

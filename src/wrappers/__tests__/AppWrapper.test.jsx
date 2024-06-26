@@ -8,13 +8,6 @@ jest.mock('../../App', () => ({
   default: jest.fn(() => <div data-testid="mock-app" />),
 }));
 
-jest.mock('../AxiosProviderWrapper', () => ({
-  __esModule: true,
-  default: jest.fn(({ children }) => (
-    <div data-testid="mock-axios-provider-wrapper">{children}</div>
-  )),
-}));
-
 jest.mock('../ReduxWrapper', () => ({
   __esModule: true,
   default: jest.fn(({ children }) => (
