@@ -1,3 +1,4 @@
+const config = require('./build_utils/config');
 // Jest configuration
 // https://facebook.github.io/jest/docs/en/configuration.html
 module.exports = {
@@ -27,6 +28,9 @@ module.exports = {
     '!src/redux/**',
     '!src/routes/**',
   ],
+  globals: {
+    __ENV__: config.ENVS.PRODUCTION,
+  },
   // https://facebook.github.io/jest/docs/en/configuration.html#coveragedirectory-string
   coverageDirectory: '<rootDir>/coverage', // [string]
   coveragePathIgnorePatterns: ['node_modules'],

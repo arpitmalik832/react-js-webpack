@@ -1,23 +1,25 @@
+const { ENVS } = require('./index');
+
 module.exports = env => {
   // let exampleUrl;
   let projUrl;
 
   switch (env) {
-    case 'production':
+    case ENVS.PRODUCTION:
       // exampleUrl = 'https://exmaple.com/';
       projUrl = 'https://proj-url.com/';
       break;
-    case 'beta':
+    case ENVS.BETA:
       // exampleUrl = 'https://exmaple.com/';
       projUrl = 'https://proj-url.com/';
       break;
-    case 'staging':
+    case ENVS.STAGING:
       // exampleUrl = 'https://exmaple.com/';
       projUrl = 'https://proj-url.com/';
       break;
-    case 'development':
+    case ENVS.DEVELOPMENT:
       // exampleUrl = 'https://exmaple.com/';
-      projUrl = 'https://proj-url.com/';
+      projUrl = 'http://localhost:3000/';
       break;
     default:
       // exampleUrl = 'https://exmaple.com/';

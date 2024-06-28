@@ -8,6 +8,7 @@ import {
   logResponse,
   errorLogRequest,
   errorLogResponse,
+  isLocalhost,
 } from '../commonUtils';
 
 describe('test commonUtils', () => {
@@ -38,5 +39,21 @@ describe('test commonUtils', () => {
 
   it('test the errorLogResponse', () => {
     errorLogResponse({ method: 'get', response: 'temp1' });
+  });
+
+  it('testing the isLocalHostUtil', () => {
+    // Overwrite the hostname before rendering
+    delete window.location;
+    window.location = { hostname: 'localhost' };
+
+    expect(isLocalhost()).toBeTruthy();
+  });
+
+  it('testing the isLocalHostUtil', () => {
+    // Overwrite the hostname before rendering
+    delete window.location;
+    window.location = { hostname: 'example.com' };
+
+    expect(isLocalhost()).toBeFalsy();
   });
 });
