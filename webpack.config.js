@@ -5,6 +5,7 @@ const devConfig = require('./build_utils/webpack/webpack.dev');
 const prodConfig = require('./build_utils/webpack/webpack.prod');
 const federationConfig = require('./build_utils/webpack/webpack.federation');
 const bundleAnalyzerConfig = require('./build_utils/webpack/webpack.bundleanalyzer');
+const workersConfig = require('./build_utils/webpack/webpack.workers');
 
 const logs = require('./build_utils/config/logs');
 
@@ -36,5 +37,5 @@ module.exports = env => {
       envConfig = devConfig;
   }
 
-  return merge(commonConfig, envConfig, ...addons());
+  return merge(commonConfig, envConfig, workersConfig, ...addons());
 };
