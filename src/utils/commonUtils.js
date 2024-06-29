@@ -1,11 +1,23 @@
-// eslint-disable-next-line no-console
-const log = console.log.bind(console);
+const log = (...args) => {
+  if (!__isRelease__) {
+    // eslint-disable-next-line no-console
+    console.log(...args);
+  }
+};
 
-// eslint-disable-next-line no-console
-const errorLog = console.error.bind(console);
+const errorLog = (...args) => {
+  if (!__isRelease__) {
+    // eslint-disable-next-line no-console
+    console.error(...args);
+  }
+};
 
-// eslint-disable-next-line no-console
-const warnLog = console.warn.bind(console);
+const warnLog = (...args) => {
+  if (!__isRelease__) {
+    // eslint-disable-next-line no-console
+    console.warn(...args);
+  }
+};
 
 const isLocalhost = () =>
   Boolean(
