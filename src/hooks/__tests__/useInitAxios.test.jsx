@@ -5,13 +5,6 @@ import { Provider } from 'react-redux';
 
 import useInitAxios from '../useInitAxios';
 
-jest.mock('axios', () => ({
-  __esModule: true,
-  default: {
-    create: jest.fn(() => ({ temp: 'temp' })),
-  },
-}));
-
 jest.mock('../../configs/app', () => ({
   __esModule: true,
   API1_TIMEOUT: 15000,
@@ -19,6 +12,18 @@ jest.mock('../../configs/app', () => ({
     LIGHT: 'light',
     DARK: 'dark',
   },
+}));
+
+jest.mock('../../utils/commonUtils', () => ({
+  logRequest: jest.fn(),
+  logResponse: jest.fn(),
+  errorLogRequest: jest.fn(),
+  errorLogResponse: jest.fn(),
+}));
+
+jest.mock('../../utils/apiUtils', () => ({
+  addRequestInterceptor: jest.fn(),
+  addResponseInterceptor: jest.fn(),
 }));
 
 describe('useInitAxios unit tests', () => {
