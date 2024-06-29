@@ -7,46 +7,6 @@ import { Provider, useSelector } from 'react-redux';
 
 import useApiRequest from '../useApiRequest';
 
-jest.mock('axios', () => ({
-  ...jest.requireActual('axios'),
-  create: jest.fn(() => ({
-    interceptors: {
-      request: {
-        use: (x, y) => {
-          x();
-          try {
-            y();
-          } catch {
-            // do nothing
-          }
-        },
-      },
-      response: {
-        use: (x, y) => {
-          x({
-            config: {
-              metadata: {},
-            },
-          });
-          try {
-            y({
-              config: {
-                metadata: {},
-              },
-            });
-          } catch {
-            // do nothing
-          }
-        },
-      },
-    },
-    get: jest.fn(() => Promise.resolve({ data: ['temp data'] })),
-    post: jest.fn(() => Promise.resolve({ data: ['temp data'] })),
-    put: jest.fn(() => Promise.resolve({ data: ['temp data'] })),
-    delete: jest.fn(() => Promise.resolve({ data: ['temp data'] })),
-  })),
-}));
-
 jest.mock('../../utils/commonUtils', () => ({
   logRequest: jest.fn(),
   logResponse: jest.fn(),
@@ -54,7 +14,7 @@ jest.mock('../../utils/commonUtils', () => ({
   errorLogResponse: jest.fn(),
 }));
 
-jest.mock('../../utils/apiUtils.js', () => ({
+jest.mock('../../utils/apiUtils', () => ({
   __esModule: true,
   handleRequest: jest.fn(e => e.then(res => res.data).catch(err => err)),
 }));
