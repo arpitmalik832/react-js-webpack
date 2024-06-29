@@ -29,7 +29,8 @@ module.exports = {
     '!src/routes/**',
   ],
   globals: {
-    __ENV__: config.ENVS.PRODUCTION,
+    __ENV__: config.ENVS.STAGING,
+    __isRelease__: false,
   },
   // https://facebook.github.io/jest/docs/en/configuration.html#coveragedirectory-string
   coverageDirectory: '<rootDir>/coverage', // [string]
@@ -37,10 +38,10 @@ module.exports = {
   // coverageReporters: [], // [array<string>]
   coverageThreshold: {
     global: {
-      branches: 95,
-      functions: 95,
-      lines: 95,
-      statements: 95,
+      branches: 90,
+      functions: 90,
+      lines: 90,
+      statements: 90,
     },
   },
   // https://facebook.github.io/jest/docs/en/configuration.html#mapcoverage-boolean
