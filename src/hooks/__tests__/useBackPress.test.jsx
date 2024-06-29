@@ -19,6 +19,11 @@ jest.mock('../../utils/eventListeners/beforeUnload.js', () => ({
   },
 }));
 
+jest.mock('../../utils/commonUtils', () => ({
+  __esModule: true,
+  log: jest.fn(),
+}));
+
 describe('useBackPress unit tests', () => {
   it('snapshot test', () => {
     const navigationSlice = createSlice({
