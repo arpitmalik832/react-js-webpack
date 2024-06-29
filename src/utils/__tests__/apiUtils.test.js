@@ -1,6 +1,17 @@
 import '@testing-library/jest-dom';
 
-import { handleRequest } from '../apiUtils';
+import {
+  addRequestInterceptor,
+  addResponseInterceptor,
+  handleRequest,
+} from '../apiUtils';
+import { log } from '../commonUtils';
+
+jest.mock('../commonUtils', () => ({
+  __esModule: true,
+  log: jest.fn(),
+  errorLog: jest.fn(),
+}));
 
 describe('apiUtils unit test', () => {
   it('test function with proper response', async () => {
@@ -69,5 +80,67 @@ describe('apiUtils unit test', () => {
     await handleRequest(request).catch(error => {
       expect(error).toEqual(mockError);
     });
+  });
+
+  it('test addRequestInterceptor', () => {
+    const axiosInstance = {
+      interceptors: {
+        request: {
+          use: jest.fn(),
+        },
+      },
+    };
+
+    addRequestInterceptor({
+      axiosInstance,
+    });
+
+    axiosInstance.interceptors.request.use.mock.calls[0][0]({
+      metadata: {
+        startTime: 1,
+      },
+    });
+    try {
+      axiosInstance.interceptors.request.use.mock.calls[0][1]({
+        metadata: {
+          startTime: 1,
+        },
+      });
+    } catch (r) {
+      log(r);
+    }
+  });
+
+  it('test addResponseInterceptor', () => {
+    const axiosInstance = {
+      interceptors: {
+        response: {
+          use: jest.fn(),
+        },
+      },
+    };
+
+    addResponseInterceptor({
+      axiosInstance,
+    });
+
+    axiosInstance.interceptors.response.use.mock.calls[0][0]({
+      config: {
+        metadata: {
+          startTime: 1,
+        },
+      },
+    });
+    try {
+      axiosInstance.interceptors.response.use.mock.calls[0][1]({
+        config: {
+          metadata: {
+            startTime: 1,
+          },
+        },
+      });
+    } catch (r) {
+      log(r);
+    }
   });
 });
