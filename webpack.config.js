@@ -1,52 +1,41 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { merge } = require('webpack-merge');
 
-const package = require("./package.json");
-const commonPaths = require("./build_utils/config/commonPaths");
+const commonConfig = require('./build_utils/webpack/webpack.common');
+const devConfig = require('./build_utils/webpack/webpack.dev');
+const prodConfig = require('./build_utils/webpack/webpack.prod');
+const federationConfig = require('./build_utils/webpack/webpack.federation');
+const bundleAnalyzerConfig = require('./build_utils/webpack/webpack.bundleanalyzer');
+const workersConfig = require('./build_utils/webpack/webpack.workers');
 
-const isDebug = !process.argv.includes("release");
+const logs = require('./build_utils/config/logs');
 
-const port = process.env.PORT || 3000;
+const addons = () => {
+  const federation = process.argv.includes('federation');
+  const bundleAnalyzer = process.argv.includes('bundleAnalyzer');
 
-module.exports = {
-  entry: commonPaths.entryPath,
-  output: {
-    uniqueName: package.name,
-    publicPath: "/",
-    path: commonPaths.outputPath,
-    filename: `${package.version}/js/[name].[chunkhash:8].js`,
-    chunkFilename: `${package.version}/js/[name].[chunkhash:8].js`,
-    assetModuleFilename: isDebug
-      ? `images/[path][name].[contenthash:8][ext]`
-      : `images/[path][contenthash:8][ext]`,
-    crossOriginLoading: "anonymous",
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "public/index.html",
-      filename: "index.html",
-    }),
-  ],
-  devServer: {
-    port: port,
-    static: {
-      directory: commonPaths.outputPath,
-    },
-    historyApiFallback: {
-      index: "index.html",
-    },
-    webSocketServer: false,
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/, // exclude node_modules
-        use: ["babel-loader"],
-      },
-    ],
-  },
-  resolve: {
-    extensions: ["*", ".js", ".jsx"],
-  },
+  const configs = [];
+  if (federation) configs.push(federationConfig);
+  if (bundleAnalyzer) configs.push(bundleAnalyzerConfig);
+  return configs;
+};
+
+module.exports = env => {
+  if (!env) {
+    throw new Error(logs.ERR_NO_ENV_FLAG);
+  }
+
+  let envConfig;
+
+  switch (env.env) {
+    case 'prod':
+      envConfig = prodConfig;
+      break;
+    case 'dev':
+      envConfig = devConfig;
+      break;
+    default:
+      envConfig = devConfig;
+  }
+
+  return merge(commonConfig, envConfig, workersConfig, ...addons());
 };

@@ -1,3 +1,11 @@
-const helloDiv = document.createElement("div");
-helloDiv.innerHTML = "Hello from Javascript!";
-document.body.append(helloDiv);
+import SWRegistration from './services/SWRegistration';
+
+import('./bootstrap').then(({ mount }) =>
+  mount(document.getElementById('app')),
+);
+
+SWRegistration.register();
+
+if (!__isRelease__) {
+  import('./utils/reportWebVitals').then(({ default: func }) => func());
+}

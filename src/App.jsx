@@ -1,7 +1,12 @@
-import { createRoot } from "react-dom/client";
+import { RouterProvider } from 'react-router-dom';
 
-import App from "./Hello";
+import router from './routes';
+import useAppMount from './hooks/useAppMount';
 
-const container = document.getElementById("root");
-const root = createRoot(container);
-root.render(<App />);
+const App = () => {
+  useAppMount();
+
+  return <RouterProvider router={router} />;
+};
+
+export default App;

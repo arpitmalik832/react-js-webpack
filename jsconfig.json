@@ -1,0 +1,11 @@
+{
+  "include": ["**/*.json"],
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "checkJs": true,
+    "jsx": "react-jsx"
+  },
+  "exclude": ["node_modules"]
+}
