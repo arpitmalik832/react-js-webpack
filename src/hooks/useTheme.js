@@ -1,23 +1,25 @@
 import { useCallback, useLayoutEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { setDarkTheme, setLightTheme } from '../redux/slices/appSlice';
 import preferredColorScheme from '../utils/eventListeners/preferredColorScheme';
+import { THEME } from '../configs/app';
 
 const useTheme = () => {
+  const theme = useSelector(state => state.app.theme);
   const dispatch = useDispatch();
 
   const updateStore = useCallback(isDark => {
     if (isDark) {
-      dispatch(setDarkTheme());
-    } else {
+      if (theme !== THEME.DARK) {
+        dispatch(setDarkTheme());
+      }
+    } else if (theme !== THEME.LIGHT) {
       dispatch(setLightTheme());
     }
   }, []);
 
   useLayoutEffect(() => {
-    updateStore(preferredColorScheme.isDark);
-
     preferredColorScheme.subscribe(e => updateStore(e.matches));
 
     return () => {
