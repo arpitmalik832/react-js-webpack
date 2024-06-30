@@ -1,27 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { thunk } from 'redux-thunk';
-import logger from 'redux-logger';
+import devStore from './store/store.dev';
+import prodStore from './store/store.prod';
 
-import appReducer from './slices/appSlice';
-import apisReducer from './slices/apisSlice';
-import sampleQuery from './query/sampleQuery';
-import navigationReducer from './slices/navigationSlice';
+const store = __isRelease__ ? prodStore : devStore;
 
-export default configureStore({
-  reducer: {
-    app: appReducer,
-    apis: apisReducer,
-    navigation: navigationReducer,
-    sampleQuery: sampleQuery.reducer,
-  },
-  middleware: getDefault =>
-    getDefault({
-      serializableCheck: {
-        ignoredActions: [
-          'apis/updateApi1AxiosInstance',
-          'navigation/pushStack',
-        ],
-        ignoredPaths: ['apis', 'sampleQuery', 'navigation'],
-      },
-    }).concat(thunk, logger, sampleQuery.middleware),
-});
+export default store;
