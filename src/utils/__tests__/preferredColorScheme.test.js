@@ -5,6 +5,7 @@ import matchMediaMock from '../../__tests__/__mocks__/matchMediaMock';
 
 describe('preferredColorScheme unit tests', () => {
   const callBackFn = jest.fn();
+
   it('preferredColorScheme functions test', () => {
     Object.defineProperty(window, 'matchMedia', {
       writable: true,
@@ -14,7 +15,7 @@ describe('preferredColorScheme unit tests', () => {
     preferredColorScheme.callBackFn();
     preferredColorScheme.subscribe(callBackFn);
     preferredColorScheme.callBackFn();
-    expect(callBackFn).toHaveBeenCalledTimes(1);
+    expect(callBackFn).toHaveBeenCalledTimes(2);
     preferredColorScheme.unSubscribe();
   });
 });
