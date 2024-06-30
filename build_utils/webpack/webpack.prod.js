@@ -12,8 +12,8 @@ module.exports = {
   mode: 'production',
   plugins: [
     new CompressionPlugin({
-      filename: '[path][base].gz[query]',
-      algorithm: 'gzip',
+      filename: '[path][base].br',
+      algorithm: 'brotliCompress',
       test: /\.(js|css)$/,
     }),
     new AssetsManifest({

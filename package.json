@@ -2,6 +2,7 @@
   "name": "react_js",
   "version": "1.0.0",
   "description": "A React JS starter code",
+  "sideEffects": "false",
   "scripts": {
     "serve": "node server.js",
     "start": "cross-env NODE_ENV=development webpack serve --env env=dev federation",
