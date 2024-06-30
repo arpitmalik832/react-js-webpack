@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 const pkg = require('../../package.json');
@@ -147,6 +148,13 @@ module.exports = {
       filename: `${pkg.version}/css/[name].[chunkhash:8].css`,
       chunkFilename: `${pkg.version}/css/[id].[chunkhash:8].css`,
       ignoreOrder: true,
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'public/netlify',
+        },
+      ],
     }),
   ],
   resolve: {
