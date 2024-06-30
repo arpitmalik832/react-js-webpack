@@ -1,10 +1,9 @@
 const preferredColorScheme = {
-  isDark: false,
   callBackFn() {},
   subscribe(callBackFn) {
     this.callBackFn = callBackFn;
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    this.isDark = mq.matches;
+    callBackFn(mq);
 
     mq.addEventListener('change', callBackFn);
   },

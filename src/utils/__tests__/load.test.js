@@ -2,9 +2,9 @@ import '@testing-library/jest-dom';
 
 import load from '../eventListeners/load';
 
-describe('beforeUnload unit tests', () => {
+describe('load unit tests', () => {
   const callBackFn = jest.fn();
-  it('beforeUnload functions test', () => {
+  it('load functions test', () => {
     load.callBackFn();
     load.subscribe(callBackFn);
     load.callBackFn();
