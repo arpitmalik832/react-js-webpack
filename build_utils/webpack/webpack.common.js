@@ -60,13 +60,13 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              sourceMap: true,
+              sourceMap: !isRelease,
             },
           },
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true,
+              sourceMap: !isRelease,
             },
           },
           {
@@ -90,7 +90,7 @@ module.exports = {
       ? [
           new TerserPlugin({
             terserOptions: {
-              sourceMap: true,
+              sourceMap: !isRelease,
               compress: {
                 inline: false,
                 drop_console: !!removeConsoleLogs,
