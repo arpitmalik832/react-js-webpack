@@ -1,4 +1,3 @@
-const config = require('./build_utils/config');
 // Jest configuration
 // https://facebook.github.io/jest/docs/en/configuration.html
 module.exports = {
@@ -29,7 +28,8 @@ module.exports = {
     '!src/routes/**',
   ],
   globals: {
-    __ENV__: config.ENVS.STAGING,
+    __isStaging__: true,
+    __isBeta__: false,
     __isRelease__: false,
   },
   // https://facebook.github.io/jest/docs/en/configuration.html#coveragedirectory-string

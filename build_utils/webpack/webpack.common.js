@@ -11,8 +11,9 @@ const pkg = require('../../package.json');
 const globals = require('../config/globals');
 const commonPaths = require('../config/commonPaths');
 
+const isStaging = process.argv.includes('staging');
+const isBeta = process.argv.includes('beta');
 const isRelease = process.argv.includes('release');
-const removeConsoleLogs = process.argv.includes('no-console');
 
 module.exports = {
   entry: commonPaths.entryPath,
@@ -22,9 +23,10 @@ module.exports = {
     path: commonPaths.outputPath,
     filename: `${pkg.version}/js/[name].[chunkhash:8].js`,
     chunkFilename: `${pkg.version}/js/[name].[chunkhash:8].js`,
-    assetModuleFilename: isRelease
-      ? `images/[path][contenthash:8][ext]`
-      : `images/[path][name].[contenthash:8][ext]`,
+    assetModuleFilename:
+      isRelease || isBeta
+        ? `images/[path][contenthash:8][ext]`
+        : `images/[path][name].[contenthash:8][ext]`,
     crossOriginLoading: 'anonymous',
   },
   module: {
@@ -49,24 +51,25 @@ module.exports = {
               esModule: false,
               modules: {
                 mode: 'local',
-                localIdentName: isRelease
-                  ? '[hash:base64:5]'
-                  : '[name]-[local]-[hash:base64:5]',
+                localIdentName:
+                  isRelease || isBeta
+                    ? '[hash:base64:5]'
+                    : '[name]-[local]-[hash:base64:5]',
               },
-              sourceMap: !isRelease,
+              sourceMap: !isRelease && !isBeta,
               importLoaders: 1,
             },
           },
           {
             loader: 'postcss-loader',
             options: {
-              sourceMap: !isRelease,
+              sourceMap: !isRelease && !isBeta,
             },
           },
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: !isRelease,
+              sourceMap: !isRelease && !isBeta,
             },
           },
           {
@@ -80,35 +83,36 @@ module.exports = {
     ],
   },
   performance: {
-    hints: isRelease ? 'error' : 'warning',
+    hints: isRelease || isBeta ? 'error' : 'warning',
     maxAssetSize: 250000,
     maxEntrypointSize: 10000000,
   },
   optimization: {
-    minimize: isRelease,
-    minimizer: isRelease
-      ? [
-          new TerserPlugin({
-            terserOptions: {
-              sourceMap: !isRelease,
-              compress: {
-                inline: false,
-                drop_console: !!removeConsoleLogs,
-              },
-            },
-          }),
-          new CssMinimizerPlugin({
-            minimizerOptions: {
-              preset: [
-                'default',
-                {
-                  discardComments: { removeAll: true },
+    minimize: isRelease || isBeta,
+    minimizer:
+      isRelease || isBeta
+        ? [
+            new TerserPlugin({
+              terserOptions: {
+                sourceMap: !isRelease && !isBeta,
+                compress: {
+                  inline: false,
+                  drop_console: !!isRelease,
                 },
-              ],
-            },
-          }),
-        ]
-      : [],
+              },
+            }),
+            new CssMinimizerPlugin({
+              minimizerOptions: {
+                preset: [
+                  'default',
+                  {
+                    discardComments: { removeAll: true },
+                  },
+                ],
+              },
+            }),
+          ]
+        : [],
     runtimeChunk: false,
     splitChunks: {
       chunks: 'all',
@@ -136,8 +140,9 @@ module.exports = {
       path: `./.env.${process.env.NODE_ENV}`,
     }),
     new webpack.DefinePlugin({
-      [globals.__ENV__]: `'${process.env.NODE_ENV}'`,
       [globals.__isRelease__]: isRelease,
+      [globals.__isBeta__]: isBeta,
+      [globals.__isStaging__]: isStaging,
     }),
     new HtmlWebpackPlugin({
       template: 'public/index.html',

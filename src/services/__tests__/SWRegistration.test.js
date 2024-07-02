@@ -31,15 +31,6 @@ jest.mock('../../utils/eventListeners/load', () => ({
   },
 }));
 
-jest.mock('../../../build_utils/config', () => ({
-  __esModule: true,
-  ENVS: {
-    PRODUCTION: 'production',
-    BETA: 'beta',
-    STAGING: 'staging',
-  },
-}));
-
 describe('SWRegistration unit tests', () => {
   afterEach(() => {
     jest.clearAllMocks();
@@ -66,7 +57,7 @@ describe('SWRegistration unit tests', () => {
     SWRegistration.unregister();
   });
 
-  it('SWRegistration functions test with rejeting ready state', () => {
+  it('SWRegistration functions test with rejecting ready state', () => {
     Object.defineProperty(global.navigator, 'serviceWorker', {
       value: {
         register: jest.fn(() => Promise.resolve('xyz')),
