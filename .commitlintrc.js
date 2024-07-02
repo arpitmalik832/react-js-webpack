@@ -9,6 +9,7 @@ module.exports = {
         'docs',
         'feat',
         'fix',
+        'optimize',
         'refactor',
         'revert',
         'style',
