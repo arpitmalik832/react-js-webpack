@@ -26,6 +26,7 @@ module.exports = {
     '!src/configs/**',
     '!src/redux/**',
     '!src/routes/**',
+    '!src/stories/**',
   ],
   globals: {
     __isStaging__: true,

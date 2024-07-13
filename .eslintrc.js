@@ -10,6 +10,7 @@ module.exports = {
     'prettier',
     'react-app',
     'plugin:cypress/recommended',
+    'plugin:storybook/recommended',
   ],
   plugins: [
     'css-modules',
