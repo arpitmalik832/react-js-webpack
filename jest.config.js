@@ -1,4 +1,3 @@
-const config = require('./build_utils/config');
 // Jest configuration
 // https://facebook.github.io/jest/docs/en/configuration.html
 module.exports = {
@@ -27,9 +26,11 @@ module.exports = {
     '!src/configs/**',
     '!src/redux/**',
     '!src/routes/**',
+    '!src/stories/**',
   ],
   globals: {
-    __ENV__: config.ENVS.STAGING,
+    __isStaging__: true,
+    __isBeta__: false,
     __isRelease__: false,
   },
   // https://facebook.github.io/jest/docs/en/configuration.html#coveragedirectory-string
@@ -54,6 +55,8 @@ module.exports = {
   // like images or styles with a single module.
   moduleNameMapper: {
     '.+\\.(css|styl|less|sass|scss)$': 'identity-obj-proxy',
+    '.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      '<rootDir>/src/__tests__/__mocks__/mockAsset.js',
   },
   // modulePathIgnorePatterns: // [array<string>]
   // modulePaths: // [array<string>]
@@ -81,13 +84,10 @@ module.exports = {
   testEnvironmentOptions: {
     url: 'http://localhost:3000/',
   },
-
   transform: {
     '\\.(js|jsx)$': '<rootDir>/node_modules/babel-jest',
-    // '^(?!.*\\.(js|jsx|json|css|less|styl|scss|sass|sss)$)':  '<rootDir>/tools/lib/fileTransformer.js',
   },
   // unmockedModulePathPatterns: // [array<string>]
-
   verbose: true, // [boolean],
   setupFiles: ['<rootDir>/setupTests.js'], // [testConfig files DOM,Mock]
 };

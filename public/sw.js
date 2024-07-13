@@ -25,6 +25,7 @@ registerRoute(
     isSelfLocation(url.origin) &&
     (url.pathname.includes(`/js/`) ||
       url.pathname.includes(`/css/`) ||
+      url.pathname.includes('/dll/') ||
       url.pathname.endsWith(`remoteEntry.js`) ||
       url.pathname.endsWith(`/`)),
   new StaleWhileRevalidate({
