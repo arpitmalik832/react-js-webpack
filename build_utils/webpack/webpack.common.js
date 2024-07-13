@@ -11,6 +11,11 @@ const pkg = require('../../package.json');
 const globals = require('../config/globals');
 const commonPaths = require('../config/commonPaths');
 
+// eslint-disable-next-line import/no-dynamic-require
+const dllManifest = require(
+  `${commonPaths.outputPath}/${pkg.version}/dll/vendor-manifest.json`,
+);
+
 const isStaging = process.argv.includes('staging');
 const isBeta = process.argv.includes('beta');
 const isRelease = process.argv.includes('release');
@@ -29,12 +34,37 @@ module.exports = {
         : `images/[path][name].[contenthash:8][ext]`,
     crossOriginLoading: 'anonymous',
   },
+  cache: {
+    type: 'filesystem',
+    version: `${pkg.version}_${process.env.NODE_ENV}`,
+    store: 'pack',
+    buildDependencies: {
+      config: [__filename],
+    },
+  },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/, // exclude node_modules
-        use: ['babel-loader'],
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              plugins:
+                isRelease || isBeta
+                  ? [
+                      [
+                        'transform-react-remove-prop-types',
+                        {
+                          removeImport: true,
+                        },
+                      ],
+                    ]
+                  : [],
+            },
+          },
+        ],
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
@@ -98,6 +128,24 @@ module.exports = {
                 compress: {
                   inline: false,
                   drop_console: !!isRelease,
+                  dead_code: true,
+                  drop_debugger: !!isRelease,
+                  conditionals: true,
+                  evaluate: true,
+                  booleans: true,
+                  loops: true,
+                  unused: true,
+                  hoist_funs: true,
+                  keep_fargs: false,
+                  hoist_vars: true,
+                  if_return: true,
+                  join_vars: true,
+                  side_effects: true,
+                  warnings: false,
+                },
+                mangle: true,
+                output: {
+                  comments: false,
                 },
               },
             }),
@@ -113,13 +161,16 @@ module.exports = {
             }),
           ]
         : [],
-    runtimeChunk: false,
+    moduleIds: 'deterministic',
+    runtimeChunk: 'single',
     splitChunks: {
       chunks: 'all',
       maxSize: 500000,
       cacheGroups: {
-        commons: {
+        vendor: {
           test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
           priority: -10,
           reuseExistingChunk: true,
         },
@@ -130,7 +181,8 @@ module.exports = {
         },
       },
     },
-    sideEffects: false,
+    usedExports: true,
+    sideEffects: true,
   },
   plugins: [
     new webpack.ProvidePlugin({
@@ -148,6 +200,7 @@ module.exports = {
       template: 'public/index.html',
       filename: 'index.html',
       favicon: 'public/favicon.ico',
+      dll: `<script src="/${pkg.version}/dll/vendor.dll.js"></script>`,
     }),
     new MiniCssExtractPlugin({
       filename: `${pkg.version}/css/[name].[chunkhash:8].css`,
@@ -161,9 +214,15 @@ module.exports = {
         },
       ],
     }),
+    new webpack.DllReferencePlugin({
+      context: process.cwd(),
+      manifest: dllManifest,
+    }),
   ],
   resolve: {
     extensions: ['*', '.js', '.jsx'],
     fallback: { 'process/browser': require.resolve('process/browser') },
+    symlinks: false,
+    cacheWithContext: false,
   },
 };

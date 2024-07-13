@@ -35,7 +35,7 @@ app.use(
 
 app.get('/*', (req, res) => {
   res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
-  res.sendFile(commonPaths.outputHTMLPath);
+  res.sendFile(`${commonPaths.outputPath}/index.html`);
 });
 
 app.listen(port, '0.0.0.0', () => {
