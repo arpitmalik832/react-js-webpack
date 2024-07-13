@@ -10,6 +10,7 @@ module.exports = {
     'prettier',
     'react-app',
     'plugin:cypress/recommended',
+    'plugin:storybook/recommended',
   ],
   plugins: [
     'css-modules',
@@ -21,8 +22,9 @@ module.exports = {
     'cypress',
   ],
   globals: {
-    __ENV__: 'readonly',
     __isRelease__: 'readonly',
+    __isBeta__: 'readonly',
+    __isStaging__: 'readonly',
   },
   rules: {
     // rules regarding react plugin

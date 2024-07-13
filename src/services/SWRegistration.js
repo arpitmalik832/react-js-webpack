@@ -1,7 +1,6 @@
 import { SW_URL, LOGS } from '../configs/sw';
 import { errorLog, isLocalhost, log } from '../utils/commonUtils';
 import load from '../utils/eventListeners/load';
-import { ENVS } from '../../build_utils/config';
 
 const registerValidSW = () => {
   navigator.serviceWorker
@@ -45,7 +44,7 @@ const checkValidSW = () => {
 const SWRegistration = {
   register() {
     if (
-      [ENVS.PRODUCTION, ENVS.BETA, ENVS.STAGING].includes(__ENV__) &&
+      (__isRelease__ || __isBeta__ || __isStaging__) &&
       'serviceWorker' in navigator
     ) {
       // The URL constructor is available in all browsers that support SW.
