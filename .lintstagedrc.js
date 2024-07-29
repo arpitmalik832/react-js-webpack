@@ -1,16 +1,12 @@
 module.exports = {
-  '{src,public,build_utils,cypress,.}/**/*.{js,ts,jsx}': [
-    'npm run fix-js',
-    'npm run fix-prettier',
+  '**/*.{js,jsx}': [
+    'npm run lint-js:fix',
+    'npm run prettier:fix -- "**/*.{js,jsx}"',
   ],
-  '{src,public,build_utils,cypress,.}/**/*.{css,scss}': [
-    'npm run fix-css',
-    'npm run fix-prettier',
+  '**/*.{css,scss}': [
+    'npm run lint-css:fix',
+    'npm run prettier:fix -- "**/*.{css,scss}"',
   ],
-  '{src,public,build_utils,.}/**/*.json': [
-    'npm run fix-prettier --parser json',
-  ],
-  '{src,public,build_utils,.}/**/*.md': [
-    'npm run fix-prettier --parser markdown',
-  ],
+  '**/*.json': ['npm run prettier:fix -- "**/*.json" --parser json'],
+  '**/*.md': ['npm run fix-prettier -- "**/*.md" --parser markdown'],
 };
