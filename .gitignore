@@ -126,3 +126,6 @@ build
 cypress/videos
 cypress/screenshots
 *storybook.log
+
+# storybook
+storybook-static

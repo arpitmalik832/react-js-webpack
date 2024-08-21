@@ -1,8 +1,8 @@
 const express = require('express');
 const expressStaticGzip = require('express-static-gzip');
 
-const commonPaths = require('./build_utils/config/commonPaths');
-const logs = require('./build_utils/config/logs');
+const commonPaths = require('../build_utils/config/commonPaths');
+const logs = require('../build_utils/config/logs');
 
 const app = express();
 const port = 8080;
