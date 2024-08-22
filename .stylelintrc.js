@@ -41,9 +41,10 @@ module.exports = {
     ],
   },
   ignoreFiles: [
-    '**/*.{js,jsx,ts}',
+    '**/*.{mjs,cjs,js,jsx,ts,mdx}',
     'build/**/*.{css,scss}',
     'node_modules/**/*.{css,scss}',
     'coverage/**/*.{css,scss}',
+    'storybook-static/**/*.{css,scss}',
   ],
 };

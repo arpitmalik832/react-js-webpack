@@ -10,6 +10,7 @@ const Dotenv = require('dotenv-webpack');
 const pkg = require('../../package.json');
 const globals = require('../config/globals');
 const commonPaths = require('../config/commonPaths');
+const svgrConfig = require('../../svgr.config');
 
 // eslint-disable-next-line import/no-dynamic-require
 const dllManifest = require(
@@ -67,8 +68,18 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
+        test: /\.(png|jpe?g|gif)$/i,
         type: 'asset/resource',
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: svgrConfig,
+          },
+          'url-loader',
+        ],
       },
       {
         test: /\.(scss|sass)$/,

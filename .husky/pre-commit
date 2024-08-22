@@ -75,6 +75,8 @@ printf "\n${Blue}=================================${NC}\n"
 printf "${Green}Start - Linting of the code.${NC}"
 
 npm run lint-staged
+# Adding changes made by lint-staged
+git add .
 
 printf "${Green}End - Linting of the code.${NC}"
 

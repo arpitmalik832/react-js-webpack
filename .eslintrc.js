@@ -11,6 +11,7 @@ module.exports = {
     'react-app',
     'plugin:cypress/recommended',
     'plugin:storybook/recommended',
+    'plugin:mdx/recommended',
   ],
   plugins: [
     'css-modules',
@@ -20,6 +21,8 @@ module.exports = {
     'react',
     'react-hooks',
     'cypress',
+    'storybook',
+    'mdx',
   ],
   globals: {
     __isRelease__: 'readonly',
