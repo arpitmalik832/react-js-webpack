@@ -1,16 +1,21 @@
 import { render, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import Component from '../AppWrapper';
+import Component from '../AppProvider';
 
 jest.mock('../../App', () => ({
   __esModule: true,
   default: jest.fn(() => <div data-testid="mock-app" />),
 }));
 
-jest.mock('../ReduxWrapper', () => ({
+jest.mock('../../redux/store', () => ({
   __esModule: true,
-  default: jest.fn(({ children }) => (
+  default: {},
+}));
+
+jest.mock('@arpitmalik832/react-js-rollup-monorepo-library', () => ({
+  __esModule: true,
+  ReduxProvider: jest.fn(({ children }) => (
     <div data-testid="mock-redux-wrapper">{children}</div>
   )),
 }));

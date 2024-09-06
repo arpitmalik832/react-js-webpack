@@ -21,6 +21,7 @@ module.exports = {
   collectCoverageFrom: [
     'src/**/*.{js,jsx}',
     '!src/**/*.{test,spec}.{js,jsx}',
+    '!src/**/*.stories.{js,jsx}',
     '!src/index.js',
     '!src/bootstrap.jsx',
     '!src/configs/**',
@@ -85,8 +86,11 @@ module.exports = {
     url: 'http://localhost:3000/',
   },
   transform: {
-    '\\.(js|jsx)$': '<rootDir>/node_modules/babel-jest',
+    '\\.(js|jsx)$': 'babel-jest',
   },
+  transformIgnorePatterns: [
+    '<rootDir>/node_modules/(?!(@arpitmalik832/react-js-rollup-monorepo-library)/)', // Add your ESM packages here
+  ],
   // unmockedModulePathPatterns: // [array<string>]
   verbose: true, // [boolean],
   setupFiles: ['<rootDir>/setupTests.js'], // [testConfig files DOM,Mock]

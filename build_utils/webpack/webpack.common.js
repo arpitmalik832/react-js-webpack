@@ -113,10 +113,26 @@ module.exports = {
               sourceMap: !isRelease && !isBeta,
             },
           },
+        ],
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+          MiniCssExtractPlugin.loader,
           {
-            loader: 'sass-resources-loader',
+            loader: 'css-loader',
             options: {
-              resources: commonPaths.scssPath,
+              esModule: false,
+              modules: {
+                mode: 'local',
+                localIdentName:
+                  isRelease || isBeta
+                    ? '[hash:base64:5]'
+                    : '[name]-[local]-[hash:base64:5]',
+              },
+              sourceMap: !isRelease && !isBeta,
+              importLoaders: 1,
             },
           },
         ],

@@ -7,8 +7,10 @@ jest.mock('react-redux', () => ({
   useDispatch: jest.fn(() => () => jest.fn()),
 }));
 
-jest.mock('../../../redux/slices/appSlice', () => ({
-  updateStore: jest.fn(),
+jest.mock('@arpitmalik832/react-js-rollup-monorepo-library', () => ({
+  slices: {
+    updateStore: jest.fn(),
+  },
 }));
 
 describe('Button unit tests', () => {

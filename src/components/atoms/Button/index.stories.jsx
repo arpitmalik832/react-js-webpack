@@ -1,12 +1,14 @@
-import ReduxWrapper from '../../../wrappers/ReduxWrapper';
+import { ReduxProvider } from '@arpitmalik832/react-js-rollup-monorepo-library';
+
 import Button from './index';
+import store from '../../../redux/store';
 
 export default {
   title: 'Atoms/Button',
   component: () => (
-    <ReduxWrapper>
+    <ReduxProvider store={store}>
       <Button />
-    </ReduxWrapper>
+    </ReduxProvider>
   ),
   tags: ['autodocs'],
 };

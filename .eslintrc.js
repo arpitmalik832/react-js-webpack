@@ -29,6 +29,26 @@ module.exports = {
     __isBeta__: 'readonly',
     __isStaging__: 'readonly',
   },
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [
+          [
+            '@arpitmalik832/react-js-rollup-monorepo-library/icons/*',
+            './node_modules/@arpitmalik832/react-js-rollup-monorepo-library/dist/assets/icons/*',
+          ],
+          [
+            '@arpitmalik832/react-js-rollup-monorepo-library',
+            './node_modules/@arpitmalik832/react-js-rollup-monorepo-library/dist/index.js',
+          ],
+          [
+            '@arpitmalik832/react-js-rollup-monorepo-library/styles/*',
+            './node_modules/@arpitmalik832/react-js-rollup-monorepo-library/dist/styles/*',
+          ],
+        ],
+      },
+    },
+  },
   rules: {
     // rules regarding react plugin
     'react/react-in-jsx-scope': 0,

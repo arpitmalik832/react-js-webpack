@@ -1,4 +1,4 @@
-import SWRegistration from './services/SWRegistration';
+import { SWRegistration } from '@arpitmalik832/react-js-rollup-monorepo-library';
 
 import('./bootstrap').then(({ mount }) =>
   mount(document.getElementById('app')),
@@ -7,5 +7,7 @@ import('./bootstrap').then(({ mount }) =>
 SWRegistration.register();
 
 if (!__isRelease__) {
-  import('./utils/reportWebVitals').then(({ default: func }) => func());
+  import('@arpitmalik832/react-js-rollup-monorepo-library').then(
+    ({ reportWebVitals: func }) => func(),
+  );
 }

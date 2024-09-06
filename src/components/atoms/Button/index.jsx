@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
-
-import { updateStore } from '../../../redux/slices/appSlice';
+import { slices } from '@arpitmalik832/react-js-rollup-monorepo-library';
 
 import s from './index.scss';
 
@@ -14,7 +13,7 @@ const Button = () => {
       data-cy="button"
       className={s.button}
       onClick={() => {
-        dispatch(updateStore({ key: 'x', value: 'a' }));
+        dispatch(slices.updateStore({ key: 'x', value: 'a' }));
       }}
     >
       Button

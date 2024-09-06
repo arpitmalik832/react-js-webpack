@@ -1,5 +1,7 @@
-import useInitAxios from './useInitAxios';
-import useTheme from './useTheme';
+import {
+  useInitAxios,
+  useTheme,
+} from '@arpitmalik832/react-js-rollup-monorepo-library';
 
 const useAppMount = () => {
   useTheme();

@@ -1,5 +1,9 @@
-import Button from '../../components/atoms/Button';
-import useBackPress from '../../hooks/useBackPress';
+import {
+  useBackPress,
+  Button,
+} from '@arpitmalik832/react-js-rollup-monorepo-library';
+
+import ButtonV2 from '../../components/atoms/Button';
 
 const Home = () => {
   useBackPress();
@@ -8,6 +12,7 @@ const Home = () => {
     <div>
       Home
       <Button />
+      <ButtonV2 />
     </div>
   );
 };

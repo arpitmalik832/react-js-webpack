@@ -1,16 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-
-import appReducer from '../slices/appSlice';
-import apisReducer from '../slices/apisSlice';
-import sampleQuery from '../query/sampleQuery';
-import navigationReducer from '../slices/navigationSlice';
+import {
+  slices,
+  queries,
+} from '@arpitmalik832/react-js-rollup-monorepo-library';
 
 export default configureStore({
   reducer: {
-    app: appReducer,
-    apis: apisReducer,
-    navigation: navigationReducer,
-    sampleQuery: sampleQuery.reducer,
+    app: slices.appSlice.reducer,
+    apis: slices.apisSlice.reducer,
+    navigation: slices.navigationSlice.reducer,
+    sampleQuery: queries.sampleQuery.reducer,
   },
   middleware: getDefault =>
     getDefault({
@@ -21,5 +20,5 @@ export default configureStore({
         ],
         ignoredPaths: ['apis', 'sampleQuery', 'navigation'],
       },
-    }).concat(sampleQuery.middleware),
+    }).concat(queries.sampleQuery.middleware),
 });
