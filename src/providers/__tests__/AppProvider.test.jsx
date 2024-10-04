@@ -1,3 +1,7 @@
+/**
+ * AppProvider unit tests.
+ * @file This file is saved as `AppProvider.test.jsx`.
+ */
 import { render, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -8,7 +12,7 @@ jest.mock('../../App', () => ({
   default: jest.fn(() => <div data-testid="mock-app" />),
 }));
 
-jest.mock('../../redux/store', () => ({
+jest.mock('../../redux/store/store.js', () => ({
   __esModule: true,
   default: {},
 }));

@@ -1,8 +1,12 @@
-const express = require('express');
-const expressStaticGzip = require('express-static-gzip');
+/**
+ * This script is used to serve the production build of the application.
+ * @file The file is saved as `scripts/server.js`.
+ */
+import express from 'express';
+import expressStaticGzip from 'express-static-gzip';
 
-const commonPaths = require('../build_utils/config/commonPaths');
-const logs = require('../build_utils/config/logs');
+import { outputPath } from '../build_utils/config/commonPaths.mjs';
+import { SERVER_STARTED_SUCCESSFULLY } from '../build_utils/config/logs.mjs';
 
 const app = express();
 const port = 8080;
@@ -20,7 +24,7 @@ app.set('ETag', 'strong');
 
 app.use(
   '/',
-  expressStaticGzip(commonPaths.outputPath, {
+  expressStaticGzip(outputPath, {
     urlContains: 'static/',
     setHeaders: res => res.setHeader('Cache-Control', 'private, max-age=60'),
   }),
@@ -35,10 +39,10 @@ app.use(
 
 app.get('/*', (req, res) => {
   res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
-  res.sendFile(`${commonPaths.outputPath}/index.html`);
+  res.sendFile(`${outputPath}/index.html`);
 });
 
 app.listen(port, '0.0.0.0', () => {
   // eslint-disable-next-line no-console
-  console.log(logs.SERVER_STARTED_SUCCESSFULLY(port));
+  console.log(SERVER_STARTED_SUCCESSFULLY(port));
 });

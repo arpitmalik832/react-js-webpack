@@ -1,3 +1,7 @@
+/**
+ * This script is used to serve the storybook static files.
+ * @file The file is saved as `scripts/serve_storybook.js`.
+ */
 /* eslint-disable no-console */
 import express from 'express';
 import path from 'path';
