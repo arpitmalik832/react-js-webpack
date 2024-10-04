@@ -8,7 +8,7 @@ on:
       - beta
       - release
       - master
-      - "feature-*"
+      - 'feature-*'
   pull_request:
     branches:
       - development
@@ -16,7 +16,7 @@ on:
       - beta
       - release
       - master
-      - "feature-*"
+      - 'feature-*'
 
 jobs:
   build:
@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: '20'
       - name: Installing dependencies
         run: yarn install --frozen-lockfile
       - name: Building the project
