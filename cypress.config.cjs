@@ -1,3 +1,7 @@
+/**
+ * This file is used to configure Cypress.
+ * @file The file is saved as `cypress.config.cjs`.
+ */
 const { defineConfig } = require('cypress');
 const fs = require('fs');
 

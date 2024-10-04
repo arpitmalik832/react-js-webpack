@@ -1,6 +1,18 @@
-const { ENVS } = require('./index');
+/**
+ * The file provides the project entries based on the environment.
+ * @file This file is saved as `build_utils/config/modulesEntry.js`.
+ */
+import { ENVS } from './index.mjs';
 
-module.exports = env => {
+/**
+ * Get the project URL based on the environment.
+ * @param {string} env - The environment name.
+ * @returns {object} An object containing the project URL.
+ * @example
+ * // returns { PROJ: 'https://proj-url.com/' }
+ * getEntries('production');
+ */
+function getEntries(env) {
   // let exampleUrl;
   let projUrl;
 
@@ -30,4 +42,6 @@ module.exports = env => {
     // EXAMPLE: exampleUrl,
     PROJ: projUrl,
   };
-};
+}
+
+export default getEntries;

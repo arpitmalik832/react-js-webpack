@@ -1,7 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
+/**
+ * Redux store configuration for production environment.
+ * @file This file is saved as `redux/store/store.prod,js`.
+ */
 import {
   slices,
   queries,
+  configureStore,
 } from '@arpitmalik832/react-js-rollup-monorepo-library';
 
 export default configureStore({

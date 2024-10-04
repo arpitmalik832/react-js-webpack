@@ -1,4 +1,8 @@
-module.exports = {
+/**
+ * SVGR configuration file.
+ * @file The file is saved as `svgr.config.mjs`.
+ */
+const config = {
   prettier: true,
   svgo: true,
   exportType: 'named',
@@ -15,3 +19,5 @@ module.exports = {
   outputDir: 'dist/assets',
   icon: false,
 };
+
+export default config;

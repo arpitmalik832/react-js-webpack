@@ -1,3 +1,7 @@
+/**
+ * Enums for routes.
+ * @file The file is saved as `enums/routes.js`.
+ */
 const SEO = {
   HOME: {
     TITLE: 'Home',

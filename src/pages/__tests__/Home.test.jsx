@@ -1,3 +1,7 @@
+/**
+ * Home Page unit tests.
+ * @file This file is saved as `Home.test.jsx`.
+ */
 import { cleanup, render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 

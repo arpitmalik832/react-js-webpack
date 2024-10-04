@@ -1,3 +1,7 @@
+/**
+ * Home Page.
+ * @file This file is saved as `Home/index.jsx`.
+ */
 import {
   useBackPress,
   Button,
@@ -5,7 +9,13 @@ import {
 
 import ButtonV2 from '../../components/atoms/Button';
 
-const Home = () => {
+/**
+ * Home component renders the home page with buttons.
+ * @returns {import('react').JSX.Element} The rendered component.
+ * @example
+ * <Home />
+ */
+function Home() {
   useBackPress();
 
   return (
@@ -15,6 +25,6 @@ const Home = () => {
       <ButtonV2 />
     </div>
   );
-};
+}
 
 export default Home;

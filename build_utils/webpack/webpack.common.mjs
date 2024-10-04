@@ -1,32 +1,40 @@
+/**
+ * Webpack common configuration for both development and production environments.
+ * @file The file is saved as `build_utils/webpack/webpack.common.js`.
+ */
 /* eslint-disable no-underscore-dangle */
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import webpack from 'webpack';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
+import Dotenv from 'dotenv-webpack';
+import { fileURLToPath } from 'url';
+import { readFileSync } from 'fs';
 
-const pkg = require('../../package.json');
-const globals = require('../config/globals');
-const commonPaths = require('../config/commonPaths');
-const svgrConfig = require('../../svgr.config');
+import pkg from '../../package.json' with { type: 'json' };
+import { entryPath, outputPath } from '../config/commonPaths.mjs';
+import svgrConfig from '../../svgr.config.mjs';
+import { ENVS } from '../config/index.mjs';
 
-// eslint-disable-next-line import/no-dynamic-require
-const dllManifest = require(
-  `${commonPaths.outputPath}/${pkg.version}/dll/vendor-manifest.json`,
+// Convert import.meta.url to __filename
+const __filename = fileURLToPath(import.meta.url);
+
+// Load the DLL manifest
+const manifest = JSON.parse(
+  readFileSync(`${outputPath}/${pkg.version}/dll/vendor-manifest.json`, 'utf8'),
 );
 
-const isStaging = process.argv.includes('staging');
-const isBeta = process.argv.includes('beta');
-const isRelease = process.argv.includes('release');
+const isBeta = process.env.APP_ENV === ENVS.BETA;
+const isRelease = process.env.APP_ENV === ENVS.PROD;
 
-module.exports = {
-  entry: commonPaths.entryPath,
+const config = {
+  entry: entryPath,
   output: {
     uniqueName: pkg.name,
     publicPath: '/',
-    path: commonPaths.outputPath,
+    path: outputPath,
     filename: `${pkg.version}/js/[name].[chunkhash:8].js`,
     chunkFilename: `${pkg.version}/js/[name].[chunkhash:8].js`,
     assetModuleFilename:
@@ -37,7 +45,7 @@ module.exports = {
   },
   cache: {
     type: 'filesystem',
-    version: `${pkg.version}_${process.env.NODE_ENV}`,
+    version: `${pkg.version}_${process.env.APP_ENV}`,
     store: 'pack',
     buildDependencies: {
       config: [__filename],
@@ -216,12 +224,7 @@ module.exports = {
       process: 'process/browser',
     }),
     new Dotenv({
-      path: `./.env.${process.env.NODE_ENV}`,
-    }),
-    new webpack.DefinePlugin({
-      [globals.__isRelease__]: isRelease,
-      [globals.__isBeta__]: isBeta,
-      [globals.__isStaging__]: isStaging,
+      path: `./.env.${process.env.BE_ENV}`,
     }),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
@@ -243,13 +246,14 @@ module.exports = {
     }),
     new webpack.DllReferencePlugin({
       context: process.cwd(),
-      manifest: dllManifest,
+      manifest,
     }),
   ],
   resolve: {
     extensions: ['*', '.js', '.jsx'],
-    fallback: { 'process/browser': require.resolve('process/browser') },
     symlinks: false,
     cacheWithContext: false,
   },
 };
+
+export default config;

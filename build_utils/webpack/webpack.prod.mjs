@@ -1,15 +1,20 @@
-const fs = require('fs');
-const CompressionPlugin = require('compression-webpack-plugin');
-const AssetsManifest = require('webpack-assets-manifest');
+/**
+ * Webpack configuration for production environment.
+ * @file The file is saved as `build_utils/webpack/webpack.prod.js`.
+ */
+import fs from 'fs';
+import CompressionPlugin from 'compression-webpack-plugin';
+import AssetsManifest from 'webpack-assets-manifest';
 
-const commonPaths = require('../config/commonPaths');
+import { outputPath } from '../config/commonPaths.mjs';
+import { ENVS } from '../config/index.mjs';
 
-const isRelease = process.argv.includes('release');
+const isRelease = process.env.APP_ENV === ENVS.PROD;
 
-module.exports = {
+const config = {
   name: 'client',
   target: 'web',
-  mode: 'production',
+  mode: ENVS.PROD,
   plugins: [
     new CompressionPlugin({
       filename: '[path][base].br',
@@ -17,7 +22,7 @@ module.exports = {
       test: /\.(js|css)$/,
     }),
     new AssetsManifest({
-      output: `${commonPaths.outputPath}/asset-manifest.json`,
+      output: `${outputPath}/asset-manifest.json`,
       publicPath: true,
       writeToDisk: true,
       customize: entry => {
@@ -29,7 +34,7 @@ module.exports = {
       },
       done: (manifest, stats) => {
         // Write chunk-manifest.json
-        const chunkFileName = `${commonPaths.outputPath}/chunk-manifest.json`;
+        const chunkFileName = `${outputPath}/chunk-manifest.json`;
         try {
           const chunkFiles = stats.compilation.chunkGroups.reduce((acc, c) => {
             acc[c.name] = [
@@ -56,3 +61,5 @@ module.exports = {
     }),
   ],
 };
+
+export default config;

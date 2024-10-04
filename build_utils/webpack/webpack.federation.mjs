@@ -1,19 +1,25 @@
-const { ModuleFederationPlugin } = require('webpack').container;
+/**
+ * This file is used to create a federated module for the application.
+ * @file The file is saved as `build_utils/webpack/webpack.federation.js`.
+ */
+import webpack from 'webpack';
 
-const pkg = require('../../package.json');
-const commonPaths = require('../config/commonPaths');
-const modulesEntry = require('../config/modulesEntry');
+import pkg from '../../package.json' with { type: 'json' };
+import { entryPath } from '../config/commonPaths.mjs';
+import getEntries from '../config/modulesEntry.mjs';
 
 const deps = pkg.dependencies;
-const REMOTE_HOST = modulesEntry(process.env.NODE_ENV);
+const REMOTE_HOST = getEntries(process.env.APP_ENV);
 
-module.exports = {
+const { ModuleFederationPlugin } = webpack.container;
+
+const config = {
   plugins: [
     new ModuleFederationPlugin({
       name: `${pkg.name}`,
       filename: `remoteEntry.js`,
       exposes: {
-        './App': `${commonPaths.entryPath}`,
+        './App': `${entryPath}`,
       },
       remotes: {
         // example: `example@${REMOTE_HOST.EXAMPLE}remoteEntry.js`,
@@ -64,3 +70,5 @@ module.exports = {
     }),
   ],
 };
+
+export default config;
