@@ -1,3 +1,7 @@
+/**
+ * This spec file contains examples of advanced usage of Cypress commands.
+ * @file The file is saved as `cypress/e2e/2-advanced-examples/misc.cy.js`.
+ */
 /// <reference types="cypress" />
 
 context('Misc', () => {
@@ -63,13 +67,13 @@ context('Misc', () => {
     cy.focused().should('have.id', 'description');
   });
 
-  context('Cypress.Screenshot', function () {
+  context('Cypress.Screenshot', () => {
     it('cy.screenshot() - take a screenshot', () => {
       // https://on.cypress.io/screenshot
       cy.screenshot('my-image');
     });
 
-    it('Cypress.Screenshot.defaults() - change default config of screenshots', function () {
+    it('Cypress.Screenshot.defaults() - change default config of screenshots', () => {
       Cypress.Screenshot.defaults({
         blackout: ['.foo'],
         capture: 'viewport',

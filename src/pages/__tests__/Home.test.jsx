@@ -1,3 +1,7 @@
+/**
+ * Home Page unit tests.
+ * @file This file is saved as `Home.test.jsx`.
+ */
 import { cleanup, render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -5,12 +9,13 @@ import Component from '../Home';
 
 jest.mock('../../components/atoms/Button', () => ({
   __esModule: true,
-  default: jest.fn(() => <div data-testid="mock-button" />),
+  default: jest.fn(() => <div data-testid="mock-button-v2" />),
 }));
 
-jest.mock('../../hooks/useBackPress', () => ({
+jest.mock('@arpitmalik832/react-js-rollup-monorepo-library', () => ({
   __esModule: true,
-  default: jest.fn(),
+  useBackPress: jest.fn(),
+  Button: jest.fn(() => <div data-testid="mock-button" />),
 }));
 
 describe('Unit tests for Home Page', () => {
