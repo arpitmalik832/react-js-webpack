@@ -18,10 +18,7 @@ import { entryPath, outputPath } from '../config/commonPaths.mjs';
 import svgrConfig from '../../svgr.config.mjs';
 import { ENVS } from '../config/index.mjs';
 
-// Convert import.meta.url to __filename
 const __filename = fileURLToPath(import.meta.url);
-
-// Load the DLL manifest
 const manifest = JSON.parse(
   readFileSync(`${outputPath}/${pkg.version}/dll/vendor-manifest.json`, 'utf8'),
 );
@@ -51,11 +48,12 @@ const config = {
       config: [__filename],
     },
   },
+  devtool: isRelease || isBeta ? false : 'source-map',
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/, // exclude node_modules
+        exclude: /node_modules/,
         use: [
           {
             loader: 'babel-loader',
@@ -105,22 +103,10 @@ const config = {
                     ? '[hash:base64:5]'
                     : '[name]-[local]-[hash:base64:5]',
               },
-              sourceMap: !isRelease && !isBeta,
-              importLoaders: 1,
             },
           },
-          {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: !isRelease && !isBeta,
-            },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: !isRelease && !isBeta,
-            },
-          },
+          'postcss-loader',
+          'sass-loader',
         ],
       },
       {
@@ -139,8 +125,6 @@ const config = {
                     ? '[hash:base64:5]'
                     : '[name]-[local]-[hash:base64:5]',
               },
-              sourceMap: !isRelease && !isBeta,
-              importLoaders: 1,
             },
           },
         ],
@@ -159,7 +143,6 @@ const config = {
         ? [
             new TerserPlugin({
               terserOptions: {
-                sourceMap: !isRelease && !isBeta,
                 compress: {
                   inline: false,
                   drop_console: !!isRelease,
