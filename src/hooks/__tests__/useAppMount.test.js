@@ -1,3 +1,7 @@
+/**
+ * Hook useAppMount unit tests.
+ * @file The file is saved as `useAppMount.test.js`.
+ */
 import { cleanup, renderHook } from '@testing-library/react';
 import '@testing-library/jest-dom';
 

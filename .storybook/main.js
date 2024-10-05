@@ -1,7 +1,4 @@
-import webpack from 'webpack';
-
-import svgrConfig from '../svgr.config.js';
-import globals from '../build_utils/config/globals.js';
+import svgrConfig from '../svgr.config.mjs';
 
 const CONFIG_TYPE = {
   PRODUCTION: 'PRODUCTION',
@@ -93,15 +90,6 @@ export default {
         },
       },
     };
-
-    // adding env variables
-    config.plugins.push(
-      new webpack.DefinePlugin({
-        [globals.__isRelease__]: false,
-        [globals.__isBeta__]: false,
-        [globals.__isStaging__]: true,
-      }),
-    );
 
     return config;
   },
