@@ -6,8 +6,8 @@ import fs from 'fs';
 import CompressionPlugin from 'compression-webpack-plugin';
 import AssetsManifest from 'webpack-assets-manifest';
 
-import { outputPath } from '../config/commonPaths.mjs';
-import { ENVS } from '../config/index.mjs';
+import { outputPath } from '../../config/commonPaths.mjs';
+import { ENVS } from '../../config/index.mjs';
 
 const isRelease = process.env.APP_ENV === ENVS.PROD;
 

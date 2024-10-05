@@ -4,7 +4,7 @@
  */
 import { InjectManifest } from 'workbox-webpack-plugin';
 
-import { outputPath } from '../config/commonPaths.mjs';
+import { outputPath } from '../../config/commonPaths.mjs';
 
 const config = {
   plugins: [
