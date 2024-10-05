@@ -1,3 +1,9 @@
+## [0.0.3](https://github.com/arpitmalik832/react-js-webpack-starter/compare/v0.0.2...v0.0.3) (2024-10-05)
+
+### Bug Fixes
+
+- **main:** version bump script ([ac7cdcf](https://github.com/arpitmalik832/react-js-webpack-starter/commit/ac7cdcf87091f697db9e4910f989a4f9cad9ff4b))
+
 ## [0.0.2](https://github.com/arpitmalik832/react-js-webpack-starter/compare/v0.0.1...v0.0.2) (2024-10-05)
 
 ### Bug Fixes
