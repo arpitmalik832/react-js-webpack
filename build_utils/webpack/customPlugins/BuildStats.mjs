@@ -1,6 +1,6 @@
 /**
  * Webpack plugin to generate build stats.
- * @file The file is saved as `build_utils/webpack/customPlugins/BuildStats.js`.
+ * @file The file is saved as `build_utils/webpack/customPlugins/BuildStats.mjs`.
  */
 import { writeFileSync, mkdirSync } from 'fs';
 import { dirname } from 'path';

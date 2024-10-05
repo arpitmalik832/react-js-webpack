@@ -13,10 +13,10 @@ import Dotenv from 'dotenv-webpack';
 import { fileURLToPath } from 'url';
 import { readFileSync } from 'fs';
 
-import pkg from '../../package.json' with { type: 'json' };
-import { entryPath, outputPath } from '../config/commonPaths.mjs';
-import svgrConfig from '../../svgr.config.mjs';
-import { ENVS } from '../config/index.mjs';
+import pkg from '../../../package.json' with { type: 'json' };
+import { entryPath, outputPath } from '../../config/commonPaths.mjs';
+import svgrConfig from '../../../svgr.config.mjs';
+import { ENVS } from '../../config/index.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const manifest = JSON.parse(

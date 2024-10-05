@@ -2,8 +2,8 @@
  * Webpack development configuration for client.
  * @file The file is saved as `build_utils/webpack/webpack.dev.js`.
  */
-import { ENVS } from '../config/index.mjs';
-import { outputPath } from '../config/commonPaths.mjs';
+import { ENVS } from '../../config/index.mjs';
+import { outputPath } from '../../config/commonPaths.mjs';
 
 const port = process.env.PORT || 3000;
 

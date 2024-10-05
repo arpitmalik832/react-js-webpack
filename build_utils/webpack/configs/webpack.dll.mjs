@@ -6,12 +6,9 @@ import webpack from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
 
-import { outputPath } from '../config/commonPaths.mjs';
-import pkg from '../../package.json' with { type: 'json' };
-import { ENVS } from '../config/index.mjs';
-import BuildStatsPlugin from './customPlugins/BuildStats.mjs';
-
-const timestamp = new Date().toISOString().replace(/:/g, '-');
+import { outputPath } from '../../config/commonPaths.mjs';
+import pkg from '../../../package.json' with { type: 'json' };
+import { ENVS } from '../../config/index.mjs';
 
 const isBeta = process.env.APP_ENV === ENVS.BETA;
 const isRelease = process.env.APP_ENV === ENVS.PROD;
@@ -57,9 +54,6 @@ const config = {
       filename: '[path][base].br',
       algorithm: 'brotliCompress',
       test: /\.(js|css)$/,
-    }),
-    new BuildStatsPlugin({
-      outputPath: `distInfo/dll/${process.env.APP_ENV}/${timestamp}.json`,
     }),
   ],
   optimization: {
