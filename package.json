@@ -1,6 +1,6 @@
 {
   "name": "react_js_webpack",
-  "version": "1.0.0",
+  "version": "0.0.3",
   "description": "A React JS starter code",
   "sideEffects": false,
   "type": "module",
@@ -89,7 +89,10 @@
     "knip:pre-commit": "yarn knip-prod:check-files",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "storybook:serve": "node scripts/serve_storybook.js"
+    "storybook:serve": "node scripts/serve_storybook.js",
+    "version-bump:patch": "npx release-it patch",
+    "version-bump:minor": "npx release-it minor",
+    "version-bump:major": "npx release-it major"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
@@ -103,6 +106,7 @@
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "@commitlint/cz-commitlint": "^19.5.0",
+    "@release-it/conventional-changelog": "^8.0.2",
     "@storybook/addon-a11y": "^8.3.4",
     "@storybook/addon-essentials": "^8.3.4",
     "@storybook/addon-interactions": "^8.3.4",
@@ -158,6 +162,7 @@
     "postcss-loader": "^8.1.1",
     "postcss-preset-env": "^9.6.0",
     "prettier": "^3.3.3",
+    "release-it": "^17.7.0",
     "rimraf": "^6.0.1",
     "sass": "^1.79.4",
     "sass-loader": "^16.0.0",
