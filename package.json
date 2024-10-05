@@ -187,7 +187,7 @@
     "rimraf": "^6.0.1",
     "sass": "^1.79.4",
     "sass-loader": "^16.0.0",
-    "storybook": "^8.3.4",
+    "storybook": "^8.3.5",
     "style-loader": "^4.0.0",
     "stylelint": "^16.9.0",
     "stylelint-config-clean-order": "^6.1.0",
