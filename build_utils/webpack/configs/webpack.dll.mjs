@@ -4,10 +4,14 @@
  */
 import webpack from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
+import CompressionPlugin from 'compression-webpack-plugin';
 
-import { outputPath } from '../config/commonPaths.mjs';
-import pkg from '../../package.json' with { type: 'json' };
-import { ENVS } from '../config/index.mjs';
+import { outputPath } from '../../config/commonPaths.mjs';
+import pkg from '../../../package.json' with { type: 'json' };
+import { ENVS } from '../../config/index.mjs';
+
+const isBeta = process.env.APP_ENV === ENVS.BETA;
+const isRelease = process.env.APP_ENV === ENVS.PROD;
 
 const config = {
   mode: ENVS.PROD,
@@ -19,6 +23,7 @@ const config = {
     filename: '[name].dll.js',
     library: '[name]_[fullhash]',
   },
+  devtool: isRelease || isBeta ? false : 'source-map',
   module: {
     rules: [
       {
@@ -44,6 +49,11 @@ const config = {
     }),
     new TerserPlugin({
       parallel: true,
+    }),
+    new CompressionPlugin({
+      filename: '[path][base].br',
+      algorithm: 'brotliCompress',
+      test: /\.(js|css)$/,
     }),
   ],
   optimization: {
