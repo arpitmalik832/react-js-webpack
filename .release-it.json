@@ -1,0 +1,15 @@
+{
+  "npm": {
+    "publish": false
+  },
+  "git": {
+    "requireCleanWorkingDir": true,
+    "commitMessage": "chore(main): bump version to ${version}",
+    "tagName": "v${version}",
+    "push": true,
+    "pushArgs": ["--follow-tags"]
+  },
+  "hooks": {
+    "after:bump": "npx auto-changelog -p"
+  }
+}
