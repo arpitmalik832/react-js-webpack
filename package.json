@@ -90,7 +90,9 @@
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "storybook:serve": "node scripts/serve_storybook.js",
-    "version:bump": "npx release-it"
+    "version-bump:patch": "npx release-it patch",
+    "version-bump:minor": "npx release-it minor",
+    "version-bump:major": "npx release-it major"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
