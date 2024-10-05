@@ -1,6 +1,6 @@
 {
   "name": "react_js_webpack",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "A React JS starter code",
   "sideEffects": false,
   "type": "module",
@@ -89,7 +89,8 @@
     "knip:pre-commit": "yarn knip-prod:check-files",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "storybook:serve": "node scripts/serve_storybook.js"
+    "storybook:serve": "node scripts/serve_storybook.js",
+    "bump-version": "npm version patch -m \"chore(release): bump version to %s\" && git push && git push --tags"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
