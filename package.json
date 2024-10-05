@@ -90,7 +90,7 @@
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "storybook:serve": "node scripts/serve_storybook.js",
-    "bump-version": "node scripts/bump_version.js"
+    "version:bump": "npx release-it"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
@@ -104,6 +104,7 @@
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "@commitlint/cz-commitlint": "^19.5.0",
+    "@release-it/conventional-changelog": "^8.0.2",
     "@storybook/addon-a11y": "^8.3.4",
     "@storybook/addon-essentials": "^8.3.4",
     "@storybook/addon-interactions": "^8.3.4",
