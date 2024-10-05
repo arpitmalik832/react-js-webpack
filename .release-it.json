@@ -12,13 +12,12 @@
     "changelog": "npx auto-changelog --stdout --commit-limit false --unreleased --template keepachangelog"
   },
   "hooks": {
-    "before:init": ["echo 'Starting the release process...'", "npm test"],
+    "before:init": ["echo 'Starting the release process...'", "yarn lint"],
     "after:bump": [
       "npx auto-changelog -p",
-      "git add CHANGELOG.md",
-      "git commit -m 'docs(main): update changelog for ${version}'"
+      "git add .",
+      "git commit -m \"docs(main): update changelog for ${version}\""
     ],
-
     "after:release": ["echo 'Release process completed successfully.'"]
   },
   "plugins": {
