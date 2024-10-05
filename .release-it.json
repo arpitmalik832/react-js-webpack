@@ -1,7 +1,6 @@
 {
   "npm": {
-    "publish": false,
-    "ignoreVersion": true
+    "publish": false
   },
   "git": {
     "requireCleanWorkingDir": true,
@@ -13,11 +12,7 @@
   },
   "hooks": {
     "before:init": ["echo 'Starting the release process...'", "yarn lint"],
-    "after:bump": [
-      "npx auto-changelog -p",
-      "git add .",
-      "git commit -m \"docs(main): update changelog for ${version}\""
-    ],
+    "after:bump": ["git add ."],
     "after:release": ["echo 'Release process completed successfully.'"]
   },
   "plugins": {
