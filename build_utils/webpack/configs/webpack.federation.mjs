@@ -4,9 +4,9 @@
  */
 import webpack from 'webpack';
 
-import pkg from '../../package.json' with { type: 'json' };
-import { entryPath } from '../config/commonPaths.mjs';
-import getEntries from '../config/modulesEntry.mjs';
+import pkg from '../../../package.json' with { type: 'json' };
+import { entryPath } from '../../config/commonPaths.mjs';
+import getEntries from '../../config/modulesEntry.mjs';
 
 const deps = pkg.dependencies;
 const REMOTE_HOST = getEntries(process.env.APP_ENV);
