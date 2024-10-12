@@ -1,0 +1,137 @@
+{
+  "files": [
+    {
+      "fileName": "sw.js",
+      "size": 148745,
+      "gzippedSize": 30972,
+      "brotliSize": 25855,
+      "contentType": "asset",
+      "percentageBySize": "71.64"
+    },
+    {
+      "fileName": "0.0.3/js/main.ff5a7dd9.js",
+      "size": 2665,
+      "gzippedSize": 975,
+      "brotliSize": 819,
+      "contentType": "chunk",
+      "percentageBySize": "1.28"
+    },
+    {
+      "fileName": "remoteEntry.js",
+      "size": 1996,
+      "gzippedSize": 766,
+      "brotliSize": 663,
+      "contentType": "chunk",
+      "percentageBySize": "0.96"
+    },
+    {
+      "fileName": "0.0.3/js/runtime.ad5f8a48.js",
+      "size": 30508,
+      "gzippedSize": 6899,
+      "brotliSize": 6069,
+      "contentType": "chunk",
+      "percentageBySize": "14.69"
+    },
+    {
+      "fileName": "0.0.3/js/82.c13a1d52.js",
+      "size": 12709,
+      "gzippedSize": 3140,
+      "brotliSize": 2700,
+      "contentType": "chunk",
+      "percentageBySize": "6.12"
+    },
+    {
+      "fileName": "0.0.3/js/755.25d8c4f0.js",
+      "size": 1964,
+      "gzippedSize": 830,
+      "brotliSize": 686,
+      "contentType": "chunk",
+      "percentageBySize": "0.95"
+    },
+    {
+      "fileName": "0.0.3/js/Error.5f45554b.js",
+      "size": 951,
+      "gzippedSize": 486,
+      "brotliSize": 435,
+      "contentType": "chunk",
+      "percentageBySize": "0.46"
+    },
+    {
+      "fileName": "0.0.3/css/274.bdfad51e.css",
+      "size": 210,
+      "gzippedSize": 161,
+      "brotliSize": 114,
+      "contentType": "chunk",
+      "percentageBySize": "0.10"
+    },
+    {
+      "fileName": "0.0.3/js/Home.bdfad51e.js",
+      "size": 2621,
+      "gzippedSize": 1022,
+      "brotliSize": 895,
+      "contentType": "chunk",
+      "percentageBySize": "1.26"
+    },
+    {
+      "fileName": "0.0.3/js/Abc.831c88c6.js",
+      "size": 924,
+      "gzippedSize": 479,
+      "brotliSize": 399,
+      "contentType": "chunk",
+      "percentageBySize": "0.45"
+    },
+    {
+      "fileName": "0.0.3/js/NotFound.c38c6464.js",
+      "size": 993,
+      "gzippedSize": 505,
+      "brotliSize": 418,
+      "contentType": "chunk",
+      "percentageBySize": "0.48"
+    },
+    {
+      "fileName": "_redirects",
+      "size": 18,
+      "gzippedSize": 38,
+      "brotliSize": 18,
+      "contentType": "asset",
+      "percentageBySize": "0.01"
+    },
+    {
+      "fileName": "favicon.ico",
+      "size": 1406,
+      "gzippedSize": 701,
+      "brotliSize": 671,
+      "contentType": "asset",
+      "percentageBySize": "0.68"
+    },
+    {
+      "fileName": "index.html",
+      "size": 640,
+      "gzippedSize": 365,
+      "brotliSize": 218,
+      "contentType": "asset",
+      "percentageBySize": "0.31"
+    },
+    {
+      "fileName": "asset-manifest.json",
+      "size": 1280,
+      "gzippedSize": 355,
+      "brotliSize": 323,
+      "contentType": "asset",
+      "percentageBySize": "0.62"
+    }
+  ],
+  "totalSize": 207630,
+  "totalGzippedSize": 47694,
+  "totalBrotliSize": 40283,
+  "noOfFiles": 15,
+  "largestFile": {
+    "fileName": "sw.js",
+    "size": 148745,
+    "gzippedSize": 30972,
+    "brotliSize": 25855,
+    "contentType": "asset",
+    "percentageBySize": "71.64"
+  },
+  "buildDuration": 2401
+}

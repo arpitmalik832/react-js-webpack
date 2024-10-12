@@ -4,8 +4,6 @@
  */
 import BuildStatsPlugin from '../customPlugins/BuildStats.mjs';
 
-const timestamp = new Date().toISOString().replace(/:/g, '-');
-
 /**
  * Generates the Webpack configuration for build stats.
  * @param {string} type - The type of build (e.g., 'dll' or 'main').
@@ -15,10 +13,13 @@ const timestamp = new Date().toISOString().replace(/:/g, '-');
  * console.log(config);
  */
 function getConfig(type) {
+  const timestamp = new Date().toISOString().replace(/:/g, '-');
+  const path = `distInfo/${type === 'dll' ? 'dll' : 'main'}/${process.env.APP_ENV}/buildStats`;
+
   return {
     plugins: [
       new BuildStatsPlugin({
-        outputPath: `distInfo/${type === 'dll' ? 'dll' : 'main'}/${process.env.APP_ENV}/${timestamp}.json`,
+        outputPath: `${path}/${timestamp}.json`,
       }),
     ],
   };
