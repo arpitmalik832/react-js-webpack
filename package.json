@@ -177,7 +177,7 @@
     "inquirer": "^9.3.7",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "knip": "^5.30.6",
+    "knip": "^5.33.3",
     "lint-staged": "^15.2.9",
     "mini-css-extract-plugin": "^2.9.0",
     "postcss-loader": "^8.1.1",
