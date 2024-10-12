@@ -5,7 +5,6 @@
 import { merge } from 'webpack-merge';
 
 import dllConfig from './build_utils/webpack/configs/webpack.dll.mjs';
-import federationConfig from './build_utils/webpack/configs/webpack.federation.mjs';
 import bundleAnalyzerConfig from './build_utils/webpack/configs/webpack.bundleanalyzer.mjs';
 import getBuildStatsConfig from './build_utils/webpack/configs/webpack.buildstats.mjs';
 
@@ -19,14 +18,12 @@ import { ERR_NO_ENV_FLAG } from './build_utils/config/logs.mjs';
  * // Run the command with federation bundleAnalyzer
  */
 function addons() {
-  const federation = process.argv.includes('federation');
-  const bundleAnalyzer = process.argv.includes('bundleAnalyzer');
-  const buildStats = process.argv.includes('buildStats');
+  const addVisualizer = process.env.INCLUDE_VISUALIZER === 'true';
+  const addBuildStats = process.env.INCLUDE_BUILD_STATS === 'true';
 
   const configs = [];
-  if (federation) configs.push(federationConfig);
-  if (bundleAnalyzer) configs.push(bundleAnalyzerConfig);
-  if (buildStats) configs.push(getBuildStatsConfig('dll'));
+  if (addVisualizer) configs.push(bundleAnalyzerConfig('dll'));
+  if (addBuildStats) configs.push(getBuildStatsConfig('dll'));
   return configs;
 }
 
