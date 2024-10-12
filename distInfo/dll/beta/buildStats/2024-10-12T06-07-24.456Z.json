@@ -1,0 +1,33 @@
+{
+  "files": [
+    {
+      "fileName": "vendor.dll.js",
+      "size": 405703,
+      "gzippedSize": 131544,
+      "brotliSize": 112950,
+      "contentType": "chunk",
+      "percentageBySize": "99.53"
+    },
+    {
+      "fileName": "vendor.dll.js.LICENSE.txt",
+      "size": 1922,
+      "gzippedSize": 309,
+      "brotliSize": 255,
+      "contentType": "asset",
+      "percentageBySize": "0.47"
+    }
+  ],
+  "totalSize": 407625,
+  "totalGzippedSize": 131853,
+  "totalBrotliSize": 113205,
+  "noOfFiles": 2,
+  "largestFile": {
+    "fileName": "vendor.dll.js",
+    "size": 405703,
+    "gzippedSize": 131544,
+    "brotliSize": 112950,
+    "contentType": "chunk",
+    "percentageBySize": "99.53"
+  },
+  "buildDuration": 6181
+}
