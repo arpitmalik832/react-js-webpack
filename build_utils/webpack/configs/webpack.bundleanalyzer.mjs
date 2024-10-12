@@ -14,7 +14,14 @@ import { resolve } from 'path';
  */
 function getConfig(type) {
   const timestamp = new Date().toISOString().replace(/:/g, '-');
-  const path = `distInfo/${type === 'dll' ? 'dll' : 'main'}/${process.env.APP_ENV}/visualizer/`;
+  let path;
+  if (process.env.STORY_ENV) {
+    path = `distInfo/storybook/${process.env.STORY_ENV}/visualizer/`;
+  } else if (type === 'dll') {
+    path = `distInfo/dll/${process.env.APP_ENV}/visualizer/`;
+  } else {
+    path = `distInfo/main/${process.env.APP_ENV}/visualizer/`;
+  }
 
   return {
     plugins: [

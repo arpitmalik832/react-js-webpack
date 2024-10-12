@@ -183,21 +183,7 @@ const config = {
     runtimeChunk: 'single',
     splitChunks: {
       chunks: 'all',
-      maxSize: 500000,
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-          priority: -10,
-          reuseExistingChunk: true,
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-        },
-      },
+      maxSize: 200 * 1024, // 200 KB
     },
     usedExports: true,
     sideEffects: true,

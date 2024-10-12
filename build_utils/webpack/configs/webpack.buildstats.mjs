@@ -2,7 +2,7 @@
  * Webpack Build Stats configuration.
  * @file The file is saved as `build_utils/webpack/webpack.buildstats.mjs`.
  */
-import BuildStatsPlugin from '../customPlugins/BuildStats.mjs';
+import { BuildStatsPlugin } from '../customPlugins/BuildStats.mjs';
 
 /**
  * Generates the Webpack configuration for build stats.
@@ -14,7 +14,14 @@ import BuildStatsPlugin from '../customPlugins/BuildStats.mjs';
  */
 function getConfig(type) {
   const timestamp = new Date().toISOString().replace(/:/g, '-');
-  const path = `distInfo/${type === 'dll' ? 'dll' : 'main'}/${process.env.APP_ENV}/buildStats`;
+  let path;
+  if (process.env.STORY_ENV) {
+    path = `distInfo/storybook/${process.env.STORY_ENV}/buildStats`;
+  } else if (type === 'dll') {
+    path = `distInfo/dll/${process.env.APP_ENV}/buildStats`;
+  } else {
+    path = `distInfo/main/${process.env.APP_ENV}/buildStats`;
+  }
 
   return {
     plugins: [
