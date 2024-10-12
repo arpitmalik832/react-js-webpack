@@ -8,8 +8,8 @@ import commonConfig from './build_utils/webpack/configs/webpack.common.mjs';
 import devConfig from './build_utils/webpack/configs/webpack.dev.mjs';
 import prodConfig from './build_utils/webpack/configs/webpack.prod.mjs';
 import federationConfig from './build_utils/webpack/configs/webpack.federation.mjs';
-import getBundleAnalyzerConfig from './build_utils/webpack/configs/webpack.bundleanalyzer.mjs';
-import getBuildStatsConfig from './build_utils/webpack/configs/webpack.buildstats.mjs';
+import bundleAnalyzerConfig from './build_utils/webpack/configs/webpack.bundleanalyzer.mjs';
+import buildStatsConfig from './build_utils/webpack/configs/webpack.buildstats.mjs';
 import workersConfig from './build_utils/webpack/configs/webpack.workers.mjs';
 
 import { ENVS } from './build_utils/config/index.mjs';
@@ -32,8 +32,8 @@ function addons() {
 
   const configs = [];
   if (addFederation) configs.push(federationConfig);
-  if (addVisualizer) configs.push(getBundleAnalyzerConfig('main'));
-  if (addBuildStats) configs.push(getBuildStatsConfig('main'));
+  if (addVisualizer) configs.push(bundleAnalyzerConfig);
+  if (addBuildStats) configs.push(buildStatsConfig);
   return configs;
 }
 

@@ -1,0 +1,249 @@
+{
+  "files": [
+    {
+      "fileName": "sw.js",
+      "size": 16349,
+      "gzippedSize": 5250,
+      "brotliSize": 4782,
+      "contentType": "asset",
+      "percentageBySize": "4.16"
+    },
+    {
+      "fileName": "0.0.4/css/main.fb1257f6.css",
+      "size": 2599,
+      "gzippedSize": 1074,
+      "brotliSize": 855,
+      "contentType": "chunk",
+      "percentageBySize": "0.66"
+    },
+    {
+      "fileName": "0.0.4/js/main.fb1257f6.js",
+      "size": 599,
+      "gzippedSize": 408,
+      "brotliSize": 352,
+      "contentType": "chunk",
+      "percentageBySize": "0.15"
+    },
+    {
+      "fileName": "remoteEntry.js",
+      "size": 707,
+      "gzippedSize": 453,
+      "brotliSize": 385,
+      "contentType": "chunk",
+      "percentageBySize": "0.18"
+    },
+    {
+      "fileName": "0.0.4/js/runtime.e2564628.js",
+      "size": 8869,
+      "gzippedSize": 4015,
+      "brotliSize": 3583,
+      "contentType": "chunk",
+      "percentageBySize": "2.26"
+    },
+    {
+      "fileName": "0.0.4/js/760.1896cab0.js",
+      "size": 2548,
+      "gzippedSize": 973,
+      "brotliSize": 856,
+      "contentType": "chunk",
+      "percentageBySize": "0.65"
+    },
+    {
+      "fileName": "0.0.4/css/228.3ce602b5.css",
+      "size": 2599,
+      "gzippedSize": 1074,
+      "brotliSize": 855,
+      "contentType": "chunk",
+      "percentageBySize": "0.66"
+    },
+    {
+      "fileName": "0.0.4/js/228.3ce602b5.js",
+      "size": 520,
+      "gzippedSize": 353,
+      "brotliSize": 317,
+      "contentType": "chunk",
+      "percentageBySize": "0.13"
+    },
+    {
+      "fileName": "0.0.4/js/Error.ec65056d.js",
+      "size": 223,
+      "gzippedSize": 182,
+      "brotliSize": 150,
+      "contentType": "chunk",
+      "percentageBySize": "0.06"
+    },
+    {
+      "fileName": "0.0.4/css/274.91bc1970.css",
+      "size": 152,
+      "gzippedSize": 106,
+      "brotliSize": 73,
+      "contentType": "chunk",
+      "percentageBySize": "0.04"
+    },
+    {
+      "fileName": "0.0.4/js/Home.91bc1970.js",
+      "size": 535,
+      "gzippedSize": 343,
+      "brotliSize": 316,
+      "contentType": "chunk",
+      "percentageBySize": "0.14"
+    },
+    {
+      "fileName": "0.0.4/js/Abc.62fc572a.js",
+      "size": 221,
+      "gzippedSize": 181,
+      "brotliSize": 155,
+      "contentType": "chunk",
+      "percentageBySize": "0.06"
+    },
+    {
+      "fileName": "0.0.4/js/NotFound.11274845.js",
+      "size": 221,
+      "gzippedSize": 179,
+      "brotliSize": 155,
+      "contentType": "chunk",
+      "percentageBySize": "0.06"
+    },
+    {
+      "fileName": "0.0.4/js/973.45b895c3.js",
+      "size": 11788,
+      "gzippedSize": 4476,
+      "brotliSize": 4023,
+      "contentType": "chunk",
+      "percentageBySize": "3.00"
+    },
+    {
+      "fileName": "0.0.4/js/156.ba9d9e58.js",
+      "size": 138867,
+      "gzippedSize": 45434,
+      "brotliSize": 39038,
+      "contentType": "chunk",
+      "percentageBySize": "35.31"
+    },
+    {
+      "fileName": "0.0.4/js/726.2522da62.js",
+      "size": 14654,
+      "gzippedSize": 5149,
+      "brotliSize": 4653,
+      "contentType": "chunk",
+      "percentageBySize": "3.73"
+    },
+    {
+      "fileName": "0.0.4/js/862.325f6c7f.js",
+      "size": 60879,
+      "gzippedSize": 23216,
+      "brotliSize": 20818,
+      "contentType": "chunk",
+      "percentageBySize": "15.48"
+    },
+    {
+      "fileName": "0.0.4/js/855.d6d2d69e.js",
+      "size": 27522,
+      "gzippedSize": 9831,
+      "brotliSize": 8827,
+      "contentType": "chunk",
+      "percentageBySize": "7.00"
+    },
+    {
+      "fileName": "0.0.4/js/369.2b9086a2.js",
+      "size": 49302,
+      "gzippedSize": 15862,
+      "brotliSize": 14395,
+      "contentType": "chunk",
+      "percentageBySize": "12.54"
+    },
+    {
+      "fileName": "0.0.4/js/588.8700dbda.js",
+      "size": 47396,
+      "gzippedSize": 16204,
+      "brotliSize": 14492,
+      "contentType": "chunk",
+      "percentageBySize": "12.05"
+    },
+    {
+      "fileName": "_redirects",
+      "size": 18,
+      "gzippedSize": 38,
+      "brotliSize": 18,
+      "contentType": "asset",
+      "percentageBySize": "0.00"
+    },
+    {
+      "fileName": "0.0.4/js/156.ba9d9e58.js.LICENSE.txt",
+      "size": 241,
+      "gzippedSize": 186,
+      "brotliSize": 127,
+      "contentType": "asset",
+      "percentageBySize": "0.06"
+    },
+    {
+      "fileName": "0.0.4/js/588.8700dbda.js.LICENSE.txt",
+      "size": 228,
+      "gzippedSize": 178,
+      "brotliSize": 141,
+      "contentType": "asset",
+      "percentageBySize": "0.06"
+    },
+    {
+      "fileName": "0.0.4/js/726.2522da62.js.LICENSE.txt",
+      "size": 227,
+      "gzippedSize": 178,
+      "brotliSize": 147,
+      "contentType": "asset",
+      "percentageBySize": "0.06"
+    },
+    {
+      "fileName": "0.0.4/js/855.d6d2d69e.js.LICENSE.txt",
+      "size": 473,
+      "gzippedSize": 243,
+      "brotliSize": 183,
+      "contentType": "asset",
+      "percentageBySize": "0.12"
+    },
+    {
+      "fileName": "0.0.4/js/973.45b895c3.js.LICENSE.txt",
+      "size": 269,
+      "gzippedSize": 203,
+      "brotliSize": 139,
+      "contentType": "asset",
+      "percentageBySize": "0.07"
+    },
+    {
+      "fileName": "favicon.ico",
+      "size": 1406,
+      "gzippedSize": 701,
+      "brotliSize": 671,
+      "contentType": "asset",
+      "percentageBySize": "0.36"
+    },
+    {
+      "fileName": "index.html",
+      "size": 1029,
+      "gzippedSize": 445,
+      "brotliSize": 286,
+      "contentType": "asset",
+      "percentageBySize": "0.26"
+    },
+    {
+      "fileName": "asset-manifest.json",
+      "size": 2816,
+      "gzippedSize": 559,
+      "brotliSize": 494,
+      "contentType": "asset",
+      "percentageBySize": "0.72"
+    }
+  ],
+  "totalSize": 393257,
+  "totalGzippedSize": 137494,
+  "totalBrotliSize": 121286,
+  "noOfFiles": 29,
+  "largestFile": {
+    "fileName": "0.0.4/js/156.ba9d9e58.js",
+    "size": 138867,
+    "gzippedSize": 45434,
+    "brotliSize": 39038,
+    "contentType": "chunk",
+    "percentageBySize": "35.31"
+  },
+  "buildDuration": 4936
+}

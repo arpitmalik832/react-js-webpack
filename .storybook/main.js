@@ -4,8 +4,8 @@ import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import { ENVS } from '../build_utils/config/index.mjs';
 import svgrConfig from '../svgr.config.mjs';
 import { ERR_NO_STORY_ENV_FLAG } from '../build_utils/config/logs.mjs';
-import getBundleAnalyzerConfig from '../build_utils/webpack/configs/webpack.bundleanalyzer.mjs';
-import getBuildStatsConfig from '../build_utils/webpack/configs/webpack.buildstats.mjs';
+import bundleAnalyzerConfig from '../build_utils/webpack/configs/webpack.bundleanalyzer.mjs';
+import buildStatsConfig from '../build_utils/webpack/configs/webpack.buildstats.mjs';
 
 export default {
   stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)', '../src/**/*.mdx'],
@@ -122,12 +122,12 @@ export default {
 
     // adding visualizer plugin
     if (addVisualizer) {
-      config.plugins.push(getBundleAnalyzerConfig('').plugins[0]);
+      config.plugins.push(bundleAnalyzerConfig.plugins[0]);
     }
 
     // adding build stats plugin
     if (addBuildStats) {
-      config.plugins.push(getBuildStatsConfig('').plugins[0]);
+      config.plugins.push(buildStatsConfig.plugins[0]);
     }
 
     return config;
