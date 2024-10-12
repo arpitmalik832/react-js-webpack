@@ -23,14 +23,14 @@ import { ENVS } from './build_utils/config/index.mjs';
  * // Run the command with federation bundleAnalyzer
  */
 function addons() {
-  const federation = process.argv.includes('federation');
-  const bundleAnalyzer = process.argv.includes('bundleAnalyzer');
-  const buildStats = process.argv.includes('buildStats');
+  const addFederation = process.env.INCLUDE_FEDERATION === 'true';
+  const addVisualizer = process.env.INCLUDE_VISUALIZER === 'true';
+  const addBuildStats = process.env.INCLUDE_BUILD_STATS === 'true';
 
   const configs = [];
-  if (federation) configs.push(federationConfig);
-  if (bundleAnalyzer) configs.push(bundleAnalyzerConfig);
-  if (buildStats) configs.push(getBuildStatsConfig('main'));
+  if (addFederation) configs.push(federationConfig);
+  if (addVisualizer) configs.push(bundleAnalyzerConfig('main'));
+  if (addBuildStats) configs.push(getBuildStatsConfig('main'));
   return configs;
 }
 
