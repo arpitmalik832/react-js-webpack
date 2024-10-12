@@ -66,28 +66,6 @@ export default {
       ],
     });
 
-    // adding handling for css files
-    config.module.rules.push({
-      test: /\.css$/,
-      exclude: /node_modules/,
-      use: [
-        'style-loader',
-        {
-          loader: 'css-loader',
-          options: {
-            esModule: false,
-            modules: {
-              mode: 'local',
-              localIdentName:
-                isRelease || isBeta
-                  ? '[hash:base64:5]'
-                  : '[name]-[local]-[hash:base64:5]',
-            },
-          },
-        },
-      ],
-    });
-
     // adding code splitting
     config.optimization = {
       ...config.optimization,
