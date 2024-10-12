@@ -2,9 +2,9 @@
   "files": [
     {
       "fileName": "vendor.dll.js",
-      "size": 405751,
-      "gzippedSize": 131546,
-      "brotliSize": 112973,
+      "size": 410219,
+      "gzippedSize": 132273,
+      "brotliSize": 113450,
       "contentType": "chunk",
       "percentageBySize": "99.53"
     },
@@ -17,17 +17,17 @@
       "percentageBySize": "0.47"
     }
   ],
-  "totalSize": 407673,
-  "totalGzippedSize": 131855,
-  "totalBrotliSize": 113228,
+  "totalSize": 412141,
+  "totalGzippedSize": 132582,
+  "totalBrotliSize": 113705,
   "noOfFiles": 2,
   "largestFile": {
     "fileName": "vendor.dll.js",
-    "size": 405751,
-    "gzippedSize": 131546,
-    "brotliSize": 112973,
+    "size": 410219,
+    "gzippedSize": 132273,
+    "brotliSize": 113450,
     "contentType": "chunk",
     "percentageBySize": "99.53"
   },
-  "buildDuration": 19810
+  "buildDuration": 6763
 }
