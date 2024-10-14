@@ -156,7 +156,7 @@
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-mdx": "^3.1.5",
     "eslint-plugin-css-modules": "^2.12.0",
-    "eslint-plugin-cypress": "^3.1.1",
+    "eslint-plugin-cypress": "^4.0.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsdoc": "^50.3.2",
     "eslint-plugin-jsx-a11y": "^6.9.0",
