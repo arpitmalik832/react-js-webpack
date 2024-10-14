@@ -1,3 +1,11 @@
+## [0.0.4](https://github.com/arpitmalik832/react-js-webpack-starter/compare/v0.0.3...v0.0.4) (2024-10-12)
+
+### Bug Fixes
+
+- **main:** fixed github actions CI ([a38df05](https://github.com/arpitmalik832/react-js-webpack-starter/commit/a38df052d0504dbc854476ba8c99637a1c808604))
+- **main:** fixed release-it config ([108eaf7](https://github.com/arpitmalik832/react-js-webpack-starter/commit/108eaf77c8107014d5dba39490d9dfb65f35d5ce))
+- **main:** updated scripts ([6fc9fcb](https://github.com/arpitmalik832/react-js-webpack-starter/commit/6fc9fcb1c14e4b574467fb56b549b3241e5a1890))
+
 ## [0.0.3](https://github.com/arpitmalik832/react-js-webpack-starter/compare/v0.0.2...v0.0.3) (2024-10-05)
 
 ### Bug Fixes
