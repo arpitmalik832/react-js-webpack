@@ -2,26 +2,19 @@
  * Webpack Build Stats configuration.
  * @file The file is saved as `build_utils/webpack/webpack.buildstats.mjs`.
  */
-import BuildStatsPlugin from '../customPlugins/BuildStats.mjs';
+import { BuildStatsPlugin } from '../customPlugins/BuildStats.mjs';
 
 const timestamp = new Date().toISOString().replace(/:/g, '-');
+const path = process.env.STORY_ENV
+  ? `distInfo/storybook/${process.env.STORY_ENV}/buildStats`
+  : `distInfo/main/${process.env.APP_ENV}/buildStats`;
 
-/**
- * Generates the Webpack configuration for build stats.
- * @param {string} type - The type of build (e.g., 'dll' or 'main').
- * @returns {object} The Webpack configuration object.
- * @example
- * const config = getConfig('main');
- * console.log(config);
- */
-function getConfig(type) {
-  return {
-    plugins: [
-      new BuildStatsPlugin({
-        outputPath: `distInfo/${type === 'dll' ? 'dll' : 'main'}/${process.env.APP_ENV}/${timestamp}.json`,
-      }),
-    ],
-  };
-}
+const config = {
+  plugins: [
+    new BuildStatsPlugin({
+      outputPath: `${path}/${timestamp}.json`,
+    }),
+  ],
+};
 
-export default getConfig;
+export default config;

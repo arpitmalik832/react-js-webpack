@@ -9,11 +9,14 @@ import devConfig from './build_utils/webpack/configs/webpack.dev.mjs';
 import prodConfig from './build_utils/webpack/configs/webpack.prod.mjs';
 import federationConfig from './build_utils/webpack/configs/webpack.federation.mjs';
 import bundleAnalyzerConfig from './build_utils/webpack/configs/webpack.bundleanalyzer.mjs';
-import getBuildStatsConfig from './build_utils/webpack/configs/webpack.buildstats.mjs';
+import buildStatsConfig from './build_utils/webpack/configs/webpack.buildstats.mjs';
 import workersConfig from './build_utils/webpack/configs/webpack.workers.mjs';
 
-import { ERR_NO_ENV_FLAG } from './build_utils/config/logs.mjs';
 import { ENVS } from './build_utils/config/index.mjs';
+import {
+  ERR_NO_APP_ENV_FLAG,
+  ERR_NO_BE_ENV_FLAG,
+} from './build_utils/config/logs.mjs';
 
 /**
  * Adds additional configurations based on command line arguments.
@@ -23,14 +26,14 @@ import { ENVS } from './build_utils/config/index.mjs';
  * // Run the command with federation bundleAnalyzer
  */
 function addons() {
-  const federation = process.argv.includes('federation');
-  const bundleAnalyzer = process.argv.includes('bundleAnalyzer');
-  const buildStats = process.argv.includes('buildStats');
+  const addFederation = process.env.INCLUDE_FEDERATION === 'true';
+  const addVisualizer = process.env.INCLUDE_VISUALIZER === 'true';
+  const addBuildStats = process.env.INCLUDE_BUILD_STATS === 'true';
 
   const configs = [];
-  if (federation) configs.push(federationConfig);
-  if (bundleAnalyzer) configs.push(bundleAnalyzerConfig);
-  if (buildStats) configs.push(getBuildStatsConfig('main'));
+  if (addFederation) configs.push(federationConfig);
+  if (addVisualizer) configs.push(bundleAnalyzerConfig);
+  if (addBuildStats) configs.push(buildStatsConfig);
   return configs;
 }
 
@@ -45,7 +48,10 @@ function addons() {
  */
 function getConfig() {
   if (!process.env.APP_ENV) {
-    throw new Error(ERR_NO_ENV_FLAG);
+    throw new Error(ERR_NO_APP_ENV_FLAG);
+  }
+  if (!process.env.BE_ENV) {
+    throw new Error(ERR_NO_BE_ENV_FLAG);
   }
 
   let envConfig;
