@@ -180,6 +180,26 @@ const config = {
     splitChunks: {
       chunks: 'all',
       maxSize: 200 * 1024, // 200 KB
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name(module, _, _2) {
+            const moduleName = module.context.match(
+              /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
+            )?.[1];
+            if (moduleName) {
+              return `vendor-${moduleName}`;
+            }
+            return 'vendor';
+          },
+          chunks: 'all',
+          priority: -10,
+          reuseExistingChunk: true,
+          enforce: true,
+          maxInitialRequests: 30,
+          maxAsyncRequests: 30,
+        },
+      },
     },
     usedExports: true,
     sideEffects: true,
@@ -190,7 +210,6 @@ const config = {
     }),
     new webpack.DefinePlugin({
       'process.env.APP_ENV': JSON.stringify(process.env.APP_ENV),
-      'process.env.PUBLIC_URL': JSON.stringify(process.env.PUBLIC_URL || ''),
     }),
     new Dotenv({
       path: `./.env.${process.env.BE_ENV}`,
