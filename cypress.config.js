@@ -2,13 +2,13 @@
  * This file is used to configure Cypress.
  * @file The file is saved as `cypress.config.cjs`.
  */
-const { defineConfig } = require('cypress');
-const fs = require('fs');
+import { defineConfig } from 'cypress';
+import fs from 'fs';
 
-module.exports = defineConfig({
+const config = defineConfig({
   e2e: {
     video: true,
-    setupNodeEvents(on, config) {
+    setupNodeEvents(on, _) {
       on('after:spec', (spec, results) => {
         if (results && results.video) {
           // Do we have failures for any retry attempts?
@@ -24,3 +24,5 @@ module.exports = defineConfig({
     },
   },
 });
+
+export default config;
