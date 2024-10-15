@@ -89,4 +89,4 @@ class BuildStatsPlugin {
   }
 }
 
-export default BuildStatsPlugin;
+export { BuildStatsPlugin };

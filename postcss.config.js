@@ -2,9 +2,11 @@
  * Configuration for PostCSS.
  * @file This file is saved as `postcss.config.cjs`.
  */
-const presetEnv = require('postcss-preset-env');
-const autoprefixer = require('autoprefixer');
+import presetEnv from 'postcss-preset-env';
+import autoprefixer from 'autoprefixer';
 
-module.exports = {
+const config = {
   plugins: [presetEnv, autoprefixer],
 };
+
+export default config;
