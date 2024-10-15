@@ -11,7 +11,7 @@ import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
 import { fileURLToPath } from 'url';
-import { readFileSync } from 'fs';
+import path from 'path';
 
 import pkg from '../../../package.json' with { type: 'json' };
 import { entryPath, outputPath } from '../../config/commonPaths.mjs';
@@ -19,9 +19,6 @@ import svgrConfig from '../../../svgr.config.mjs';
 import { ENVS } from '../../config/index.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
-const manifest = JSON.parse(
-  readFileSync(`${outputPath}/${pkg.version}/dll/vendor-manifest.json`, 'utf8'),
-);
 
 const isBeta = process.env.APP_ENV === ENVS.BETA;
 const isRelease = process.env.APP_ENV === ENVS.PROD;
@@ -111,7 +108,6 @@ const config = {
       },
       {
         test: /\.css$/,
-        exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -183,19 +179,25 @@ const config = {
     runtimeChunk: 'single',
     splitChunks: {
       chunks: 'all',
-      maxSize: 500000,
+      maxSize: 200 * 1024, // 200 KB
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
+          name(module, _, _2) {
+            const moduleName = module.context.match(
+              /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
+            )?.[1];
+            if (moduleName) {
+              return `vendor-${moduleName}`;
+            }
+            return 'vendor';
+          },
           chunks: 'all',
           priority: -10,
           reuseExistingChunk: true,
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
+          enforce: true,
+          maxInitialRequests: 30,
+          maxAsyncRequests: 30,
         },
       },
     },
@@ -206,6 +208,9 @@ const config = {
     new webpack.ProvidePlugin({
       process: 'process/browser',
     }),
+    new webpack.DefinePlugin({
+      'process.env.APP_ENV': JSON.stringify(process.env.APP_ENV),
+    }),
     new Dotenv({
       path: `./.env.${process.env.BE_ENV}`,
     }),
@@ -213,7 +218,6 @@ const config = {
       template: 'public/index.html',
       filename: 'index.html',
       favicon: 'public/favicon.ico',
-      dll: `<script src="/${pkg.version}/dll/vendor.dll.js"></script>`,
     }),
     new MiniCssExtractPlugin({
       filename: `${pkg.version}/css/[name].[chunkhash:8].css`,
@@ -227,12 +231,14 @@ const config = {
         },
       ],
     }),
-    new webpack.DllReferencePlugin({
-      context: process.cwd(),
-      manifest,
-    }),
   ],
   resolve: {
+    alias: {
+      process: 'process/browser',
+    },
+    fallback: {
+      'process/browser': path.resolve('node_modules/process/browser.js'),
+    },
     extensions: ['*', '.js', '.jsx'],
     symlinks: false,
     cacheWithContext: false,
