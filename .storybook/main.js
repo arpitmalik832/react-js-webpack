@@ -1,5 +1,6 @@
 import TerserPlugin from 'terser-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import CompressionPlugin from 'compression-webpack-plugin';
 
 import { ENVS } from '../build_utils/config/index.mjs';
 import svgrConfig from '../svgr.config.mjs';
@@ -15,6 +16,7 @@ export default {
     '@storybook/addon-a11y',
     '@storybook/addon-interactions',
     '@storybook/addon-storysource',
+    'storybook-addon-render-modes',
   ],
   framework: '@storybook/react-webpack5',
   webpackFinal: async (config, { configType }) => {
@@ -116,6 +118,15 @@ export default {
         maxSize: 200 * 1024, // 200 KB
       },
     };
+
+    // adding compression plugin
+    config.plugins.push(
+      new CompressionPlugin({
+        filename: '[path][base].br',
+        algorithm: 'brotliCompress',
+        test: /\.(js|css)$/,
+      }),
+    );
 
     const addVisualizer = process.env.INCLUDE_VISUALIZER === 'true';
     const addBuildStats = process.env.INCLUDE_BUILD_STATS === 'true';
