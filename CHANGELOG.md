@@ -1,3 +1,10 @@
+## [0.0.5-alpha.0](https://github.com/arpitmalik832/react-js-webpack-starter/compare/v0.0.4...v0.0.5-alpha.0) (2024-10-15)
+
+### Bug Fixes
+
+- **main:** fixed storybook config ([399e0f5](https://github.com/arpitmalik832/react-js-webpack-starter/commit/399e0f5c54d540cea1b62da49f4ef65df8d7df0c))
+- **main:** moved dll config to the main app config ([18e4512](https://github.com/arpitmalik832/react-js-webpack-starter/commit/18e4512c242ce008397ed57d2fb3f950ecdaceaf))
+
 ## [0.0.4](https://github.com/arpitmalik832/react-js-webpack-starter/compare/v0.0.3...v0.0.4) (2024-10-12)
 
 ### Bug Fixes
