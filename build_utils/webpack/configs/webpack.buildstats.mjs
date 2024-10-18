@@ -5,9 +5,7 @@
 import { BuildStatsPlugin } from '../customPlugins/BuildStats.mjs';
 
 const timestamp = new Date().toISOString().replace(/:/g, '-');
-const path = process.env.STORY_ENV
-  ? `distInfo/storybook/${process.env.STORY_ENV}/buildStats`
-  : `distInfo/main/${process.env.APP_ENV}/buildStats`;
+const path = `distInfo/${process.env.STORY_ENV ? 'storybook' : 'main'}/${process.env.STORY_ENV || process.env.APP_ENV}/buildStats`;
 
 const config = {
   plugins: [
