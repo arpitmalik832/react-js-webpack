@@ -1,4 +1,4 @@
-name: Unit Testing
+name: E2E
 
 on:
   push:
@@ -19,7 +19,7 @@ on:
       - 'feature-*'
 
 jobs:
-  unit-test:
+  e2e:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,5 +33,5 @@ jobs:
         run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" >> ~/.npmrc
       - name: Installing dependencies
         run: yarn install --frozen-lockfile
-      - name: Running unit tests
-        run: yarn test:coverage
+      - name: Running lint
+        run: yarn e2e-run

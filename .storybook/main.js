@@ -1,9 +1,12 @@
-import svgrConfig from '../svgr.config.mjs';
+import TerserPlugin from 'terser-webpack-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import CompressionPlugin from 'compression-webpack-plugin';
 
-const CONFIG_TYPE = {
-  PRODUCTION: 'PRODUCTION',
-  DEVELOPMENT: 'DEVELOPMENT',
-};
+import { ENVS } from '../build_utils/config/index.mjs';
+import svgrConfig from '../svgr.config.mjs';
+import { ERR_NO_STORY_ENV_FLAG } from '../build_utils/config/logs.mjs';
+import bundleAnalyzerConfig from '../build_utils/webpack/configs/webpack.bundleanalyzer.mjs';
+import buildStatsConfig from '../build_utils/webpack/configs/webpack.buildstats.mjs';
 
 export default {
   stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)', '../src/**/*.mdx'],
@@ -13,9 +16,17 @@ export default {
     '@storybook/addon-a11y',
     '@storybook/addon-interactions',
     '@storybook/addon-storysource',
+    'storybook-addon-render-modes',
   ],
   framework: '@storybook/react-webpack5',
   webpackFinal: async (config, { configType }) => {
+    if (!process.env.STORY_ENV) {
+      throw new Error(ERR_NO_STORY_ENV_FLAG);
+    }
+
+    const isRelease = process.env.STORY_ENV === ENVS.PROD;
+    const isBeta = process.env.STORY_ENV === ENVS.BETA;
+
     // adding handling for js files
     config.module.rules.push({
       test: /\.(js|jsx)$/,
@@ -46,50 +57,89 @@ export default {
             modules: {
               mode: 'local',
               localIdentName:
-                configType === CONFIG_TYPE.PRODUCTION
+                isRelease || isBeta
                   ? '[hash:base64:5]'
                   : '[name]-[local]-[hash:base64:5]',
             },
-            sourceMap: configType === CONFIG_TYPE.DEVELOPMENT,
-            importLoaders: 1,
           },
         },
-        {
-          loader: 'postcss-loader',
-          options: {
-            sourceMap: configType === CONFIG_TYPE.DEVELOPMENT,
-          },
-        },
-        {
-          loader: 'sass-loader',
-          options: {
-            sourceMap: configType === CONFIG_TYPE.DEVELOPMENT,
-          },
-        },
+        'postcss-loader',
+        'sass-loader',
       ],
     });
 
     // adding code splitting
     config.optimization = {
       ...config.optimization,
+      minimize: isRelease || isBeta,
+      minimizer:
+        isRelease || isBeta
+          ? [
+              new TerserPlugin({
+                terserOptions: {
+                  compress: {
+                    inline: false,
+                    drop_console: !!isRelease,
+                    dead_code: true,
+                    drop_debugger: !!isRelease,
+                    conditionals: true,
+                    evaluate: true,
+                    booleans: true,
+                    loops: true,
+                    unused: true,
+                    hoist_funs: true,
+                    keep_fargs: false,
+                    hoist_vars: true,
+                    if_return: true,
+                    join_vars: true,
+                    side_effects: true,
+                    warnings: false,
+                  },
+                  mangle: true,
+                  output: {
+                    comments: false,
+                  },
+                },
+              }),
+              new CssMinimizerPlugin({
+                minimizerOptions: {
+                  preset: [
+                    'default',
+                    {
+                      discardComments: { removeAll: true },
+                    },
+                  ],
+                },
+              }),
+            ]
+          : [],
       splitChunks: {
         chunks: 'all',
-        minSize: 30 * 1024, // 30KB
-        maxSize: 256 * 1024, // 1MB
-        cacheGroups: {
-          stories: {
-            test: /\.(stories|story)\.[tj]sx?$/,
-            name: 'stories',
-            chunks: 'all',
-          },
-          vendors: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
-          },
-        },
+        maxSize: 200 * 1024, // 200 KB
       },
     };
+
+    // adding compression plugin
+    config.plugins.push(
+      new CompressionPlugin({
+        filename: '[path][base].br',
+        algorithm: 'brotliCompress',
+        test: /\.(js|css)$/,
+      }),
+    );
+
+    const addVisualizer = process.env.INCLUDE_VISUALIZER === 'true';
+    const addBuildStats = process.env.INCLUDE_BUILD_STATS === 'true';
+
+    // adding visualizer plugin
+    if (addVisualizer) {
+      config.plugins.push(bundleAnalyzerConfig.plugins[0]);
+    }
+
+    // adding build stats plugin
+    if (addBuildStats) {
+      config.plugins.push(buildStatsConfig.plugins[0]);
+    }
 
     return config;
   },
