@@ -6,9 +6,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { resolve } from 'path';
 
 const timestamp = new Date().toISOString().replace(/:/g, '-');
-const path = process.env.STORY_ENV
-  ? `distInfo/storybook/${process.env.STORY_ENV}/visualizer/`
-  : `distInfo/main/${process.env.APP_ENV}/visualizer/`;
+const path = `distInfo/${process.env.STORY_ENV ? 'storybook' : 'main'}/${process.env.STROY_ENV || process.env.APP_ENV}/visualizers/${timestamp}`;
 
 const config = {
   plugins: [
