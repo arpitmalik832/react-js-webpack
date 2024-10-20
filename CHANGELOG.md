@@ -1,3 +1,5 @@
+## [0.0.5-alpha.1](https://github.com/arpitmalik832/react-js-webpack/compare/v0.0.5-alpha.0...v0.0.5-alpha.1) (2024-10-19)
+
 ## [0.0.5-alpha.0](https://github.com/arpitmalik832/react-js-webpack/compare/v0.0.4...v0.0.5-alpha.0) (2024-10-15)
 
 ### Bug Fixes
