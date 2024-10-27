@@ -108,6 +108,12 @@ const config = {
       },
       {
         test: /\.css$/,
+        include: /node_modules/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -123,6 +129,7 @@ const config = {
               },
             },
           },
+          'postcss-loader',
         ],
       },
     ],
