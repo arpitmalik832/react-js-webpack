@@ -1,6 +1,6 @@
 {
   "name": "react_js_webpack",
-  "version": "0.0.5-alpha.0",
+  "version": "0.0.5-alpha.1",
   "description": "A React JS starter code",
   "sideEffects": false,
   "type": "module",
@@ -23,10 +23,10 @@
     "rm-package-lock": "rimraf package-lock.json",
     "rm-yarn-lock": "rimraf yarn.lock",
     "clean": "yarn rm-yarn-lock && yarn rm-node_modules",
-    "start": "yarn rm-dist && cross-env BE_ENV=development APP_ENV=development INCLUDE_FEDERATION=true webpack serve",
-    "start:visualizer": "yarn rm-dist && cross-env BE_ENV=development APP_ENV=development INCLUDE_FEDERATION=true INCLUDE_VISUALIZER=true webpack serve",
-    "start:buildStats": "yarn rm-dist && cross-env BE_ENV=development APP_ENV=development INCLUDE_FEDERATION=true INCLUDE_BUILD_STATS=true webpack serve",
-    "start:visualizer:buildStats": "yarn rm-dist && cross-env BE_ENV=development APP_ENV=development INCLUDE_FEDERATION=true INCLUDE_VISUALIZER=true INCLUDE_BUILD_STATS=true webpack serve",
+    "start": "cross-env BE_ENV=development APP_ENV=development INCLUDE_FEDERATION=true webpack serve",
+    "start:visualizer": "cross-env BE_ENV=development APP_ENV=development INCLUDE_FEDERATION=true INCLUDE_VISUALIZER=true webpack serve",
+    "start:buildStats": "cross-env BE_ENV=development APP_ENV=development INCLUDE_FEDERATION=true INCLUDE_BUILD_STATS=true webpack serve",
+    "start:visualizer:buildStats": "cross-env BE_ENV=development APP_ENV=development INCLUDE_FEDERATION=true INCLUDE_VISUALIZER=true INCLUDE_BUILD_STATS=true webpack serve",
     "build": "yarn rm-dist && cross-env BE_ENV=staging APP_ENV=staging INCLUDE_FEDERATION=true webpack",
     "build:visualizer": "yarn rm-dist && cross-env BE_ENV=staging APP_ENV=staging INCLUDE_FEDERATION=true INCLUDE_VISUALIZER=true webpack",
     "build:buildStats": "yarn rm-dist && cross-env BE_ENV=staging APP_ENV=staging INCLUDE_FEDERATION=true INCLUDE_BUILD_STATS=true webpack",
@@ -216,7 +216,7 @@
     "workbox-webpack-plugin": "^7.1.0"
   },
   "dependencies": {
-    "@arpitmalik832/react-js-rollup-monorepo-library": "^0.3.10-alpha.1",
+    "@arpitmalik832/react-js-rollup-monorepo-library": "^0.3.10-alpha.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",

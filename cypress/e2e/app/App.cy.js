@@ -4,7 +4,7 @@
  */
 describe('app', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000');
+    cy.visit('https://react-js-webpack.netlify.app');
   });
 
   it('display header along with the button', () => {
