@@ -162,7 +162,6 @@ const config = {
                   if_return: true,
                   join_vars: true,
                   side_effects: true,
-                  warnings: false,
                 },
                 mangle: true,
                 output: {
@@ -190,7 +189,7 @@ const config = {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name(module, _, _2) {
+          name(module) {
             const moduleName = module.context.match(
               /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
             )?.[1];
