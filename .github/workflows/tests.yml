@@ -118,6 +118,8 @@ jobs:
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" >> ~/.npmrc
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
+      - name: Installing cypress
+        run: npx cypress install
       - name: Running e2e tests
         run: pnpm e2e-run
   build:
