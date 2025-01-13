@@ -2,7 +2,6 @@
  * This file contains examples of using Cypress utilities.
  * @file The file is saved as `cypress/e2e/2-advanced-examples/utilities.cy.js`.
  */
-/* eslint-disable no-unused-expressions */
 /// <reference types="cypress" />
 
 context('Utilities', () => {
@@ -15,7 +14,7 @@ context('Utilities', () => {
     cy.request('https://jsonplaceholder.cypress.io/users').then(response => {
       const ids = Cypress._.chain(response.body).map('id').take(3).value();
 
-      expect(ids).to.deep.eq([1, 2, 3]);
+      cy.wrap(ids).should('deep.equal', [1, 2, 3]);
     });
   });
 
@@ -58,20 +57,20 @@ context('Utilities', () => {
       matchBase: true,
     });
 
-    expect(matching, 'matching wildcard').to.be.true;
+    cy.wrap(matching).should('be.true', 'matching wildcard');
 
     matching = Cypress.minimatch('/users/1/comments/2', '/users/*/comments', {
       matchBase: true,
     });
 
-    expect(matching, 'comments').to.be.false;
+    cy.wrap(matching).should('be.false', 'comments');
 
     // ** matches against all downstream path segments
     matching = Cypress.minimatch('/foo/bar/baz/123/quux?a=b&c=2', '/foo/**', {
       matchBase: true,
     });
 
-    expect(matching, 'comments').to.be.true;
+    cy.wrap(matching).should('be.true', 'comments');
 
     // whereas * matches only the next path segment
 
@@ -79,7 +78,7 @@ context('Utilities', () => {
       matchBase: false,
     });
 
-    expect(matching, 'comments').to.be.false;
+    cy.wrap(matching).should('be.false', 'comments');
   });
 
   it('Cypress.Promise - instantiate a bluebird promise', () => {
@@ -96,7 +95,7 @@ context('Utilities', () => {
      */
     function waitOneSecond() {
       // return a promise that resolves after 1 second
-      return new Cypress.Promise((resolve, reject) => {
+      return new Cypress.Promise(resolve => {
         setTimeout(() => {
           // set waited to true
           waited = true;
@@ -111,8 +110,8 @@ context('Utilities', () => {
       // return a promise to cy.then() that
       // is awaited until it resolves
       waitOneSecond().then(str => {
-        expect(str).to.eq('foo');
-        expect(waited).to.be.true;
+        cy.wrap(str).should('deep.equal', 'foo');
+        cy.wrap(waited).should('be.true');
       }),
     );
   });

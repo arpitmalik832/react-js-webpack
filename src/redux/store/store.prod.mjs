@@ -2,27 +2,25 @@
  * Redux store configuration for production environment.
  * @file This file is saved as `redux/store/store.prod,js`.
  */
-import {
-  slices,
-  queries,
-  configureStore,
-} from '@arpitmalik832/react-js-rollup-monorepo-library';
+import { slices } from '@arpitmalik832/react-js-rollup-library';
+import { configureStore } from '@reduxjs/toolkit';
+// eslint-disable-next-line import/extensions
+import { sampleQuery } from '../queries/sampleQuery.js';
 
-export default configureStore({
+const store = configureStore({
   reducer: {
     app: slices.appSlice.reducer,
     apis: slices.apisSlice.reducer,
     navigation: slices.navigationSlice.reducer,
-    sampleQuery: queries.sampleQuery.reducer,
+    sampleQuery: sampleQuery.reducer,
   },
   middleware: getDefault =>
     getDefault({
       serializableCheck: {
-        ignoredActions: [
-          'apis/updateApi1AxiosInstance',
-          'navigation/pushStack',
-        ],
+        ignoredActions: ['apis/addNewApiData', 'navigation/pushStack'],
         ignoredPaths: ['apis', 'sampleQuery', 'navigation'],
       },
-    }).concat(queries.sampleQuery.middleware),
+    }).concat(sampleQuery.middleware),
 });
+
+export default store;

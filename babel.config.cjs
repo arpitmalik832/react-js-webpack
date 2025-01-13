@@ -14,8 +14,7 @@ const config = {
   ],
   plugins: [
     '@babel/transform-runtime',
-    '@babel/plugin-syntax-import-attributes',
-    '@babel/plugin-proposal-optional-chaining',
+    '@babel/plugin-syntax-import-assertions',
   ],
 };
 

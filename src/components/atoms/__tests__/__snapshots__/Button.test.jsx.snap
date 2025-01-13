@@ -5,6 +5,20 @@ exports[`Button unit tests Button snapshot test 1`] = `
   "asFragment": [Function],
   "baseElement": <body>
     <div>
+      <div>
+        <button
+          class="button"
+          data-cy="button"
+          data-testid="button"
+          type="button"
+        >
+          Button
+        </button>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
       <button
         class="button"
         data-cy="button"
@@ -14,16 +28,6 @@ exports[`Button unit tests Button snapshot test 1`] = `
         Button
       </button>
     </div>
-  </body>,
-  "container": <div>
-    <button
-      class="button"
-      data-cy="button"
-      data-testid="button"
-      type="button"
-    >
-      Button
-    </button>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

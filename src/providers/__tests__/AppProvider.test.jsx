@@ -17,7 +17,7 @@ jest.mock('../../redux/store/store.js', () => ({
   default: {},
 }));
 
-jest.mock('@arpitmalik832/react-js-rollup-monorepo-library', () => ({
+jest.mock('@arpitmalik832/react-js-rollup-library', () => ({
   __esModule: true,
   ReduxProvider: jest.fn(({ children }) => (
     <div data-testid="mock-redux-wrapper">{children}</div>
