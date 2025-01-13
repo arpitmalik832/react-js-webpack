@@ -1,17 +1,8 @@
-/**
- * Custom hook to be called on App mount.
- * @file The file is saved as `useAppMount.js`.
- */
-import {
-  useInitAxios,
-  useTheme,
-} from '@arpitmalik832/react-js-rollup-monorepo-library';
+import { useTheme } from '@arpitmalik832/react-js-rollup-library';
 
-/**
- * Custom hook to initialize theme and axios.
- * @example
- * useAppMount();
- */
+// eslint-disable-next-line import/extensions
+import useInitAxios from './useInitAxios.js';
+
 function useAppMount() {
   useTheme();
   useInitAxios();

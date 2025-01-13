@@ -55,7 +55,7 @@ const config = {
   // like images or styles with a single module.
   moduleNameMapper: {
     '.+\\.(css|sass|scss)$': 'identity-obj-proxy',
-    '.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+    '.+\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/src/__tests__/__mocks__/assetMock.js',
     '.+\\.(svg)$': '<rootDir>/src/__tests__/__mocks__/svgrMock.jsx',
   },
@@ -88,9 +88,6 @@ const config = {
   transform: {
     '\\.(js|jsx)$': 'babel-jest',
   },
-  transformIgnorePatterns: [
-    '<rootDir>/node_modules/(?!(@arpitmalik832/react-js-rollup-monorepo-library)/)', // Add your ESM packages here
-  ],
   // unmockedModulePathPatterns: // [array<string>]
   verbose: true, // [boolean],
   setupFiles: ['<rootDir>/jest.setup.js'], // [testConfig files DOM,Mock]
