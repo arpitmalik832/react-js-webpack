@@ -1,33 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Unit tests for Home Page no api data is present 1`] = `
+exports[`useInitAxios unit tests snapshot test when data is not present 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        Home
-        <div
-          data-testid="mock-button"
-        />
-        <div
-          data-testid="mock-button"
-        />
-        <div />
-      </div>
+      <div
+        data-testid="temp-component"
+      />
     </div>
   </body>,
   "container": <div>
-    <div>
-      Home
-      <div
-        data-testid="mock-button"
-      />
-      <div
-        data-testid="mock-button"
-      />
-      <div />
-    </div>
+    <div
+      data-testid="temp-component"
+    />
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -83,34 +69,20 @@ exports[`Unit tests for Home Page no api data is present 1`] = `
 }
 `;
 
-exports[`Unit tests for Home Page snapshot test 1`] = `
+exports[`useInitAxios unit tests snapshot test when data is present 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        Home
-        <div
-          data-testid="mock-button"
-        />
-        <div
-          data-testid="mock-button"
-        />
-        <div />
-      </div>
+      <div
+        data-testid="temp-component"
+      />
     </div>
   </body>,
   "container": <div>
-    <div>
-      Home
-      <div
-        data-testid="mock-button"
-      />
-      <div
-        data-testid="mock-button"
-      />
-      <div />
-    </div>
+    <div
+      data-testid="temp-component"
+    />
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

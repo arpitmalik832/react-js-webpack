@@ -1,32 +1,21 @@
 /**
- * Home Page unit tests.
- * @file This file is saved as `Home.test.jsx`.
+ * Unit tests for useInitAxios hook.
+ * @file The file is saved as `useInitAxios.test.jsx`.
  */
 import { cleanup, render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { ReduxProvider } from '@arpitmalik832/react-js-rollup-library';
 import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { ReduxProvider } from '@arpitmalik832/react-js-rollup-library';
 import axios from 'axios';
 
-import Component from '../Home';
-import { sampleQuery } from '../../redux/queries/sampleQuery';
+import useInitAxios from '../useInitAxios';
 
-jest.mock('../../components/atoms/Button', () => ({
-  __esModule: true,
-  default: jest.fn(() => <div data-testid="mock-button" />),
-}));
+describe('useInitAxios unit tests', () => {
+  afterEach(() => {
+    cleanup();
+  });
 
-jest.mock('@arpitmalik832/react-js-rollup-library', () => ({
-  __esModule: true,
-  ...jest.requireActual('@arpitmalik832/react-js-rollup-library'),
-  useBackPress: jest.fn(),
-  Button: jest.fn(() => <div data-testid="mock-button" />),
-}));
-
-describe('Unit tests for Home Page', () => {
-  afterEach(cleanup);
-
-  it('snapshot test', () => {
+  it('snapshot test when data is present', () => {
     const apisSlice = createSlice({
       name: 'apis',
       initialState: [
@@ -44,24 +33,40 @@ describe('Unit tests for Home Page', () => {
     const store = configureStore({
       reducer: {
         apis: apisSlice.reducer,
-        sampleQuery: sampleQuery.reducer,
       },
-      middleware: getDefault => getDefault().concat(sampleQuery.middleware),
     });
+
+    /**
+     * Temporary component to initialize Axios.
+     * @returns {import('react').JSX.Element} The rendered component.
+     * @example
+     * <TempComponent />
+     */
+    function TempComponent() {
+      useInitAxios();
+
+      return <div data-testid="temp-component" />;
+    }
 
     const component = render(
       <ReduxProvider store={store}>
-        <Component />
+        <TempComponent />
       </ReduxProvider>,
     );
 
     expect(component).toMatchSnapshot();
   });
 
-  it('no api data is present', () => {
+  it('snapshot test when data is not present', () => {
     const apisSlice = createSlice({
       name: 'apis',
-      initialState: [],
+      initialState: [
+        {
+          host: '',
+          headers: {},
+          axiosInstance: axios.create(),
+        },
+      ],
       reducers: {
         addNewApiData: (state, action) => [...state, action.payload],
       },
@@ -70,14 +75,24 @@ describe('Unit tests for Home Page', () => {
     const store = configureStore({
       reducer: {
         apis: apisSlice.reducer,
-        sampleQuery: sampleQuery.reducer,
       },
-      middleware: getDefault => getDefault().concat(sampleQuery.middleware),
     });
+
+    /**
+     * Temporary component to initialize Axios.
+     * @returns {import('react').JSX.Element} The rendered component.
+     * @example
+     * <TempComponent />
+     */
+    function TempComponent() {
+      useInitAxios();
+
+      return <div data-testid="temp-component" />;
+    }
 
     const component = render(
       <ReduxProvider store={store}>
-        <Component />
+        <TempComponent />
       </ReduxProvider>,
     );
 
