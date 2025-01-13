@@ -2,12 +2,10 @@
  * A button component that dispatches an action when clicked.
  * @file This file is saved as `src/components/atoms/Button/index.jsx`.
  */
-import {
-  slices,
-  useDispatch,
-} from '@arpitmalik832/react-js-rollup-monorepo-library';
+import { slices } from '@arpitmalik832/react-js-rollup-library';
+import { useDispatch } from 'react-redux';
 
-import s from './index.scss';
+import s from './index.module.scss';
 
 /**
  * A button component that dispatches an action when clicked.
