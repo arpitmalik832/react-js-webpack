@@ -2,7 +2,7 @@
  * This provider is used to wrap the application with all the necessary Providers.
  * @file This file is saved as `providers/AppProvider.jsx`.
  */
-import { ReduxProvider } from '@arpitmalik832/react-js-rollup-monorepo-library';
+import { ReduxProvider } from '@arpitmalik832/react-js-rollup-library';
 
 import App from '../App';
 import store from '../redux/store/store';
@@ -15,7 +15,7 @@ import store from '../redux/store/store';
  *   <AppWrapper />
  * );
  */
-function AppWrapper() {
+function AppProvider() {
   return (
     <ReduxProvider store={store}>
       <App />
@@ -23,4 +23,4 @@ function AppWrapper() {
   );
 }
 
-export default AppWrapper;
+export default AppProvider;

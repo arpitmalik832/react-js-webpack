@@ -8,7 +8,7 @@ import fs from 'fs';
 const config = defineConfig({
   e2e: {
     video: true,
-    setupNodeEvents(on, _) {
+    setupNodeEvents(on) {
       on('after:spec', (spec, results) => {
         if (results && results.video) {
           // Do we have failures for any retry attempts?

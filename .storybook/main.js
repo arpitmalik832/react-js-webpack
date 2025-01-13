@@ -1,5 +1,6 @@
 import TerserPlugin from 'terser-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import CompressionPlugin from 'compression-webpack-plugin';
 
 import { ENVS } from '../build_utils/config/index.mjs';
 import svgrConfig from '../svgr.config.mjs';
@@ -15,9 +16,10 @@ export default {
     '@storybook/addon-a11y',
     '@storybook/addon-interactions',
     '@storybook/addon-storysource',
+    'storybook-addon-render-modes',
   ],
   framework: '@storybook/react-webpack5',
-  webpackFinal: async (config, { configType }) => {
+  webpackFinal: async config => {
     if (!process.env.STORY_ENV) {
       throw new Error(ERR_NO_STORY_ENV_FLAG);
     }
@@ -67,6 +69,7 @@ export default {
     });
 
     // adding code splitting
+    // eslint-disable-next-line no-param-reassign
     config.optimization = {
       ...config.optimization,
       minimize: isRelease || isBeta,
@@ -116,6 +119,15 @@ export default {
         maxSize: 200 * 1024, // 200 KB
       },
     };
+
+    // adding compression plugin
+    config.plugins.push(
+      new CompressionPlugin({
+        filename: '[path][base].br',
+        algorithm: 'brotliCompress',
+        test: /\.(js|css)$/,
+      }),
+    );
 
     const addVisualizer = process.env.INCLUDE_VISUALIZER === 'true';
     const addBuildStats = process.env.INCLUDE_BUILD_STATS === 'true';

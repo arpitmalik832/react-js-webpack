@@ -2,7 +2,7 @@
  * The main application component.
  * @file The file is saved as `App.jsx`.
  */
-import { RouterProvider } from 'react-router-dom';
+import { RouterProvider } from 'react-router';
 
 import router from './routes';
 import useAppMount from './hooks/useAppMount';

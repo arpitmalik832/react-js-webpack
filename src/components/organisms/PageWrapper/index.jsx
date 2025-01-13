@@ -3,8 +3,8 @@
  * @file The file is saved as `PageWrapper/index.jsx`.
  */
 import { useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
-import { log } from '@arpitmalik832/react-js-rollup-monorepo-library';
+import { Outlet, useLocation } from 'react-router';
+import { log } from '@arpitmalik832/react-js-rollup-library';
 
 /**
  * PageWrapper component that logs route changes and renders child components.
