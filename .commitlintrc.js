@@ -1,3 +1,7 @@
+/**
+ * This file is used to configure commitlint.
+ * @file This file is saved as '.commitlintrc.js'.
+ */
 const config = {
   extends: ['@commitlint/config-conventional'],
   rules: {
