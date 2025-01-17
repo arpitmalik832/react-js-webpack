@@ -1,3 +1,7 @@
+/**
+ * This file is used to create a sample query.
+ * @file This file is saved as 'src/redux/queries/sampleQuery.js'.
+ */
 import { createApi } from '@reduxjs/toolkit/query/react';
 
 import { queries } from '@arpitmalik832/react-js-rollup-library';
