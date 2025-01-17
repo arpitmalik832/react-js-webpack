@@ -1,3 +1,7 @@
+/**
+ * This hook is used to initialize axios.
+ * @file This file is saved as 'src/hooks/useInitAxios.js'.
+ */
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
@@ -9,6 +13,18 @@ import {
   APP,
 } from '@arpitmalik832/react-js-rollup-library';
 
+/**
+ * This hook is used to initialize axios.
+ * @example
+ * ```js
+ * const dispatch = useDispatch();
+ * const api1 = {
+ *   host: 'no-host',
+ *   headers: {},
+ * };
+ * useInitAxios(dispatch, api1);
+ * ```
+ */
 function useInitAxios() {
   const dispatch = useDispatch();
   const api1 = {
