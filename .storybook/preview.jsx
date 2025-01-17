@@ -1,3 +1,7 @@
+/**
+ * This file is used to configure storybook.
+ * @file This file is saved as '.storybook/preview.jsx'.
+ */
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {

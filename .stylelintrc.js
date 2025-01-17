@@ -1,3 +1,7 @@
+/**
+ * This file is used to configure stylelint.
+ * @file This file is saved as '.stylelintrc.js'.
+ */
 // stylelint configuration
 // https://stylelint.io/user-guide/configuration/
 const config = {

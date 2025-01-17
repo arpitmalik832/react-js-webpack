@@ -1,3 +1,7 @@
+/**
+ * This file is used to test the Button component.
+ * @file This file is saved as 'src/components/atoms/Button/index.stories.jsx'.
+ */
 import { ReduxProvider } from '@arpitmalik832/react-js-rollup-library';
 
 import Button from './index';

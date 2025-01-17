@@ -14,7 +14,7 @@
     "node": ">=20.17.0"
   },
   "scripts": {
-    "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('pnpm') === -1) throw new Error('You must use pnpm to install dependencies')\"",
+    "preinstall": "if [ \"$SKIP_PREINSTALL\" != \"true\" ]; then node -e \"if(process.env.npm_execpath.indexOf('pnpm') === -1) throw new Error('You must use pnpm to install dependencies')\"; else echo 'Skipping preinstall script'; fi",
     "serve": "node scripts/server.js",
     "rm-dist": "rimraf dist --glob",
     "rm-build": "rimraf build --glob",
@@ -91,6 +91,7 @@
     "e2e-run": "cypress run --spec cypress/e2e/app/App.cy.js",
     "e2e-open-all": "cypress open",
     "e2e-run-all": "cypress run",
+    "e2e-run:pre-commit": "pnpm e2e-run",
     "knip": "cross-env BE_ENV=production APP_ENV=production knip",
     "knip:debug": "pnpm knip --debug",
     "knip:check-files": "pnpm knip --include files",
@@ -173,7 +174,7 @@
     "eslint-plugin-cypress": "^4.0.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jest": "^28.10.0",
-    "eslint-plugin-jsdoc": "^50.4.3",
+    "eslint-plugin-jsdoc": "^50.6.1",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-mdx": "^3.1.5",
     "eslint-plugin-prettier": "^5.2.1",

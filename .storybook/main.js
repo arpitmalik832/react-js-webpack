@@ -1,3 +1,7 @@
+/**
+ * This file is used to configure storybook.
+ * @file This file is saved as '.storybook/main.js'.
+ */
 import TerserPlugin from 'terser-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
