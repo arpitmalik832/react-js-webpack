@@ -2,100 +2,123 @@
  * Unit tests for useInitAxios hook.
  * @file The file is saved as `useInitAxios.test.jsx`.
  */
-import { cleanup, render } from '@testing-library/react';
+import { cleanup, renderHook } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { configureStore, createSlice } from '@reduxjs/toolkit';
-import { ReduxProvider } from '@arpitmalik832/react-js-rollup-library';
+import { Provider } from 'react-redux';
 import axios from 'axios';
+import {
+  addRequestInterceptor,
+  addResponseInterceptor,
+  slices,
+} from '@arpitmalik832/react-js-rollup-library';
 
 import useInitAxios from '../useInitAxios';
 
+// Mock axios
+jest.mock('axios', () => ({
+  create: jest.fn(() => ({
+    interceptors: {
+      request: { use: jest.fn() },
+      response: { use: jest.fn() },
+    },
+  })),
+}));
+
+// Mock library functions
+jest.mock('@arpitmalik832/react-js-rollup-library', () => ({
+  addRequestInterceptor: jest.fn(),
+  addResponseInterceptor: jest.fn(),
+  slices: {
+    addNewApiData: jest.fn(payload => ({
+      type: 'apis/addNewApiData',
+      payload,
+    })),
+  },
+  APP: {
+    API1_TIMEOUT: 5000,
+  },
+}));
+
 describe('useInitAxios unit tests', () => {
+  let store;
+
+  beforeEach(() => {
+    // Create store with the slice
+    store = configureStore({
+      reducer: {
+        apis: createSlice({
+          name: 'apis',
+          initialState: [],
+          reducers: {
+            addNewApiData: (state, action) => {
+              state.push(action.payload);
+            },
+          },
+        }).reducer,
+      },
+      middleware: getDefaultMiddleware =>
+        getDefaultMiddleware({
+          serializableCheck: {
+            ignoredActions: ['apis/addNewApiData'],
+            ignoredPaths: ['apis'],
+          },
+        }),
+    });
+
+    store.dispatch = jest.fn(store.dispatch);
+  });
+
   afterEach(() => {
     cleanup();
+    jest.clearAllMocks();
   });
 
-  it('snapshot test when data is present', () => {
-    const apisSlice = createSlice({
-      name: 'apis',
-      initialState: [
-        {
-          host: 'no-url',
-          headers: { x: 'a' },
-          axiosInstance: axios.create(),
-        },
-      ],
-      reducers: {
-        addNewApiData: (state, action) => [...state, action.payload],
+  // Use react-redux Provider instead of ReduxProvider
+  const wrapper = ({ children }) => (
+    <Provider store={store}>{children}</Provider>
+  );
+
+  it('should create axios instance with correct configuration', () => {
+    renderHook(() => useInitAxios(), { wrapper });
+
+    expect(axios.create).toHaveBeenCalledWith({
+      baseURL: 'no-host',
+      timeout: 5000,
+      headers: {
+        common: {},
       },
     });
-
-    const store = configureStore({
-      reducer: {
-        apis: apisSlice.reducer,
-      },
-    });
-
-    /**
-     * Temporary component to initialize Axios.
-     * @returns {import('react').JSX.Element} The rendered component.
-     * @example
-     * <TempComponent />
-     */
-    function TempComponent() {
-      useInitAxios();
-
-      return <div data-testid="temp-component" />;
-    }
-
-    const component = render(
-      <ReduxProvider store={store}>
-        <TempComponent />
-      </ReduxProvider>,
-    );
-
-    expect(component).toMatchSnapshot();
   });
 
-  it('snapshot test when data is not present', () => {
-    const apisSlice = createSlice({
-      name: 'apis',
-      initialState: [
-        {
-          host: '',
-          headers: {},
-          axiosInstance: axios.create(),
-        },
-      ],
-      reducers: {
-        addNewApiData: (state, action) => [...state, action.payload],
-      },
-    });
+  it('should add request and response interceptors', () => {
+    renderHook(() => useInitAxios(), { wrapper });
 
-    const store = configureStore({
-      reducer: {
-        apis: apisSlice.reducer,
-      },
-    });
+    expect(addRequestInterceptor).toHaveBeenCalledTimes(1);
+    expect(addResponseInterceptor).toHaveBeenCalledTimes(1);
+  });
 
-    /**
-     * Temporary component to initialize Axios.
-     * @returns {import('react').JSX.Element} The rendered component.
-     * @example
-     * <TempComponent />
-     */
-    function TempComponent() {
-      useInitAxios();
-
-      return <div data-testid="temp-component" />;
-    }
-
-    const component = render(
-      <ReduxProvider store={store}>
-        <TempComponent />
-      </ReduxProvider>,
+  it('should dispatch addNewApiData with correct payload', () => {
+    renderHook(() => useInitAxios(), { wrapper });
+    expect(store.dispatch).toHaveBeenCalledWith(
+      slices.addNewApiData({
+        host: 'no-host',
+        headers: {},
+        axiosInstance: expect.any(Object),
+      }),
     );
+  });
 
-    expect(component).toMatchSnapshot();
+  it('should only initialize axios once', () => {
+    const { rerender } = renderHook(() => useInitAxios(), { wrapper });
+
+    // Initial render
+    expect(axios.create).toHaveBeenCalledTimes(1);
+    expect(store.dispatch).toHaveBeenCalledTimes(1);
+
+    // Rerender
+    rerender();
+    expect(axios.create).toHaveBeenCalledTimes(1);
+    expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 });
